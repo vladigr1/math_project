@@ -1,0 +1,227 @@
+\documentclass[12pt,twoside]{article}
+
+%\documentclass[a4paper,10pt,twoside]{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{ucs}  % unicode support
+\usepackage[utf8x]{inputenc}
+\usepackage{culmus}
+%\usepackage{float}
+%\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+%\usepackage[cp1255]{inputenc}
+\usepackage[english,hebrew]{babel}
+%BIDION
+
+%\usepackage{xkeyval}
+\usepackage{graphicx}
+
+\usepackage{epstopdf}
+%\usepackage{eucal}
+%\usepackage{mathrsfs}
+%\usepackage{theorem}
+%\usepackage{pifont}
+\usepackage {epsfig}
+%\usepackage[colorlinks=true, bookmarks=true]{hyperref}
+\usepackage{bibtopic,wrapfig}
+%\usepackage{bbding}
+%\usepackage{fancyhdr}
+%\usepackage{verbatim}
+
+%\pagestyle{fancy}
+
+%\usepackage{bidi}
+
+
+%\rhead{\thepage}
+%\lfoot{\small \copyright\;\;\; שירה בר-דב, אורט בראודה}
+%\rfoot{\thepage}
+%\cfoot{}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\let\arref\ref
+%\renewcommand{\ref}[1]{\I{\arref{#1}}}
+
+\setlength{\parskip}{6pt} \setlength{\parindent}{0pt}
+\setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
+%\documentclass[a4paper,10pt,twoside]{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{ucs}  % unicode support
+\usepackage[utf8x]{inputenc}
+\usepackage{culmus}
+%\usepackage{float}
+%\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+%\usepackage[cp1255]{inputenc}
+\usepackage[english,hebrew]{babel}
+%BIDION
+
+%\usepackage{xkeyval}
+\usepackage{graphicx}
+
+\usepackage{epstopdf}
+%\usepackage{eucal}
+%\usepackage{mathrsfs}
+%\usepackage{theorem}
+%\usepackage{pifont}
+\usepackage {epsfig}
+%\usepackage[colorlinks=true, bookmarks=true]{hyperref}
+\usepackage{bibtopic,wrapfig}
+%\usepackage{bbding}
+%\usepackage{fancyhdr}
+%\usepackage{verbatim}
+
+%\pagestyle{fancy}
+
+%\usepackage{bidi}
+
+
+%\rhead{\thepage}
+%\lfoot{\small \copyright\;\;\; שירה בר-דב, אורט בראודה}
+%\rfoot{\thepage}
+%\cfoot{}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\let\arref\ref
+%\renewcommand{\ref}[1]{\I{\arref{#1}}}
+
+\setlength{\parskip}{6pt} \setlength{\parindent}{0pt}
+\setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
+
+% User defined macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{definition}{הגדרה}[section]
+\newtheorem{theorem}{משפט}[section]
+\newtheorem{proposition}{טענה}[section]
+\newtheorem{conjecture}{השערה}[section]
+\newtheorem{corollary}{מסקנה}[section]
+\newtheorem{lemma}{למה}[section]
+\newtheorem{question}{שאלה}[section]
+\newtheorem{example}{דוגמה}[section]
+
+%\numberwithin{equation}{section}
+
+%\documentclass{amsart}
+%%\usepackage[active]{srcltx} % SRC Specials for DVI Searching
+%\usepackage {epsfig}
+%% THEOREM Environments ---------------------------------------------------
+% \newtheorem{thm}{Theorem}
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{lemma}[thm]{Lemma}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{theorem}[thm]{Theorem}
+% \theoremstyle{definition}
+% \newtheorem{defn}[thm]{Definition}
+% \theoremstyle{remark}
+% \newtheorem{rem}[thm]{Remark}
+%% MATH -------------------------------------------------------------------
+%%%% ----------------------------------------------------------------------
+%\setlength{\textheight}{43pc} \setlength{\textwidth}{28pc}
+%
+
+\begin{document}
+
+\begin{titlepage}
+	
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%   HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE   
+מכללת אורט בראודה
+% Name of your university/college
+}\\[1.5cm]
+\textsc{\LARGE 
+המחלקה למתמטיקה שימושית
+ % Major heading such as course name
+}\\[0.5cm]
+
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries
+כותרת ראשית
+% Title of your document
+ }\\[0.4cm] 
+\HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%   AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{מאת:}\\
+שם פרטי
+% Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{מנחה:} \\
+מנחה 
+% Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+%----------------------------------------------------------------------------------------
+%   DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+%----------------------------------------------------------------------------------------
+%   LOGO SECTION
+%----------------------------------------------------------------------------------------
+\begin{figure}
+	\begin{center}
+		%\L{\includegraphics[scale=0.3]{Braude_Logo.eps}}
+	\end{center}
+%	\caption{הפונקציה $\arctan(x)$ - באדום, וסכום שלושת האיברים הראשונים של טור טיילור שלה - בכחול}
+%	\label{atan}
+\end{figure}
+
+%\includegraphics[scale=0.3]{Braude_Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+%----------------------------------------------------------------------------------------
+%   תוכן עניינים
+%----------------------------------------------------------------------------------------
+\tableofcontents
+
+\newpage
+%--------------------------------------------------------------------------------------
+%   הקדמה
+%----------------------------------------------------------------------------------------
+\section{הקדמה}
+דוגמה
+
+%----------------------------------------------------------------------------------------
+%   רשימת מקורות
+%----------------------------------------------------------------------------------------
+\section{} %ביביליוגרפיה
+\begin{thebibliography}{99}
+\nocite{B1}
+\unsethebrew
+\bibitem{B1} example‏
+\sethebrew
+
+\end{thebibliography}
+
+    \end{document} 
