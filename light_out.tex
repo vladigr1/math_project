@@ -81,6 +81,10 @@
 
 %\usepackage{bidi}
 
+% User packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{subcaption}
+
 
 %\rhead{\thepage}
 %\lfoot{\small \copyright\;\;\; שירה בר-דב, אורט בראודה}
@@ -92,7 +96,7 @@
 %\let\arref\ref
 %\renewcommand{\ref}[1]{\I{\arref{#1}}}
 
-\setlength{\parskip}{6pt} \setlength{\parindent}{0pt}
+\setlength{\parskip}{2em} \setlength{\parindent}{0pt}
 \setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
 
 % User defined macros
@@ -106,6 +110,7 @@
 \newtheorem{lemma}{למה}[section]
 \newtheorem{question}{שאלה}[section]
 \newtheorem{example}{דוגמה}[section]
+\newtheorem{comm}{הערה}[section]
 
 %\numberwithin{equation}{section}
 
@@ -213,13 +218,148 @@
 % TODO: at the end summary main points
 
 \section{רקע על משחק האורות}
-% TODO: explanation for the game
+משחק האורות או 
+\L{Lights Out}
+בלועזית,
+זהו משחק בו יש לוח משבצות ריבועי
+וכל משבצת הינה לחצן על הלוח.
+\\
+כל משבצת יכולה להיות בשתי מצבים:
+דלוק או כבוי.
+\\
+כאשר לוחצים על משבצת, משבצת הנלחצת וכל משבצות הסמוכות לה כלומר,
+כל המשבצת בעל צלע משותפת משנות את מצב נוכחי.
+\\
+משחק מתחיל כשהלוח כולו עם משבצות דלוקות והמטרה לכבות את כל המשבצות על הלוח כולו.
+
+נתאר זאת ויזואלית: 
+
+\begin{figure}[h]
+    \begin{subfigure}{.5\textwidth}
+        \unsethebrew
+        \caption{\R{מצב התחלתי}}
+        \centering
+        \includegraphics{images/4x4_start_board.PNG}
+        \sethebrew
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \unsethebrew
+        \caption{\R{לחיצה על משבצת מסומנת}}
+        \centering
+        \includegraphics{images/4x4_press.PNG}
+        \sethebrew
+    \end{subfigure}%
+\end{figure}
+
+נבחין כי המשחק 
+$4x4$
+מתחיל במצב
+\L{(a)}.
+\\
+בלוח 
+\L{(b)}
+נתאר מצב בו לחצו על משבצת המסומנת, בירוק
+כל המשבצות השכנות והיא משנות מצבן, היות ומצב של כולן היה דלוקות לכן הן נכבו
+
+המשחק במקור היה צעצוע אלקטרוני על לוח 
+$5x5$
+ששוחרר ב 
+$1995$.
+\\
+המשחק יכול להראות פשוט אבל כפי שתואר
+במאמר
+\cite{B1}
+\L{"devilish invention"}.
+\\
+קיים קושי רב בלמצוא שיטה לפתרון אינטואיטיבי, הקושי של משחק מתבלט בשאלה כיצד כדי להתחיל את המשחק?
+\\
+בנוסף אציין מניסיון האישי שהמשחק קשה כבר 
+על לוח 
+$5x5$
+ולרוב אנשים שמשחקים אותו מכירים מצבים על הלוח שיודע עליהם משם את הפתרון.
+
+פרויקט זה באה בעקבות הקושי של המשחק
+והניסוי להציע שיטות לפתרון, בעקבות ניסיונות עלו
+נעזרנו במספר רב של כלים מתמטיים מתקדמים.
+\\
+אחת המטרות במחקר למצוא הסבר לתופעות במשחק שנתקלנו.
+
+נציין כי קיימים עוד המון שאלות שמשחק מעלה ולא לכולם קיים פתרון,
+נשמח בפרויקט זה פתרון לכמה מהשאלות שעולות.
+\\
+חוץ מאתגר של המשחק עצמו קיים אתגר מתמטי שנרצה בפרויקט זה להציג ולהעניין.
+
 
 \subsection{ משחק האורות על גרף}
-% TODO: 
+אחרי שכללי המשחק על לוח הובנו אפשר לנסות להכליל את המשחק כמשחק על גרף.
+\\
+קיימים הרבה סיבות בהם תירצה להגדיר את הבעיה על מבנה כללי שכזה:
+
+\begin{enumerate}
+    \item 
+    ככול שמבנה כללי יותר תאוריה שאתה מפתח מתאימה ליותר בעיות.
+    \item 
+    קיימת תאוריה רחבה שפותחה על גרפים ואתכן שנעזר בחלק
+    מהטענות מהתאורה שכזה.
+    \item 
+    מבליט את מהות הבעיה והגדרה הבסיסית ביותר של המשחק.
+\end{enumerate}
+
+ארצה להתייחס לנקודה אחרונה, החשיבות הגדולה שאפשר לתאר את הבעיה של משחק
+כאוסף של כללים על גרף, מרכזת אותנו לבעיה ובסופו של דבר כשנראה את שיטה למציאת
+הפתרון, השיטה עצמה תזכיר לנו מיד את הייצוג הגרפי.
+
+כדי לתאר את משחק האורות על גרף נשתמש באותם כללים שהגדרנו פרט לעובדה
+שצמתים הם הלחצנים או המשבצות במקרה של הלוח
+וכל לחיצה הופכת את המצב של הצומת והשכנים שלה.
+\\
+נזכיר כי צמתים שכנים הם צמתים שיש
+קשת ביניהם.
+
+נציין כי כאשר כל צומת יכולה להיות בשתי מצבים,
+דלוקה או כבויה המטרה היא לעבור מכל הצמתים במצב מסוים דלוק למצב אחר כבוי.
+\\
+העובדה שמצב התחלתי הינו דלוק או כבוי אינה תשנה את המשחק עלה רק לאיזה מצב סופי צריך לעבור
+לכבוי או דלוק.
+
+נמחיש זאת על דוגמה:
+\begin{figure}[h]
+    \begin{subfigure}{.5\textwidth}
+        \unsethebrew
+        \caption{\R{מצב התחלתי}}
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/graph_start_board.png}
+        \sethebrew
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \unsethebrew
+        \caption{\R{לחיצה על משבצת מסומנת}}
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/graph_press.png}
+        \sethebrew
+    \end{subfigure}%
+\end{figure}
+
+על גרף התחלתי
+\L{(a)}
+ניתן לראות
+$6$
+קודקודיים
+צבועים באפור ומטרה לצבוע את כולם לצהוב.
+\\
+בשלב 
+\L{(b)}
+מציגים  לחיצה על צומת ירוקה היא ושכניה נצבעים בצהוב.
+
+\begin{comm}
+    בפועל צומת ירוקה גם נצבעת לצהוב צביעה לירוק נועדה להדגשה על מי נלחץ
+\end{comm}
+
+\newpage
 
 \section{ אלגוריתם למציאת פתרון}
-% TODO:
+לפני שנציא שיטה לפתרון נציין מדוע  נציין מדוע קיים הצורך לחפש פיתרון
+אחת הסיבות המרכזיות שמספר אפשרויות לנסיון גדולותת מהר
 
 \subsection{פתרון בעזרת שיטה הספרדית}
 % TODO: 
@@ -244,9 +384,11 @@
 %----------------------------------------------------------------------------------------
 \section{} %ביבליוגרפיה
 \begin{thebibliography}{99}
-\nocite{B1}
 \unsethebrew
-\bibitem{B1} example
+\bibitem{B1} ALL LIGHTS AND LIGHTS OUT
+An investigation among lights and shadows by
+SUMA magazine’s article by Rafael Losada
+Translated from Spanish by Ángeles Vallejo
 \sethebrew
 
 \end{thebibliography}
