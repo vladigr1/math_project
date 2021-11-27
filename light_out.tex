@@ -355,6 +355,66 @@ $6$
     בפועל צומת ירוקה גם נצבעת לצהוב צביעה לירוק נועדה להדגשה על מי נלחץ
 \end{comm}
 
+משחק על גרף הינה הכללה  של משחק על לוח כלומר, כל משחק 
+לוח ניתן לתאר בעזרת משחק על גרף.
+
+נמחיש זאת על דוגמה:
+
+ניקח לוח למשל
+$2 \times 3$
+נמספר את המשבצות כמו באיור
+\ref{2x3_board}
+
+\begin{figure}[ht]
+    \unsethebrew
+    \caption{
+        \R{לוח
+        $2 \times 3$
+        }
+    }
+    \centering
+    \label{2x3_board}
+    \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/2x3_board.PNG}
+    \sethebrew
+\end{figure}
+
+כדי לתאר את הלוח על על משחק גרף נשתמש בשני הכללים הבאים:
+
+\begin{enumerate}
+    \item 
+    כל משבצת על משחק לוח נהפוך לנקודה.
+    \item 
+    כל זוג משבצות סמוכות על לוח נחבר את נקודות בקו
+\end{enumerate}
+
+הגרף שנקבל עבור לוח באיור
+\ref{2x3_board}
+מתואר באיור
+\ref{2x3_graph}
+
+\begin{figure}[ht]
+    \unsethebrew
+    \caption{
+        \R{גרף
+        $2 \times 3$
+        }
+    }
+    \centering
+    \label{2x3_graph}
+    \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/2x3_graph.png}
+    \sethebrew
+\end{figure}
+
+נשים לב שלגרף בו יש צומת אם יותר מ
+$4$
+שכנים לא ניתן לתאר לוח שכזה כיוון שלכל היות במשחק על לוח
+לכל משבצת יש לכל יותר 
+$4$
+משבצות סמוכות.
+
+לכן לסיכום אפשר למדל כל משחק לוח על משחק גרף שמייצג אותו אבל 
+ההפך זה לא נכון.
+
 \newpage
 
 \section{ אלגוריתם למציאת פתרון}
