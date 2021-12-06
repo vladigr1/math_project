@@ -3,7 +3,6 @@
 %\documentclass[a4paper,10pt,twoside]{article}
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{ucs}  % Unicode support
-\usepackage[utf8x]{inputenc}
 \usepackage{culmus}
 %\usepackage{float}
 %\usepackage{listings}
@@ -12,6 +11,7 @@
 \definecolor{mylilas}{RGB}{170,55,241}
 
 %\usepackage[cp1255]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[english,hebrew]{babel}
 %BIDION
 
@@ -76,6 +76,9 @@
 \newtheorem{example}{דוגמה}[section]
 \newtheorem{comm}{הערה}[section]
 
+\newcommand{\sumi}[1]{\sum_{#1=1}^n}
+\newcommand{\Fn}{{F_2}^n}
+
 %\numberwithin{equation}{section}
 
 %\documentclass{amsart}
@@ -96,6 +99,8 @@
 %\setlength{\textheight}{43pc} \setlength{\textwidth}{28pc}
 %
 
+
+
 \begin{document}
 
 \begin{titlepage}
@@ -109,7 +114,7 @@
 %----------------------------------------------------------------------------------------
 
 \textsc{\LARGE   
-מכללת אורט בראודה
+% מכללת אורט בראודה
 % Name of your university/college
 }\\[1.5cm]
 \textsc{\LARGE 
@@ -157,7 +162,7 @@
 %----------------------------------------------------------------------------------------
 \begin{figure}
 	\begin{center}
-		%\L{\includegraphics[scale=0.3]{Braude_Logo.eps}}
+		\L{\includegraphics[scale=0.3]{images/Braude_Logo.jpg}}
 	\end{center}
 %	\caption{הפונקציה $\arctan(x)$ - באדום, וסכום שלושת האיברים הראשונים של טור טיילור שלה - בכחול}
 %	\label{atan}
@@ -185,10 +190,9 @@
 משחק האורות או 
 \L{Lights Out}
 בלועזית,
-זהו משחק בו יש לוח משבצות ריבועי
-וכל משבצת הינה לחצן על הלוח.
+זהו משחק בו יש לוח משבצות ריבועי.
 \\
-כל משבצת יכולה להיות בשתי מצבים:
+כל משבצת הינה לחצן על הלוח שיכולה להיות בשתי מצבים:
 דלוק או כבוי.
 \\
 כאשר לוחצים על משבצת, משבצת הנלחצת וכל משבצות הסמוכות לה כלומר,
@@ -216,7 +220,7 @@
 \end{figure}
 
 נבחין כי המשחק 
-$4x4$
+$4 \times 4$
 מתחיל במצב
 \L{(a)}.
 \\
@@ -226,7 +230,7 @@ $4x4$
 כל המשבצות השכנות והיא משנות מצבן, היות ומצב של כולן היה דלוקות לכן הן נכבו
 
 המשחק במקור היה צעצוע אלקטרוני על לוח 
-$5x5$
+$5 \times 5$
 ששוחרר ב 
 $1995$.
 \\
@@ -239,7 +243,7 @@ $1995$.
 \\
 בנוסף אציין מניסיון האישי שהמשחק קשה כבר 
 על לוח 
-$5x5$
+$5 \times 5$
 ולרוב אנשים שמשחקים אותו מכירים מצבים על הלוח שיודע עליהם משם את הפתרון.
 
 פרויקט זה באה בעקבות הקושי של המשחק
@@ -330,12 +334,12 @@ $2 \times 3$
 \ref{2x3_board}
 
 \begin{figure}[ht]
-    \unsethebrew
     \caption{
         \R{לוח
         $2 \times 3$
         }
     }
+    \unsethebrew
     \centering
     \label{2x3_board}
     \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/2x3_board.PNG}
@@ -357,12 +361,12 @@ $2 \times 3$
 \ref{2x3_graph}
 
 \begin{figure}[ht]
-    \unsethebrew
     \caption{
         \R{גרף
         $2 \times 3$
         }
     }
+    \unsethebrew
     \centering
     \label{2x3_graph}
     \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/2x3_graph.png}
@@ -388,22 +392,22 @@ $4$
 
 הצורך למצוא פתרון הוא נוראה טבעי וזה בעקבות שמששחק עצמו מעניין, כשאתה מתחיל 
 את המשחק על לוח 
-$3x3$
+$3 \times 3$
 המשחק ניראה תמים ופשוט אתה מתחיל לצפות לאיזושהי חוקיות.
 \\
 בשלב הזה שאתה כבר מנסה לוח 
-$4x4$
+$4 \times 4$
 המשחק מתגלה כלא פשוט כשאתה מנסה לוח בקונפיגורציה כלשהי לא בהכרח התחלתית
 מהר מאד אתה נעבד.
 \\
 בשלב מסוים גם לוח 
-$4x4$
+$4 \times 4$
 נהיה מוכר ובאופן תמים תנסה לעבור ללוח
-$5x5$
+$5 \times 5$
 ומהר מאד הלוח שובר את רוחה.
 קיימים כל כך הרבה מכירים שנשארת לך משבצת אחת שנותרה לסדר ואינה נעלמת
 האינטואיציה שחשבת שפיתח על לוח 
-$4x4$
+$4 \times 4$
 נעלמת כאילו למדת לשחק משחק חדש לגמרי.
 
 התופעה הזאת ששינוי גודל מרגיש שהתחלת משחק אחר עוד
@@ -435,28 +439,28 @@ $4x4$
 כדי שהשחקן ינצח עליו ללחוץ על המשבצות הירוקות.
 \\
 איור באה להראות שלוחות על קטנים מ
-$5x5$
+$5 \times 5$
 אתכן ותחשוב שפתרון נוצר על לחיצות סימטריות והאיור ממשיך שזה לא כך 
 כי כאשר מסתכלים על הלוח 
-$5x5$
+$5 \times 5$
 מיד אפשר לראות שפתרון לא ניראה סימטרי.
 
 חוסר האינטואיציה מתבלט גם מהעבודה שכמות הפתרונות משתנה לכל לוח.
 עבור לוח 
-$3x3$
+$3 \times 3$
 קיים פתרון יחיד,
 אבל ללוח 
-$4x4$
+$4 \times 4$
 קיים
 $16$
 פתרונות.
 כמה פתרונות היה ללוח
-$5x5$
+$5 \times 5$
 ,
 האם זה יותר או פחות מלוח
-$4x4$
+$4 \times 4$
 בהפתעה רבה ללוח 
-$5x5$
+$5 \times 5$
 יש רק 
 $4$
 פתרונות שזה  מפתיע כי אפשר היה לצפות שמספר פתרונות על לוח גדול יותר אגדל.
@@ -480,7 +484,7 @@ $256$.
 
 \begin{lemma}
     כמות האפשרויות לחיצה על לוח
-    $mxn$
+    $m \times n$
     הוא 
     $2^{m \cdot n}$
 \end{lemma}
@@ -490,7 +494,7 @@ $256$.
 לכן,
 כל לחצן משפיע על הלוח אם הוא נלחץ או לא כלומר, יכול להיות בשתי מצבים.
 היות וללוח
-$mxn$
+$m \times n$
 קיים 
 $m \cdot n$
 לחצנים
@@ -616,31 +620,260 @@ $
 \begin{definition}
     וקטור השינוי
     שנסמן ב
-    $t_i$
+    $\vec{t_j}$
     של לחצן
     ממוספר
-    $i$
-    הינו וקטור בעל ממד
-    $[n x 1]$
+    $i$.
+    \\
+    וקטור
+    שייך 
+    לשדה 
+    $\Fn$
     כאשר 
+    $F_2$
+    שדה בינארי
+    ו 
     $n$
-    הינו מספר הלחצנים,
-    וערכיו
+    הינו מספר הלחצנים.
+    נגדיר שערכיו
     $t_{i,j} = 1$
-    עבור לחצנים
-    שכנים עליו והוא עצמו
+    עבור
+    לחצנים
+    $j$
+    שכנים עליו ועל עצמו
     ושאר ערכי וקטור שווים ל
     $0$.
-
 \end{definition}
+
+\begin{comm}
+    היות ווקטור שינוי שדה
+    $\Fn$
+    חיבור בין וקטורים הינו חיבור בין האינדקסים מודול 
+    $2$
+    וכפל בסקלר
+    הוא לכפול את כל ערכי וקטור בסקלר
+    כאשר הסקלרים יכולים להיות
+    $0$
+    או 
+    $1$
+\end{comm}
 
 נזכיר שלחצנים שכנים הם לחצנים שמשתנים אתו באת לחיצה 
 אם זה במקרה הגרפי צמתים שכנים כלומר בעלי צומת משותפת
 או במקרה הלוח זה לחצנים בעלי צלע משותפת.
 
-% TODO: explain about vector solution
+בעזרת וקטורי השינוי אפשר לתאר תוצאה של קומבינציות של לחיצות
+בעזרת צירוף לינארי של וקטורי שינויים.
+את המצב המתקבל נוסיף למצב הקיים ונקבל את השינוי שנוצר בלחיצה של כפתורים.
+נדגים רעיון זה על איור
+\ref{fig:start graph presses}
+.
 
-% TODO: second approach
+נניח שצומת 1 היא יחידה שדלוקה.
+\\
+נרצה להראות איך הגרף יראה עם ילחצו על כפותרים 
+$1, 3$.
+
+\begin{figure}[ht]
+    \caption{\R{מצב התחלתי}}
+    \label{fig:start graph presses}
+    \unsethebrew
+    \centering
+    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/graph_presses.png}
+\end{figure}
+\sethebrew
+
+$
+    t_1 + t_3 = 
+    \begin{bmatrix}
+        1 \\
+        0 \\
+        1 \\
+        1 \\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        1 \\
+        1 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 \\
+        1 \\
+        0 \\
+        0 \\
+    \end{bmatrix}
+$
+
+ומצב התחלתי שמתואר באיור נסמן ב
+$S_0$
+לכן מתקבל
+
+$
+    S_0 + t_1 + t_3 = 
+    \begin{bmatrix}
+        1 \\
+        0 \\
+        0 \\
+        0 \\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0 \\
+        1 \\
+        0 \\
+        0 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        0 \\
+        0 \\
+    \end{bmatrix}
+$
+
+וקטור התוצאה שהתקבל אכן תואם לתוצאה המצופה
+מתואר באיור 
+\ref{fig:start graph presses solution}.
+
+נשים לב שעבור איך שהגדרנו את המשחק 
+\L{Light out}
+המשחק מתחיל כשכול
+נורות דלוקות או כבויות
+ומטרה היא לכבות או להדליק את כל נורות.
+\\
+כפי שאמרנו שני המשחקים שקולים ההבדל רק
+מה המשמעות שנותנים לערכים
+$0 ,1 $ 
+ומהו מצב הלוח התחלתי בהגדרה זה.
+
+\begin{figure}[ht]
+    \caption{\R{מצב לאחר ביצוע הלחיצות}}
+    \label{fig:start graph presses solution}
+    \unsethebrew
+    \centering
+    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/graph_presses_solve.png}
+\end{figure}
+\sethebrew
+
+מפרק זה נגדיר שאנחנו פותרים את המשחק שלוח התחלתי כולו באפסים
+ומטרה להגיע ללוח שכולו אחדים.
+תיאור הטבעי למשחק שכזה להתחיל מלוח כבוי ומטרה להדליק את כל הנורות
+
+מתיאור שכזה מובן כי 
+$S_0$
+זהו וקטור אפסים לכן כדי לתאר את ממצב התחלתי
+למצב לצירוף לינארי של וקטורי שינוי 
+אין צורך לחבר בין מצב התחלתי וצירוף לינארי.
+
+היות ומתקיים:
+
+\begin{equation}
+    \label{eq: sum change vectors}
+    S_0 + \sumi{j} a_i \vec{t_j} =  \sumi{j} a_j \vec{t_j}
+\end{equation}
+
+בעקבות כך ניתן לתאר את בעיית המשחק לצורה הבאה:
+
+\begin{equation}
+    \label{eq: lin eq for solving problem}
+    \sumi{j} a_j \vec{t_j} = \vec{1}
+\end{equation}
+
+כאשר
+$\vec{1}$
+וקטור שכל ערכיו אחדים
+ו
+$n$
+מספר הצמתים בגרף.
+
+תיאור שכזה מדגיש מספר תכונות 
+
+\begin{lemma}
+    סדר הליחצות לא משנה את התוצאה הסופית
+\end{lemma}
+נשים לב שאם ידוע קבוצת לחיצות ממצב התחלתי הערך של משבצת מסוימת נקבע לפי 
+הערך של וקטור תוצאה
+בנוסחה
+\ref{eq: sum change vectors}.
+נשים לב שתוצאת הסכום איננה תלויה בסדר הלחיצות של הוקטור. 
+
+מערכת משוואות 
+שמתוארת בנוסחה
+\ref{eq: lin eq for solving problem}
+אפשר לתאר במספר צורות ונפוצה מבינהם היא
+בעזרת מטריצה כמו שמתואר 
+בנוסחה 
+\ref{eq: matrix eq for solving problem}.
+
+\begin{equation*}
+    \begin{bmatrix}
+        t_1 & t_2 & \cdots & t_n
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_1 \\
+        a_2 \\
+        \cdots \\
+        a_n \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        1 \\
+        1 \\
+    \end{bmatrix}
+\end{equation*}
+\begin{equation}
+    \label{eq: matrix eq for solving problem}
+    \begin{bmatrix}
+        t_{1,1} & t_{1,2} & \cdots & t_{1,n} \\
+        t_{2,1} & t_{2,2} & \cdots & t_{2,n} \\
+        \cdots & \cdots & \cdots & \cdots\\
+        t_{i,j} & t_{i,2} & \cdots & t_{i,n} \\
+        \cdots & \cdots & \cdots & \cdots\\
+        t_{n,1} & t_{n,2} & \cdots & t_{n,n} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_1 \\
+        a_2 \\
+        \cdots \\
+        a_n \\
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        \cdots \\
+        1 \\
+    \end{bmatrix}
+\end{equation}
+
+תוצאה דומה אפשר לראות בפרק מהספר
+\cite{B2}.
+\\
+מרגע שהצלחנו לתאר את הבעיה מערכת משוואות לינארית
+על שדה
+$\Fn$
+מכן נוכל להעזר בכלים של אלגברה לינארית כדי למצוא את הפתרון כמו מציאת פתרון בעזרת דירוג,
+מציאת מטריצה פסאדו הפוכה וכולי.
+
+נשים לב שעבור לוח 
+$[n \times n]$
+כמות הלחצנים 
+$n^2$
+כלומר גודל המטריצה שתוארה במשוואה
+\ref{eq: matrix eq for solving problem}
+היא 
+$[n^2 \times n^2]$
+כלומר הבעיה גדלה בקצב ריבועי.
+\\
+בהמשך ננסה להראות גישה שמנסה להקטין את כמות המשתנים בלוח מלבניי.
+
+
 
 
 
@@ -656,6 +889,8 @@ $
 \section{פתרון מינימלי עבור לוחות מלבניים}
 % TODO:
 
+% TODO: speak about solution on non stating board
+
 \section{תוצאות ומסקנות}
 % TODO:
 
@@ -665,15 +900,15 @@ $
 %----------------------------------------------------------------------------------------
 %   רשימת מקורות
 %----------------------------------------------------------------------------------------
-\section{} %ביבליוגרפיה
+
 \begin{thebibliography}{99}
 \unsethebrew
 \bibitem{B1} ALL LIGHTS AND LIGHTS OUT
 An investigation among lights and shadows by
 SUMA magazine’s article by Rafael Losada
 Translated from Spanish by Ángeles Vallejo
-\sethebrew
 
+\bibitem{B2} Lecture 24: Light out Puzzle , SFU faculty of scienc department of mathematics
 \end{thebibliography}
 
 \end{document} 
