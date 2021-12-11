@@ -48,6 +48,7 @@
 % User packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{subcaption}
+\usepackage{mathtools}
 
 
 
@@ -572,6 +573,7 @@ $2x2$
 \sethebrew
 
 \begin{comm}
+    \label{ comm: indexing board game}
     מספור לפי שורה עליונה על כל עמודות עד לשורה תחתונה תהיה שיטת המספור לאורך כל ספר
 \end{comm}
 
@@ -838,10 +840,10 @@ $n$
         t_{n,1} & t_{n,2} & \cdots & t_{n,n} \\
     \end{bmatrix}
     \begin{bmatrix}
-        a_1 \\
-        a_2 \\
+        x_1 \\
+        x_2 \\
         \cdots \\
-        a_n \\
+        x_n \\
     \end{bmatrix}
     = 
     \begin{bmatrix}
@@ -851,6 +853,32 @@ $n$
         1 \\
     \end{bmatrix}
 \end{equation}
+
+
+\begin{definition}
+    \label{ def: solution vector}
+    תהי משחק ומערכת משוואת שמתארת אותו מצורה 
+    \ref{eq: matrix eq for solving problem} 
+    נגדיר את וקטור פתרון כאוסף הלחצנים ומצב להגיע לפתרון
+    ונסמן אותו ב
+    $\vec{x}$
+\end{definition}
+
+הגדרה 
+\ref{ def: solution vector}
+מתכוונת שאם מתקבל
+$\vec{x}$
+וקטור פתרון של המערכת 
+ו
+$x_i = 1$
+אז המשמעות שכדי לפתור את המשחק
+צריך ללחוץ על לחצן 
+$i$.
+\\
+בנוסף 
+$\vec{x}$
+אחד הפתרונות אתכן והיו כמה.
+
 
 תוצאה דומה אפשר לראות בפרק מהספר
 \cite{B2}.
@@ -924,8 +952,12 @@ $n$
 
 נניח שאיור 
 \ref{fig: 3 x 3 board indexed}
-מתאר את הלוח הנתון כאשר המשבצות הינן הלחצנים ומספור זה אינדקסים השם 
-של הלחצן.
+מתאר את הלוח הנתון כאשר המשבצות הינן הלחצנים ומספור זה אינדקסים הערה 
+\ref{ comm: indexing board game}
+כאשר מתחילים את המספור מ
+$0$
+נפוץ בשפות תוכנה להתחיל מאינדקס 
+$0$.
 
 \begin{figure}[ht]
     \caption{לוח 
@@ -952,7 +984,83 @@ $n \times n$
 שיטת הספרדית מתחיל בכך
 שממלאים את השורה העליונה במשתנים
 כפי שמתואר באיור 
-\ref{fig: 3 x 3 board init spanish}
+\ref{fig: 3 x 3 board init spanish}.
+לאחר מכן עוברים שורה שורה 
+וממלאים אותה במשתנים שמשפיעים על הלחצן.
+
+בשלב זה נסביר את אופן המילוי ומשמעות המשתנים.
+
+ונסמן ב
+$x_i$
+אם נילחץ על לחצן 
+$i$.
+אם נתייחס לכל הלחצנים כווקטור מסודר לפי אינדקס
+$i$
+נקבל 
+$\vec{x}$
+כפי שהגדרנו בהגדרה 
+\ref{ def: solution vector}.
+
+נתסכל על איור 
+\ref{fig: 3 x 3 board indexed}
+היות ומטרה להפוך את מצב הלחצנים
+כלומר צריך שכמות לחיצות על לחצנים שמשפיעים על 
+משבצת סכום במודול
+$2$
+היה 
+$1$
+כי 
+הלחצן אשאר דלוק.
+
+נדגים
+על כמה לחצנים מאיור  
+\ref{fig: 3 x 3 board indexed}.
+מצב הלחצן תלוי האם הלחצנים 
+סמוכים לו  ועצמו לחוצים .
+\\
+עבור 
+לחצן 
+$0$.
+מתקבלת המשוואה:
+
+\[ x_0 + x_1 + x_3 = 1\]
+
+ועבור לחצן 
+$3$:
+
+\[ x_0 + x_3 + x_4 + x_6 = 1 \]
+
+וכך ניתן להגדיר אילוצים לכל הלחצנים.
+
+\begin{definition}
+    \label{ def: depndeciy equation}
+    המשוואה המתקבלת
+    עבור לחצן 
+    $i$
+    מחיבור מודל 
+    $2$
+    עם לחצות על הלחצנים המשפעים על לחצן 
+    תקראה
+    משוואת אילוץ על לחצן 
+    $i$
+\end{definition}
+
+עבור משחק לוח
+ריבועי באורך שורה 
+$n$
+שהלצנים ממספרים לפי הערה
+\ref{ comm: indexing board game}
+ניתן לנסח בנוסחה פשוטה:
+\begin{equation}
+    \label{eq: depndeciy equation}
+    x^*_{i - n} + x^*_{i - 1} + x^*_{i} + x^*_{i + 1} + x^*_{i + n} = 1
+    \hspace{10pt}
+    x^*_i =
+    \begin{cases}
+        x_i & \text{if $i \in [1,n^2]$} \\
+        0 & \text{otherwise}
+    \end{cases}
+\end{equation}
 
 \begin{figure}[ht]
     \caption{לוח 
@@ -964,6 +1072,264 @@ $n \times n$
     \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_first_row.PNG}
 \end{figure}
 \sethebrew
+
+לאחר שהגדרנו את משוואת האילצים נסביר כיצד למלאה 
+את השורות לפי השיטה הספרדית.
+\\
+כל לחצן ימלאה לפי משוואת האילוצים של הלחצן שמעליו.
+\\
+כלומר 
+כדי למלאה את לחצן 
+$3$
+נסתכל על משוואת האילצים של לחצן 
+$0$.
+
+\[ x_0 + x_1 + x_3 = 1\]
+
+ניזכר כי המשוואה שהתקבלה הינה על שדה מודלו
+$2$.
+לכן בעזרת העברת אגפים מתקבל.
+
+\[ x_3 = 1 + x_0 + x_1 \]
+
+ונכתוב ערך זה בלחצן 
+$3$
+כמו שמתואר באיור 
+\ref{fig: 3 x 3 board fill button 3}
+
+\begin{figure}[ht]
+    \caption{לוח 
+    $3 \times 3$
+    מילוי משבצת
+    $3$}
+    \label{fig: 3 x 3 board fill button 3}
+    \unsethebrew
+    \centering
+    \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_fill_button_3.PNG}
+\end{figure}
+\sethebrew
+
+נשים לב שבעזרת גישה שתיארנו כרגע נוכל למלאה כל השורה שניה.
+כל שורה תלויה בשורה מלפניך לכן כך נוכל למלאה את כל השורות 
+כמו שמתואר באיור 
+\ref{fig: 3 x 3 board fill intire board}
+
+נדגים מילוי משבצת
+$6$
+משורה שלישית לכן נצתרך ששורה
+שניה חושבה.
+\\
+ניסתכל על משבצת מעל 
+כלומר משבצת 
+$3$
+וניסתכל למה שווה משוואת האילצים שלה:
+
+\[ x_0 + x_3 + x_4 + x_6 = 1 \]
+
+לכן 
+
+\[ x_6 = 1 + x_0 + x_3 + x_4  \]
+
+היות ושורה שניה מולת וידוע שערך משבצות 
+באותה שורה: 
+
+\begin{align*}
+    x_3 &= 1 + x_0 + x_1 \\
+    x_4 &= 1 + x_0 + x_1 + x_2
+\end{align*}
+    
+
+
+נציב ערכים אילו
+
+\begin{align*}
+    x_6 &= 1 + x_0 + (1 + x_0 + x_1) + (1 + x_0 + x_1 + x_2) \\
+    x_6 &= 1 + x_0 + x_2
+\end{align*}
+
+\begin{figure}[ht]
+    \caption{לוח 
+    $3 \times 3$
+    מלאה}
+    \label{fig: 3 x 3 board fill intire board}
+    \unsethebrew
+    \centering
+    \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_fill_all.PNG}
+\end{figure}
+\sethebrew
+
+כדומה נעשה לשאר הערכים.
+התוצאה מתקבלת מתוארת באיור 
+\ref{fig: 3 x 3 board fill intire board}
+
+נבחין שלאחר שמילאנו את כל הלוח כמו שמתואר באיור 
+\ref{fig: 3 x 3 board fill intire board}
+נותרו לנו עוד 
+$n$
+משוואות אילוץ שתלויות בשורה אחרונה ולכן מאמר 
+\cite{B1}
+מציאה להוסיף שורה וירטואלית כדי להשתמש 
+במשוואות עלו
+כמו שמתואר באיור 
+\ref{fig: 3 x 3 board fill with virtual}
+
+\begin{figure}[ht]
+    \caption{לוח 
+    $3 \times 3$
+    מלאה
+    כולל שורה וירטואלית
+    }
+    \label{fig: 3 x 3 board fill with virtual}
+    \unsethebrew
+    \centering
+    \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_fill_virtual.PNG}
+\end{figure}
+\sethebrew
+
+המאמר טוען שהיות שורה זה לא באמת קיימת לכן
+ערכי 
+של משבצת המתקבלות 
+חייב להיות שווה 
+ל
+$0$
+
+ולכן קיבלנו 
+$n$
+משוואת על 
+$n$
+נעלמים 
+כאשר בדוגמה שלנו 
+$n=3$
+לכן אפשר לנסות לפתור את המערכת הנתונה.
+
+המאמר 
+\cite{B1}
+מתאר מספר רב של פתרונות  בלוחות ריבועים בגדלים שונה ואפילו על לוחות מלבניים.
+\\
+האתגר המרכזי בשיטה הספרדית היא להצדיק אותה למה יש שורה וירטואלית
+והאם יש קשר בין שני השיטות.
+\\
+בשלב זה נתרכז להראות את הקשר בין שיטה הספרדית ושיטה שהצגנו בפרק הקודם.
+
+\begin{theorem}
+    משוואות האילוצים מתארות את מערכת המשוואות 
+    \ref{eq: matrix eq for solving problem}.
+\end{theorem}
+משוואות האילוצים פורמלית היא לב השיטה הספרדית
+מכיוון שהתקדמות בשורות מבוססת על המשוואות עלו.
+
+אם נפרוס את משוואת האילצים נקבל גם מערכת משוואת שפותרת את המשחק
+אבל כמות המשוואת הינה 
+$n^2$.
+נבחין שאם נציג אותם כמטריצה נקבל את מטריצה במשוואה 
+\ref{eq: matrix eq for solving problem}
+וזאת מכיוון 
+שאם נמספר ב
+$j$
+את כל המשוואת לפי 
+האינקס
+$i$.
+\\
+מתקבל משוואת האילצים שמשתנה 
+$x_i$
+מופיעה בהם
+באותם אינדקסי 
+$j$
+שבהם 
+וקטור השינויי של לחצן
+$i$
+מקבל ערכים 
+שווים
+ל
+$1$.
+
+
+נדגים זאת על לוח 
+$2 \times 2$
+שמתואר באיור 
+
+\begin{figure}[ht]
+    \caption{לוח 
+    $3 \times 3$
+    מלאה
+    כולל שורה וירטואלית
+    }
+    \label{fig: 2 x 2 board}
+    \unsethebrew
+    \centering
+    \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/2x2_board.PNG}
+\end{figure}
+\sethebrew
+
+וקטורי השינויים:
+
+\[
+   t_0 = 
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        1 \\
+        0 \\
+    \end{bmatrix},
+    t_1 = 
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        0 \\
+        1 \\
+    \end{bmatrix},
+    t_2 = 
+    \begin{bmatrix}
+        1 \\
+        0 \\
+        1 \\
+        1 \\
+    \end{bmatrix},
+    t_3 = 
+    \begin{bmatrix}
+        0 \\
+        1 \\
+        1 \\
+        1 \\
+    \end{bmatrix},
+\]
+לכן
+המטריצה מהצורה:
+\[
+    \begin{bmatrix}
+        1 & 1 & 1 &0 \\
+        1 & 1 & 0 & 1 \\
+        1 & 0 & 1 & 1 \\
+        0 & 1 & 1 & 1 \\
+    \end{bmatrix},
+\]
+
+ומשוואת האילוצים
+מהצורה 
+
+\begin{align*}
+    x_0 + x_1 + x_2 &= 1\\
+    x_0 + x_1 + x_3 &= 1\\
+    x_0 + x_2 + x_3 &= 1\\
+    x_1 + x_2 + x_3 &= 1
+\end{align*}
+
+תעלומה נוספת בשיטה הספרדית היא למה צריך שורה וירטואלי, למה ערכה 
+שווה ל
+$0$
+ואיך המערכת משוואת שלו מצטמצמת ל
+$n$
+משתנים
+\\
+הסבר לתופעה זה
+ניתן בעזרת הצגה המטריצה
+נראה זאת על מטריצה 
+של משחק 
+על לוח 
+$3 \times 3$
+
+
+
 
 \section{הוכחת  קיום פתרון עבור כל גרף}
 % TODO:
@@ -985,7 +1351,7 @@ $n \times n$
 %----------------------------------------------------------------------------------------
 %   רשימת מקורות
 %----------------------------------------------------------------------------------------
-
+\newpage
 \begin{thebibliography}{99}
 \unsethebrew
 \bibitem{B1} ALL LIGHTS AND LIGHTS OUT
