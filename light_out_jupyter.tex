@@ -10,7 +10,7 @@
     \else
     	\usepackage{fontspec}
     \fi
-
+ \pagenumbering{gobble}
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
     \usepackage{graphicx}
@@ -373,11 +373,7 @@
     
 
 \begin{document}
-    
-    \maketitle
-    
-    
-
+    \pagenumbering{gobble}
     
     \hypertarget{generate-matrix}{%
 \section{Generate Matrix}\label{generate-matrix}}
@@ -529,6 +525,7 @@ check solution:
 (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     \end{Verbatim}
 
+\newpage
     \hypertarget{minimal-case}{%
 \section{Minimal case}\label{minimal-case}}
 
