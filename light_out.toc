@@ -1,0 +1,15 @@
+\selectlanguage *{hebrew}
+\contentsline {section}{\numberline {1}הקדמה}{3}{}%
+\contentsline {section}{\numberline {2}רקע על משחק האורות}{4}{}%
+\contentsline {subsection}{\numberline {2.1} משחק האורות על גרף}{5}{}%
+\contentsline {section}{\numberline {3} אלגוריתם למציאת פתרון}{7}{}%
+\contentsline {subsection}{\numberline {3.1}פתרון בעזרת שיטה הספרדית}{15}{}%
+\contentsline {section}{\numberline {4}הוכחת קיום פתרון עבור כל גרף}{23}{}%
+\contentsline {subsection}{\numberline {4.1}מספר הפתרונות עבור כל גרף}{25}{}%
+\contentsline {section}{\numberline {5}פתרון מינימלי עבור לוחות מלבניים}{27}{}%
+\contentsline {subsection}{\numberline {5.1}הלוח הגדול ביותר בעל פתרון מינמלי}{30}{}%
+\contentsline {section}{\numberline {6}נספחים}{32}{}%
+\bgroup 
+\selectlanguage *{english}
+\egroup 
+\selectlanguage *{hebrew}

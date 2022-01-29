@@ -1,7 +1,9 @@
 \documentclass[12pt,twoside]{article}
-%\documentclass[a4paper,12pt,twoside]{article}
-%\documentclass[14pt,a4paper]{scrbook}
-\usepackage{amsmath,amsfonts,amssymb}
+%\documentclass[a4paper,10pt,twoside]{article}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{culmus}
 
 %\usepackage{float}
 %\usepackage{listings}
@@ -24,31 +26,27 @@
 %\usepackage{bbding}
 %\usepackage{fancyhdr}
 %\usepackage{verbatim}
+
+%\pagestyle{fancy}
+
 %\usepackage{bidi}
+
+
+%\rhead{\thepage}
+%\lfoot{\small \copyright\;\;\; שירה בר-דב, אורט בראודה}
+%\rfoot{\thepage}
+%\cfoot{}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\let\arref\ref
+%\renewcommand{\ref}[1]{\I{\arref{#1}}}
 
 % User packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage{pdfpages}
-%\usepackage[12pt,twoside]{geometry}
-
-\usepackage{fontspec}
-\usepackage{polyglossia}
-\setmainfont{David}
-\setdefaultlanguage{hebrew}
-\setotherlanguages{english}
-%\rhead{\thepage}
-%\lfoot{\small \copyright\;\;\; שירה בר-דב, אורט בראודה}
-%\rfoot{\thepage}
-%\cfoot{}
-%\renewcommand{\headrulewidth}{0.4pt}
-%\renewcommand{\footrulewidth}{0.4pt}
-%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
-%\let\arref\ref
-%\renewcommand{\ref}[1]{\I{\arref{#1}}}
-
-
 
 
 %\rhead{\thepage}
@@ -61,7 +59,7 @@
 %\let\arref\ref
 %\renewcommand{\ref}[1]{\I{\arref{#1}}}
 
-\setlength{\parskip}{4pt plus 2pt} \setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt} \setlength{\parindent}{0pt}
 \setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
 
 % User defined macros
@@ -114,11 +112,14 @@
 %   HEADING SECTIONS
 %----------------------------------------------------------------------------------------
 
-{\LARGE 
+\textsc{\LARGE   
+% מכללת אורט בראודה
+% Name of your university/college
+} \\[1.5cm]
+\textsc{\LARGE 
 המחלקה למתמטיקה שימושית
  % Major heading such as course name
-}
-\vspace{20pt}
+} \\[0.5cm]
 
 %----------------------------------------------------------------------------------------
 %   TITLE SECTION
@@ -134,24 +135,22 @@
 %----------------------------------------------------------------------------------------
 %   AUTHOR SECTION
 %----------------------------------------------------------------------------------------
-\hspace{50pt}  
-\begin{minipage}{0.4\textwidth}
-    \begin{flushright} \large
-    מאת:
-    \\
-    ולדיסלב ברקנס
-    \end{flushright}
-\end{minipage}
-    ~
-\begin{minipage}{0.4\textwidth}
-    \begin{flushright} \large
-    מנחה:
-    \\
-    אלכס גולוורד 
-    % Supervisor's Name
-    \end{flushright}
-\end{minipage}\\[2cm]
 
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{מאת:} \\
+ולדיסלב ברקנס
+% Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{מנחה:} \\
+אלכס גולוורד 
+% Supervisor's Name
+\end{flushright}
+\end{minipage} \\[2cm]
 %----------------------------------------------------------------------------------------
 %   DATE SECTION
 %----------------------------------------------------------------------------------------
@@ -162,7 +161,7 @@
 %----------------------------------------------------------------------------------------
 \begin{figure}
 	\begin{center}
-		{\includegraphics[scale=0.3]{images/Braude_Logo.jpg}}
+		\L{\includegraphics[scale=0.3]{images/Braude_Logo.jpg}}
 	\end{center}
 %	\caption{הפונקציה $\arctan(x)$ - באדום, וסכום שלושת האיברים הראשונים של טור טיילור שלה - בכחול}
 %	\label{atan}
@@ -193,9 +192,7 @@
 שלא ברורות מעליהן.
 
 השאלות לדוגמה שעלו בעבודה הן שיטות למציאת פתרון למשחק.
-\\
 מצאנו שתי שיטות, שבדיעבד נראו כשונות אבל הצלחנו להראות את הקשר בשתי השיטות.
-
 בנוסף 
 לאחר שהיה לנו אלגוריתם שפותר את המשחק שמנו לב שאם מתחילים את המשחק 
 במצב התחלתי מוכר לכל משחק שכזה קיים לפחות פתרון אחד,
@@ -204,10 +201,8 @@
 סוג הפתרונות שכזה כל כך לא נפוץ שהצלחנו להוכיח את כל המקרים 
 בהם אתכן פתרון שכזה.
 
-עבודה בשבילי הייתה מהנה אני מודה למחלקה
-למתמטיקה שימושית
-\\
-ובמיוחד לאלכס גולדוואסר על הזדמנות לעשות 
+עבודה בשבילי הייתה מהנה אני מודה למחלקה 
+למתמטיקה שימושית ובמיוחד לאלכס גולדוואסר על הזדמנות לעשות 
 עבודה מרתקת שכזה.
 
 תודה רבה
@@ -216,7 +211,7 @@
 
 \section{רקע על משחק האורות}
 משחק האורות או 
-{Lights Out}
+\L{Lights Out}
 בלועזית,
 זהו משחק בו יש לוח משבצות ריבועי.
 כל משבצת הינה לחצן על הלוח שיכולה להיות בשתי מצבים
@@ -231,27 +226,27 @@
 
 \begin{figure}[ht]
     \begin{subfigure}{.5\textwidth}
-        % \unsethebrew
-        \caption{מצב התחלתי}
+        \unsethebrew
+        \caption{\R{מצב התחלתי}}
         \centering
         \includegraphics{images/4x4_start_board.PNG}
-        % \sethebrew
+        \sethebrew
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
-        % \unsethebrew
-        \caption{לחיצה על משבצת מסומנת}
+        \unsethebrew
+        \caption{\R{לחיצה על משבצת מסומנת}}
         \centering
         \includegraphics{images/4x4_press.PNG}
-        % \sethebrew
+        \sethebrew
     \end{subfigure}%
 \end{figure}
 
 נבחין כי המשחק 
 $4 \times 4$
 מתחיל במצב
-{(a)}.
+\L{(a)}.
 בלוח 
-{(b)}
+\L{(b)}
 נתאר מצב בו לחצו על משבצת המסומנת, בירוק
 כל המשבצות השכנות והיא משנות מצבן, היות ומצב של כולן היה דלוקות לכן הן נכבו
 
@@ -263,8 +258,7 @@ $1995$.
 במאמר
 \cite{B1}
 כ
-\textenglish{"devilish invention"}.
-
+\L{"devilish invention"}.
 קיים קושי רב בלמצוא שיטה לפתרון אינטואיטיבי.
 בנוסף אציין מניסיון האישי שהמשחק קשה כבר 
 על לוח 
@@ -308,35 +302,35 @@ $5 \times 5$
 לכבוי או דלוק.
 
 \begin{figure}[ht]
-    \caption{משחק על גרף לדוגמה}
+    \caption{\R{משחק על גרף לדוגמה}}
     \label{fig: start game in graph}
     \begin{subfigure}{.5\textwidth}
-        % \unsethebrew
+        \unsethebrew
+        \caption{\R{מצב התחלתי}}
         \centering
-        \caption{מצב התחלתי}
-        \includegraphics[scale=0.7]{images/graph_start_board.png}
-        % \sethebrew
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/graph_start_board.png}
+        \sethebrew
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
-        % \unsethebrew
+        \unsethebrew
+        \caption{\R{לחיצה על משבצת מסומנת}}
         \centering
-        \caption{לחיצה על משבצת מסומנת}
-        \includegraphics[scale=0.7]{images/graph_press.png}
-        % \sethebrew
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/graph_press.png}
+        \sethebrew
     \end{subfigure}%
 \end{figure}
 
 נמחיש זאת על דוגמה שבאיור
 \ref{fig: start game in graph}
 כאשר הגרף התחלתי
-{(א)}
+\L{(a)}
 ניתן לראות
 $6$
 קודקודיים
 צבועים באפור כלומר כבויים ומטרה של המשחק להדליק את כל הצמתים כלומר לצבוע את כולם בצהוב.
 
 בשלב 
-{(ב)}
+\L{(b)}
 מציגים  לחיצה על צומת ירוקה היא ושכניה נצבעים בצהוב.
 
 \begin{comm}
@@ -361,14 +355,15 @@ $2 \times 3$
 
 \begin{figure}[ht]
     \caption{
-        לוח
+        \R{לוח
         $2 \times 3$
+        }
     }
     \label{2x3_board}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/2x3_board.PNG}
-    % \sethebrew
+    \sethebrew
 \end{figure}
 
 הגרף שנקבל עבור לוח באיור
@@ -378,14 +373,15 @@ $2 \times 3$
 
 \begin{figure}[ht]
     \caption{
-        גרף
+        \R{גרף
         $2 \times 3$
+        }
     }
-    % \unsethebrew
+    \unsethebrew
     \centering
     \label{2x3_graph}
     \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/2x3_graph.png}
-    % \sethebrew
+    \sethebrew
 \end{figure}
 
 \begin{comm}
@@ -420,10 +416,12 @@ $2 \times 3$
 על לוח 
 $3 \times 3$
 המשחק ניראה תמים ופשוט אתה מתחיל לצפות לאיזושהי חוקיות.
+\\
 בשלב הזה שאתה כבר מנסה לוח 
 $4 \times 4$
 המשחק מתגלה כלא פשוט כשאתה מנסה לוח בקונפיגורציה כלשהי לא בהכרח התחלתית
 מהר מאד אתה נעבד.
+\\
 בשלב מסוים גם לוח 
 $4 \times 4$
 נהיה מוכר ובאופן תמים תנסה לעבור ללוח
@@ -441,8 +439,8 @@ $5 \times 5$.
 מורגשת בשלב שאתה מנסה לפתור את מצב התחלה בלוחות שונים
 
 \begin{figure}[ht]
-    \caption{פתרונות של משחק על לוחות שונים}
-    % \unsethebrew
+    \caption{\R{פתרונות של משחק על לוחות שונים}}
+    \unsethebrew
     \label{fig:sol_3_4_5}
     \centering
     \begin{subfigure}[b]{.25\linewidth}
@@ -456,18 +454,17 @@ $5 \times 5$.
     \end{subfigure}
 
 \end{figure}
-% \sethebrew
+\sethebrew
 
 איור
 \ref{fig:sol_3_4_5}
 באה להמחיש את חוסר  אינטואיציה
 כאשר האיור מתאר את פתרון כלשהן של משחק על הלוח כאשר הלוח במצב התחלתי בו כל נורות דלוקות.
 כדי שהשחקן ינצח עליו ללחוץ על המשבצות הירוקות.
-
-איור באה להראות שאומנם על קטנים מ
+\\
+איור באה להראות שלוחות על קטנים מ
 $5 \times 5$
-הפתרון ניראה סימטרי אבל זה לא נכון לכל
-משחק ולא לכל הפתרונות
+אתכן ותחשוב שפתרון נוצר על לחיצות סימטריות והאיור ממשיך שזה לא כך 
 כי כאשר מסתכלים על הלוח 
 $5 \times 5$
 מיד אפשר לראות שפתרון לא ניראה סימטרי.
@@ -552,22 +549,17 @@ $2^{32}$
 מספרים,
 המטרה של המחשה זה להדגיש כמה לא פרקטית אופציית הפתרון שכזה.
 
-עכשיו שיש לנו מוטיבציה למצוא פתרון השאלה היא באיזה כלים נשתמש,
-\\
-שיטות למציאת פתרון היו מבוססות
+עכשיו שיש לנו מוטיבציה למצוא פתרון השאלה היא באיזה כלים נשתמש, שיטות למציאת פתרון היו מבוססות
 מידול מתמטי לבעיה על שדה לינארי ותיאורה כמערכת משוואות, תיאור הבעיה
 כמערכת משוואת לינארית תעזור לנו אחר כך לתאר תופעות נוספות כמו מספר פתרונות שונים
 שיש לבעיה.
 
 אתכן ויש כמה דרכים להגיע לאותה מודל לינארי שנציע, נציג בעובדה זה שני דרכים אחת 
-בעזרת וקטורי שינוי שנתאר בהמשך אותם ומניסיון למצוא צירוף לינארי של וקטורים עלו נמצא את פתרון,
-\\
-דרך שניה תהיה
+בעזרת וקטורי שינוי שנתאר בהמשך אותם ומניסיון למצוא צירוף לינארי של וקטורים עלו נמצא את פתרון, דרך שניה תהיה
 לפי מערכת משוואות שמתארת את בעיה  בצורה קצת לא מובנת.
 
-היופי זה שאפשר להראות ששתי השיטות מובילות לאותה מערכת משוואות'
-\\
-נפתור את המשחק בעזרת חיפוש פתרון של המערכת.
+היופי זה שאפשר להראות ששתי השיטות מובילות לאותה מערכת משוואות
+ונפתור את המשחק בעזרת חיפוש פתרון של המערכת.
 
 בחרנו להציג קודם בעזרת וקטורי שינוי משום שהגדרת וקטורים פשוטה יותר להסבר לאחר שניראה את הדרך הראשונה
 הדרך השנייה קלה תהיה יותר מובנת.
@@ -628,13 +620,13 @@ $2 \times 2$
 \ref{fig:numbering_board_2x2}
 
 \begin{figure}[ht]
-    \caption{מספור לוח}
+    \caption{\R{מספור לוח}}
     \label{fig:numbering_board_2x2}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{images/numbering_board_2x2.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 \begin{comm}
     \label{ comm: indexing board game}
@@ -674,13 +666,13 @@ $
 $
 
 \begin{figure}[ht]
-    \caption{גרף ממוספר}
+    \caption{\R{גרף ממוספר}}
     \label{fig:numbering_graph}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/numbering_graph.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 \begin{definition}
     אפשר להגדיר את 
@@ -737,13 +729,13 @@ $
 $1, 3$.
 
 \begin{figure}[ht]
-    \caption{מצב התחלתי}
+    \caption{\R{מצב התחלתי}}
     \label{fig:start graph presses}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/graph_presses.png}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 $
     t_1 + t_3 = 
@@ -802,13 +794,13 @@ $
 \ref{fig:start graph presses solution}.
 
 \begin{figure}[ht]
-    \caption{מצב לאחר ביצוע הלחיצות}
+    \caption{\R{מצב לאחר ביצוע הלחיצות}}
     \label{fig:start graph presses solution}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/graph_presses_solve.png}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 \begin{lemma}
     \label{lemma: sum same change vect}
@@ -839,7 +831,7 @@ $t_i + t_i = \vec{0}$
 \end{comm}
 
 נשים לב שעבור איך שהגדרנו את המשחק 
-{Light out}
+\L{Light out}
 המשחק מתחיל כשכול
 נורות דלוקות או כבויות
 ומטרה היא לכבות או להדליק את כל נורות
@@ -893,9 +885,7 @@ $n$
 מערכת משוואות 
 שמתוארת בנוסחה
 \ref{eq: lin eq for solving problem}
-אפשר לתאר במספר צורות.
-
-נפוצה מבניהם היא
+אפשר לתאר במספר צורות ונפוצה מבניהם היא
 בעזרת מטריצה כמו שמתואר 
 בנוסחה 
 \ref{eq: matrix eq for solving problem}.
@@ -1006,9 +996,7 @@ $\vec{x}$
 
 \begin{definition}
     \label{def: standard solution}
-    שיטת פתרון בעזרת יצירת  מטריצה שכנויות על ידי וקטורי שינויים תקראה
-    \\
-    שיטה הסטנדרטית
+    שיטת פתרון בעזרת יצירת  מטריצה שכנויות על ידי וקטורי שינויים תקראה שיטה הסטנדרטית
 
     בגלל שאמרנו שנציג כמה שיטות ונרצה להתייחס לשיטה זה בשם לכן קראנו שיטה סטנדרטית
 \end{definition}
@@ -1051,8 +1039,7 @@ $n^4$
 שיטת הפתרון שהוא מציג נובעת מהערה 
 \ref{comm: for board too many variables}
 שכמות המידע שצריך לשמור גדל בקצב 
-$n^4$,
-\\
+$n^4$
 כאשר
 משחק הוא על לוח ריבועי ש
 $n$
@@ -1061,15 +1048,12 @@ $n$
 הצורך לצמצום כמות המשתנים נבעה מצורך פרקטי כי לא היה מספיק זיכרון לאכלס את כל מידע 
 באותה תקופה ולכן שיטה זה הומצאה.
 
-המאמר 
+במאמר 
 \cite{B1}
-מציג שיטה שמציאה של פתרון עם מערכת משוואות לינארית שונה ממערכת שהצגנו קודם.
-\\
-אומנם המערכות שונות אבל שני המערכות המשוואות מובילות לאותם פתרונות
-
-מערכת המשואות המתקבלת בשיטה שכתבה במאמר 
+מציג שיטה שמציאה פתרון עם מערכת משוואות לינארית אחרת שמובילה גם היא לפתרון.
+מערכת משוואת לינארית שמאמר 
 \cite{B1}
-ממדיה הם
+מתאר ממדי
 $n \times n $.
 כלומר כמות הערכים המטריצה המתקבלת שווה
 ל
@@ -1106,11 +1090,11 @@ $0$
     $3 \times 3$
     עם אינדקסים}
     \label{fig: 3 x 3 board indexed}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_board_index.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 שיטת הפתרון של מאמר הספרדי הינה להתחל את הלוח עם משתנים ולמלאות את הלוח במשתנים עלו.
 לאחר שכל הלוח מלא מתקבלים 
@@ -1153,8 +1137,7 @@ $\vec{x}$
 
 היות ומטרה לשנות את מצב הלחצנים
 למצב 
-$1$.
-\\
+$1$
 כלומר צריך שכמות לחיצות על לחצנים שמשפיעים על 
 משבצת סכום במודול
 $2$
@@ -1225,11 +1208,11 @@ $n$
     $3 \times 3$
     מאותחל}
     \label{fig: 3 x 3 board init spanish}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_first_row.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 לאחר שהגדרנו את משוואת האילוצים נסביר כיצד למלאה 
 את השורות הנותרות לפי השיטה הספרדית.
@@ -1261,11 +1244,11 @@ $3$
     מילוי משבצת
     $3$}
     \label{fig: 3 x 3 board fill button 3}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_fill_button_3.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 נשים לב שבעזרת גישה שתיארנו כרגע נוכל למלאה כל השורה שניה.
 כל שורה תלויה בשורה מלפניך לכן כך נוכל למלאה את כל השורות 
@@ -1310,11 +1293,11 @@ $3$
     $3 \times 3$
     מלאה}
     \label{fig: 3 x 3 board fill intire board}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_fill_all.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 כדומה נעשה לשאר הערכים.
 התוצאה מתקבלת מתוארת באיור 
@@ -1338,11 +1321,11 @@ $n$
     כולל שורה וירטואלית
     }
     \label{fig: 3 x 3 board fill with virtual}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/3x3_fill_virtual.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 המאמר טוען שהיות שורה זה לא באמת קיימת לכן
 ערכי 
@@ -1408,11 +1391,11 @@ $2 \times 2$
     כולל שורה וירטואלית
     }
     \label{fig: 2 x 2 board}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.3\textwidth,height=.3\textheight,keepaspectratio]{images/2x2_board.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 וקטורי השינויים:
 
@@ -1598,11 +1581,11 @@ $O(n \cdot n^2) = O (n^3)$.
     גרף מתאר ביצועים על לוח ריבועי גודל שורה מול זמן
     }
     \label{fig:prefofmance_diagram}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/benchmark.png}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 באיור 
 \ref{fig:prefofmance_diagram}
@@ -1640,7 +1623,7 @@ $y$
 דרכי הפתרון שהצגנו.
 אחת הבעיות בגישה של לחפש פתרון על לוח כלשהו היא 
 נניח ואנחנו רוצים לממש את המשחק האורות שמיצר לוחות אקראיים, היות ולא בהכרח ידוע אם קיים פתרון 
-נצטרך לבדע שקיים פתרון על כל לוח בעזרת אלגוריתמים למציאת פתרון שלוקח זמן 
+נצטרך לבדא שקיים פתרון על כל לוח בעזרת אלגוריתמים למציאת פתרון שלוקח זמן 
 אתכן והלוח ללא פתרון נצטרך לחפש לוח אקראי אחר
 מה שיגרום לתהליך יצירת משחק להיות איטי.
 לכן, נרצה בשיטה מתמטית להוכיח לעבור איזה משחקים יש פתרון.
@@ -1695,9 +1678,7 @@ $y$
     \label{comm:not_really_inner_mul}
     המכפלה הסקלארית שהגדרנו ב
     \ref{def:inner_mul}
-    אינה מכפלה פנימית,
-    \\
-    היות ותכונה 
+    אינה מכפלה פנימית היות ותכונה 
     $<\vec{u},\vec{u}> = 0 \Leftrightarrow \vec{u} = \vec{0} $
     לא מתקיימת.
 \end{comm}
@@ -1765,10 +1746,8 @@ $0$.
     \label{thrm: clean game has solution}
     לכל משחק על גרף כאשר המצב התחלתי בו כל הנורות במצב 
     $0$
-    \\
     קיים פתרון למשחק.
 \end{theorem}
-
 לפי 
 שיטת פתרון סטנדרטית 
 שהגדרנו
@@ -1776,9 +1755,8 @@ $0$.
 ניתן לתאר את פתרון המשחק על גרף בעזרת מטריצה
 שכנויות לפי הגדרה 
 \ref{def: neighbor matrix}.
-\\
 מטריצה שכנויות
-נסמן ב
+נסמן אותה ב
 $A \in {Z_2}^{n \times n}$.
 
 נזכיר כמה תכונות חשובות
@@ -1799,7 +1777,6 @@ $A \in {Z_2}^{n \times n}$.
 
 כדי להראות שלמשחק יש פתרון 
 צריך להראות שקיי פתרון למערכת
-
 \[A \vec{x} = \vec{1} \]
 
 במקרה ש 
@@ -1901,11 +1878,11 @@ $G = \{\{v_1\}, \{v_2\}, \{v_3\} \}$
 \begin{figure}[ht]
     \caption{משחק על גרף}
     \label{fig: clic 3 node graph game} 
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{images/clic_graph_3_node.png}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 שאלה טביעת שנובעת כשגילנו שיש היא כמה פתרונות יש למשחק מסוים.
 
@@ -1951,16 +1928,13 @@ $x$
 את מרחב האפס שווה לדרגת החופש שנסמן ב
 $k$.
 כמות הווקטורים במרחב זה שווה לכל וקטורים שניתן ליצור בצירוף לינארי 
-
-\[x = a_1 x_1 + a_1 x_1 + a_2 x_2 + \cdots + a_k x_k\]
-
+$x = a_1 x_1 + a_1 x_1 + a_2 x_2 + \cdots + a_k x_k$
 כאשר הערכים של
 $a_i \in Z_2$
 לכן 
 לכל מקדם יכול להיות
 $2$
-ערכים,
-\\
+ערכים
 לכן כל הקונבנציות האפשריות 
 $2^k$
 ששווה
@@ -2020,11 +1994,11 @@ $2, 3$
 \begin{figure}[ht]
     \caption{פתרון מינמלי של משחק}
     \label{fig: min sol 2x3}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/min_sol_2x3.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 השאלה שנפתור בפרק זה לאיזה לוחות קיים פתרון מינמלי כאשר מצב התחלתי הוא שכל הנורות במצב
 $0$.
@@ -2055,11 +2029,11 @@ $\{0,1,2,4,5\}$
 \begin{figure}[ht]
     \caption{אזור מת שנוצר מלחצן באמצע הלוח}
     \label{fig: dead zone}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/dead_zone.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 באיור 
 \ref{fig: dead zone}
@@ -2080,16 +2054,12 @@ $\{0,1,2,4,5\}$
 "קומת ראשונה"
 והולך כלפי מעלה לאינסוף 
 ואינסוף לצד ימין וצד שמאל.
-\\
 נקרה לכל שורה אינסופית
 קומה ונמספר אותם מאחת לאינסוף לכן קראנו לקומה נמוכה ביותר קומה ראשונה
-
 נרצה למצוא פתרון מינמלי ללוח
 וגישה לחיפוש הפתרון תהיה
 להדליק שורה אחר שורה במלואה,
-\\
 היות ושורת אינסופיות נציעה אסטרטגיה להדלקת השורה וניראה את הקשיים שנפגוש.
-\\
 אם נרצה להדליק 
 את כל קומה ראשנה רק על ידי לחצות 
 בשורה ראשונה נקבל את הדפוס 
@@ -2113,11 +2083,11 @@ $1$.
 \begin{figure}[ht]
     \caption{מילוי קומה ראשונה על ידי לחיצות רק בקומה ראשונה}
     \label{fig: fill first stage only pressing first stage}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/first_stage_fill_only_first_stage_click.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 אסטרטגיה אחרת ויחידה למילוי קומה ראשונה הינה להדליק 
 פעם לחצן בקומה ראשנה 
@@ -2128,11 +2098,11 @@ $1$.
 \begin{figure}[ht]
     \caption{מילוי קומה ראשונה}
     \label{fig: fill first stage second attempt}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/first_stage_fill_only_first_stage_click.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 באיור 
 \ref{fig: fill first stage second attempt}
@@ -2149,11 +2119,11 @@ $1$.
 \begin{figure}[ht]
     \caption{מילוי קומה ראשונה}
     \label{fig: fill first stage second attempt fails}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/first_stage_fill_only_first_stage_click_fail.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 בשלב זה נרצה להקטין את הרוחב ואורך כך שאם קיים 
 משחק אופטימלי בלוח המוקטן אסטרטגיות המילוי קומה קומה היחידות 
@@ -2217,11 +2187,11 @@ $m$
     \caption{פתרון ללוח 
     $2 \times 9$}
     \label{fig: 2x9 have min sol}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/2xm_sol.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 לאחר שהבנו שלוחות בגודל 
 $2 \times m$
@@ -2290,38 +2260,36 @@ $4 \times 4$
     \caption{פתרון ללוח 
     $4 \times 4$}
     \label{fig:4x4_have_min_sol}
-    % \unsethebrew
+    \unsethebrew
     \centering
     \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/4x4_min_sol.PNG}
 \end{figure}
-% \sethebrew
+\sethebrew
 
 \newpage
 \section{נספחים}
 מימוש של הפרויקט בוצע על ידי 
 שפת תוכנה 
-{Python}
+\L{Python}
 עם הכלי 
-{Sage}.
+\L{Sage}.
 
-% \unsethebrew
+\unsethebrew
 \includepdf[pages=-]{light_out_jupyter.pdf}
-% \sethebrew
+\sethebrew
 %----------------------------------------------------------------------------------------
 %   רשימת מקורות
 %----------------------------------------------------------------------------------------
 \newpage
 \begin{thebibliography}{99}
-% \unsethebrew
-\begin{english}
+\unsethebrew
 \bibitem{B1} ALL LIGHTS AND LIGHTS OUT
 An investigation among lights and shadows by
 SUMA magazine’s article by Rafael Losada
 Translated from Spanish by Ángeles Vallejo
 
 \bibitem{B2} Lecture 24: Light out Puzzle , SFU faculty of scienc department of mathematics
-\bibitem{B3} algebra book % TODO: fill it
-\end{english}
+\bibitem{B3} algebra book TODO: fill it
 \end{thebibliography}
 
 \end{document} 
