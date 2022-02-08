@@ -1,7 +1,10 @@
-\documentclass[12pt,twoside]{article}
+\documentclass[12pt,leqno]{article}
 %\documentclass[a4paper,12pt,twoside]{article}
 %\documentclass[14pt,a4paper]{scrbook}
 \usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+%\usepackage[hyperindex,colorlinks]{hyperref}
 
 %\usepackage{float}
 %\usepackage{listings}
@@ -28,16 +31,19 @@
 
 % User packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref}
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage{pdfpages}
-%\usepackage[12pt,twoside]{geometry}
+\linespread{1.4}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in]{geometry}
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
-\setmainfont{David}
 \setdefaultlanguage{hebrew}
 \setotherlanguages{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David}
+\usepackage{bidi}
 
 
 %\rhead{\thepage}
@@ -63,8 +69,8 @@
 %\let\arref\ref
 %\renewcommand{\ref}[1]{\I{\arref{#1}}}
 
-\setlength{\parskip}{4pt plus 2pt} \setlength{\parindent}{0pt}
-\setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
+% \setlength{\parskip}{4pt plus 2pt} \setlength{\parindent}{0pt}
+% \setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
 
 % User defined macros
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,41 +222,30 @@
 
 \newpage
 
-\section{רקע על משחק האורות}
+\section{תאור של המשחק}
 משחק האורות או 
 \textenglish{Lights Out}
 בלועזית,
-זהו משחק בו יש לוח משבצות ריבועי.
-\\
-כל משבצת הינה לחצן על הלוח שיכולה להיות בשתי מצבים
-דלוקה או כבויה.
-כאשר משבצת נלחצת, משבצת הנלחצת וכל משבצות הסמוכות לה הופכות את מצבם.
-שתי משבצות נקראות סמוכות אם קיימת צלע משותפת לשתי המשבצות.
-
-משחק במקור נימכר כאשר המצב התחלתי של הלוח כולו עם משבצות דלוקות והמטרה לכבות את כל המשבצות.
-קיימים וריאציה דומה של משחק שבה מצב התחלתי הוא אקראי ומנסים לכבות את כל המשבצות.
-
-נתאר זאת ויזואלית כאשר
-נסמן את לחצנים שנחלצו בגבול ירוק:
-\\
-נבחין כי המשחק 
-$4 \times 4$
-המצב התחלתי הינו שכול נורות דלוקות
-כפי שמתואר באיור
-\ref{subfig: explain game, start}.
-נניח ושחקן כלשהו מעונין ללחוץ על לחצן שמסומן בירוק 
-לכן נעבור למצב שמתואר באיור
-\ref{subfig: explain game, move}.
-נתאר לחיצה אפשרית עוקבת באיור 
-\ref{subfig: explain game, next move}.
+זהו משחק על לוח משבצות מלבני.
+כל משבצת יכולה להיות באחד משני מצבים, נקרא להם דלוק וכבוי.
+כאשר משתמשים בשמות האלה מתכוונים שבכל משבצת יש נורה והיא יכולה להיות דולקת או כבויה. במצב התחלתי כל הנורות כבויות.
+יש לנו לוח בקרה שמאפשר בכל שלב של המשחק ללחוץ על משבצת ולשנות את מצב הנורה: אם היא דולקת לכבות אותה ואם היא כבויה להדליק אותה.
+לוח בקרה בנוי כך שכאשר מתבצעת לחיצה על משבצת אז מצב של נורה משתנה ומשתנה גם מצב של נורות סמוכות לה.
+שתי נורות נקראות סמוכות אם הן נמצאות במשבצות בעלות צלע משוטפת.
+המטרה של המשחק היא לעבור ממצב התחלתי למצב בו כל הנורות יהיו דולקות. 
+\subsection{תאור גרפי של המשחק}
+נתאר את המשחק באיור כאשר
+המצב התחלתי של משחק שכל נורות
+צהובות, ומצב הסופי היה שכל נורות שחורות.
+נסמן את המשבצת שנלחצה בגבולות ירוקים.
 
 \begin{figure}[ht]
-    \caption{הסבר מהלך משחק על לוח}
+    \caption{הסבר שינוי מצב הלוח לאחר לחיצה}
     \centering
     \label{fig: explain game}
     \begin{subfigure}{.3\textwidth}
         % \unsethebrew
-        \caption{מצב התחלתי}
+        \caption{לוח במצב התחלתי}
         \label{subfig: explain game, start}
         \centering
         \includegraphics[scale=0.67]{images/4x4_start_board.PNG}
@@ -258,7 +253,7 @@ $4 \times 4$
     \end{subfigure}%
     \begin{subfigure}{.3\textwidth}
         % \unsethebrew
-        \caption{לחיצה על משבצת מסומנת}
+        \caption{לוח לאחר לחיצה בודדת}
         \label{subfig: explain game, move}
         \centering
         \includegraphics[scale=0.67]{images/4x4_press.PNG}
@@ -266,25 +261,34 @@ $4 \times 4$
     \end{subfigure}%
     \begin{subfigure}{.3\textwidth}
         % \unsethebrew
-        \caption{לחיצה נוספת}
+        \caption{לוח לאחר שני לחיצות}
         \label{subfig: explain game, next move}
         \centering
         \includegraphics[scale=0.49]{images/4x4_next_press.PNG}
         % \sethebrew
     \end{subfigure}%
 \end{figure}
+פירוט:
+נבחין כי המשחק 
+על לוח
+$4 \times 4$
+המצב התחלתי מתואר
+באיור
+\ref{subfig: explain game, start}
+במצב של הלוח
+כל הנורות צהובות.
+לאחר ביצוע לחיצה על משבצת שמסומנת בירוק נעבור ללוח שמתואר באיור 
+\ref{subfig: explain game, move}.
+נתאר לחיצה נוספת באיור 
+\ref{subfig: explain game, next move}.
 
-המשחק במקור היה צעצוע אלקטרוני על לוח 
-$5 \times 5$
-ששוחרר ב 
-$1995$.
-המשחק יכול להראות פשוט אבל כפי שתואר
-במאמר
-\cite{B1}
-כ
-\textenglish{"devilish invention"}
-המראה יכול לפעמים להטעות.
+אחרי שהסברנו על כללי משחק והצגנו הדגמה קטנה הדרך הטובה ביותר לוודא הבנה היא בלשחק,
+כפי שנאמר "עדיף לראות פעם אחת, מאשר לשמוע מאה פעמים"
+או במקרה שלנו לשחק.
+את המשחק אפשר לשחק בקישור הבאה:
+\url{https://www.geogebra.org/m/JexnDJpt#chapter/301822}.
 
+% TODO: continue from here
 קושי המרכזי במשחק מניסיון האישי שלי שאין ממש כיוון שאתה מנסה לפיו להגיע לפתרון, בפועל מנסים להגיע למצבים ידועים.
 שמהם אתה מכיר את איך לפתרו את המשחק. בהתחלה מצבים ידועים עלה הם תור לפני פתרון וכל 
 משחק שאתה פותר מגדיל לך את כמות המצבים המוכרים לשתי תורות לפני פתרון שלוש וכן הלאה.
@@ -292,8 +296,7 @@ $1995$.
 ואתה 
 לומד מחדש את המצבים שמהם אתה מכיר איך להגיע לפתרון.
 
-פרויקט זה באה בעקבות הקושי של המשחק
-והניסוי להציע שיטות לפתרון, 
+פרויקט זה באה להציע שיטות לפתרון, 
 נעזרנו במספר רב של כלים מתמטיים מתקדמים
 כמו תורה על שדות מציאת פתרון על מערכות לינאריות מידול מתמטי ועוד.
 
