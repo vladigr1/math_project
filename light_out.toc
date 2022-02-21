@@ -6,7 +6,7 @@
 \contentsline {subsection}{\numberline {2.3}תיאור משחק על גרף}{4}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}תרגום משחק על לוח למשחק על גרף}{5}{subsection.2.4}%
 \contentsline {section}{\numberline {3} אלגוריתם למציאת פתרון}{7}{section.3}%
-\contentsline {subsection}{\numberline {3.1}שיטת פתרון ראשונה בעזרת מטריצת שכנויות}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}אלגוריתם שמבוסס על מטריצת שכנויות}{8}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}שיטה למציאת פתרון לפי שורה העליונה}{12}{subsection.3.2}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
@@ -14,17 +14,18 @@
 \selectlanguage *{english}
 \egroup 
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {3.3}השוואה בין שתי השיטות למציאת פתרון}{18}{subsection.3.3}%
 \bgroup 
 \selectlanguage *{english}
 \egroup 
 \selectlanguage *{hebrew}
+\contentsline {subsection}{\numberline {3.3}השוואה בין שתי השיטות למציאת פתרון}{18}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}דיון לגבי משחק על גרף}{19}{subsection.3.4}%
-\contentsline {section}{\numberline {4}הוכחת קיום פתרון עבור כל גרף}{20}{section.4}%
-\contentsline {subsection}{\numberline {4.1}מספר הפתרונות עבור כל גרף}{22}{subsection.4.1}%
-\contentsline {section}{\numberline {5}פתרון מינימלי עבור לוחות מלבניים}{24}{section.5}%
-\contentsline {subsection}{\numberline {5.1}הלוח הגדול ביותר בעל פתרון מינמלי}{27}{subsection.5.1}%
-\contentsline {section}{\numberline {6}נספחים}{29}{section.6}%
+\contentsline {section}{\numberline {4}קיום פתרון ומספר הפתרונות עבור משחק על גרף}{20}{section.4}%
+\contentsline {subsection}{\numberline {4.1}הוכחת קיום פתרון על גרף}{20}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}מספר הפתרונות עבור כל גרף}{23}{subsection.4.2}%
+\contentsline {section}{\numberline {5}פתרון מינימלי עבור לוחות מלבניים}{26}{section.5}%
+\contentsline {subsection}{\numberline {5.1}הלוח הגדול ביותר בעל פתרון מינמלי}{29}{subsection.5.1}%
+\contentsline {section}{\numberline {6}נספחים}{31}{section.6}%
 \bgroup 
 \selectlanguage *{english}
 \egroup 
