@@ -5,9 +5,9 @@
 \contentsline {subsection}{\numberline {2.2}סוגיות בהן נעסוק בפרויקט}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}תיאור משחק על גרף}{4}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}תרגום משחק על לוח למשחק על גרף}{5}{subsection.2.4}%
-\contentsline {section}{\numberline {3} אלגוריתם למציאת פתרון}{7}{section.3}%
-\contentsline {subsection}{\numberline {3.1}אלגוריתם שמבוסס על מטריצת שכנויות}{8}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}שיטה למציאת פתרון לפי שורה העליונה}{12}{subsection.3.2}%
+\contentsline {section}{\numberline {3} אלגוריתם למציאת פתרון}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}אלגוריתם שמבוסס על מטריצת שכנויות}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}אלגוריתם שמבוסס על מילוי עקבי של שורות}{12}{subsection.3.2}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
 \bgroup 
@@ -18,14 +18,40 @@
 \selectlanguage *{english}
 \egroup 
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {3.3}השוואה בין שתי השיטות למציאת פתרון}{18}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}דיון לגבי משחק על גרף}{19}{subsection.3.4}%
-\contentsline {section}{\numberline {4}קיום פתרון ומספר הפתרונות עבור משחק על גרף}{20}{section.4}%
-\contentsline {subsection}{\numberline {4.1}הוכחת קיום פתרון על גרף}{20}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}מספר הפתרונות עבור כל גרף}{23}{subsection.4.2}%
-\contentsline {section}{\numberline {5}פתרון מינימלי עבור לוחות מלבניים}{26}{section.5}%
-\contentsline {subsection}{\numberline {5.1}הלוח הגדול ביותר בעל פתרון מינמלי}{29}{subsection.5.1}%
-\contentsline {section}{\numberline {6}נספחים}{31}{section.6}%
+\contentsline {subsection}{\numberline {3.3}השוואה בין שתי השיטות למציאת פתרון}{17}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}דיון לגבי משחק על גרף}{18}{subsection.3.4}%
+\contentsline {section}{\numberline {4}קיום פתרון ומספר הפתרונות עבור משחק על גרף}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}הוכחת קיום פתרון על גרף}{19}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}מספר הפתרונות עבור כל גרף}{22}{subsection.4.2}%
+\bgroup 
+\selectlanguage *{english}
+\egroup 
+\selectlanguage *{hebrew}
+\contentsline {section}{\numberline {5}פתרון אופטימלי עבור לוחות מלבניים}{25}{section.5}%
+\contentsline {subsection}{\numberline {5.1}הוכחת אי קיום לפתרון אופטימלי על לוחות ששני הממדים גדולים מ $4 \times 4$}{26}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}אלגוריתם למציאת פתרון אופטימלי}{28}{subsection.5.2}%
+\contentsline {section}{\numberline {6}נספחים}{29}{section.6}%
+\contentsline {subsection}{\numberline {6.1}יצירת מטריצת שכנויות}{29}{subsection.6.1}%
+\selectlanguage *{english}
+\selectlanguage *{hebrew}
+\contentsline {subsection}{\numberline {6.2}מציאת פתרון}{31}{subsection.6.2}%
+\selectlanguage *{english}
+\selectlanguage *{hebrew}
+\contentsline {subsection}{\numberline {6.3}אלגוריתם מבוסס על מילוי עקבי}{31}{subsection.6.3}%
+\selectlanguage *{english}
+\selectlanguage *{hebrew}
+\contentsline {subsection}{\numberline {6.4}השווה בין שתי שיטות}{33}{subsection.6.4}%
+\selectlanguage *{english}
+\selectlanguage *{hebrew}
+\contentsline {subsection}{\numberline {6.5}מציאת פתרון אופטימלי}{35}{subsection.6.5}%
+\selectlanguage *{english}
+\selectlanguage *{hebrew}
+\contentsline {subsection}{\numberline {6.6}מספר פתרונות על לוח}{36}{subsection.6.6}%
+\selectlanguage *{english}
+\selectlanguage *{hebrew}
+\contentsline {subsection}{\numberline {6.7}כל הפתרונות עבור לוח נתון}{37}{subsection.6.7}%
+\selectlanguage *{english}
+\selectlanguage *{hebrew}
 \bgroup 
 \selectlanguage *{english}
 \egroup 

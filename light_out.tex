@@ -15,43 +15,7 @@
 %\usepackage{verbatim}
 %\usepackage{bidi}
 
-% User packages
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{amsmath,amssymb}
-\usepackage{amsthm}
-%\theoremstyle{plain}
-\newtheoremstyle{theoremdd}% name of the style to be used
-  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
-  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
-  {\itshape}% name of font to use in the body of the theorem
-  {0pt}% measure of space to indent
-  {\bfseries}% name of head font
-  {:}% punctuation between head and body
-  { }% space after theorem head; " " = normal interword space
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}} % Manually specify head
-\theoremstyle{theoremdd}
-% \usepackage{graphicx}
-% \usepackage{pgfplots}
-%\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
-% \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
-% \definecolor{mylilas}{RGB}{170,55,241}
-% \usepackage{graphicx}
-% \usepackage{epstopdf}
-% \usepackage{epsfig}
-\usepackage[hyperindex,colorlinks]{hyperref}
-%\usepackage[colorlinks=true, bookmarks=true]{hyperref}
-\usepackage{subcaption}
-%\usepackage{mathtools}
-\usepackage{pdfpages}
-\linespread{1.4}
-\usepackage[lmargin=1in,rmargin=1in,tmargin=1in]{geometry}
-\usepackage{xcolor}
-\usepackage{fontspec}
-\usepackage{polyglossia}
-\setdefaultlanguage{hebrew}
-\setotherlanguages{english}
-\newfontfamily\hebrewfont[Script=Hebrew]{David}
-%\usepackage{bidi}
+
 
 
 %\rhead{\thepage}
@@ -80,24 +44,6 @@
 % \setlength{\parskip}{4pt plus 2pt} \setlength{\parindent}{0pt}
 % \setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
 
-% User defined macros
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newtheorem{definition}{הגדרה}[section]
-\newtheorem{theorem}{משפט}[section]
-\newtheorem{proposition}{טענה}[section]
-\newtheorem{conjecture}{השערה}[section]
-\newtheorem{corollary}{מסקנה}[section]
-\newtheorem{lemma}{למה}[section]
-\newtheorem{example}{דוגמה}[section]
-\newtheorem{comm}{הערה}[section]
-\newtheorem*{prove}{הוכחה}
-
-\newcommand{\sumi}[1]{\sum_{#1=1}^n}
-\newcommand{\Zn}{{\mathbb{Z}_2}^n}
-\newcommand{\Col}{\mathrm{Col}}
-\newcommand{\Nul}{\mathrm{Nul}}
-
 %\numberwithin{equation}{section}
 
 %\documentclass{amsart}
@@ -118,8 +64,439 @@
 %\setlength{\textheight}{43pc} \setlength{\textwidth}{28pc}
 %
 
+%%%%%% Jupyter paereamble
+%\pagenumbering{gobble}
+\usepackage[breakable]{tcolorbox}
+\usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+
+\usepackage{iftex}
+\usepackage{mathpazo}
+
+% Basic figure setup, for now with no caption control since it's done
+% automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+\usepackage{graphicx}
+% Maintain compatibility with old templates. Remove in nbconvert 6.0
+\let\Oldincludegraphics\includegraphics
+% Ensure that by default, figures have no caption (until we provide a
+% proper Figure object with a Caption API and a way to capture that
+% in the conversion process - todo).
+\usepackage{caption}
+%\DeclareCaptionFormat{nocaption}{}
+%\captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+\usepackage{float}
+\floatplacement{figure}{H} % forces figures to be placed at the correct location
+\usepackage{xcolor} % Allow colors to be defined
+\usepackage{enumerate} % Needed for markdown enumerations to work
+%\usepackage{geometry} % Used to adjust the document margins
+% \usepackage{amsmath} % Equations
+% \usepackage{amssymb} % Equations
+\usepackage{textcomp} % defines textquotesingle
+% Hack from http://tex.stackexchange.com/a/47451/13684:
+\AtBeginDocument{%
+    \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+}
+\usepackage{upquote} % Upright quotes for verbatim code
+\usepackage{eurosym} % defines \euro
+\usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+\usepackage{fancyvrb} % verbatim replacement that allows latex
+\usepackage{grffile} % extends the file name processing of package graphics 
+                        % to support a larger range
+\makeatletter % fix for old versions of grffile with XeLaTeX
+\@ifpackagelater{grffile}{2019/11/01}
+{
+    % Do nothing on new versions
+}
+{
+    \def\Gread@@xetex#1{%
+    \IfFileExists{"\Gin@base".bb}%
+    {\Gread@eps{\Gin@base.bb}}%
+    {\Gread@@xetex@aux#1}%
+    }
+}
+\makeatother
+\usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+\adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+% The hyperref package gives us a pdf with properly built
+% internal navigation ('pdf bookmarks' for the table of contents,
+% internal cross-reference links, web links for URLs, etc.)
+% \usepackage{hyperref}
+% The default LaTeX title has an obnoxious amount of whitespace. By default,
+% titling removes some of it. It also provides customization options.
+\usepackage{titling}
+\usepackage{longtable} % long table support required by pandoc >1.10
+\usepackage{booktabs}  % table support for pandoc > 1.12.2
+\usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+\usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                            % normalem makes italics be italics, not underlines
+\usepackage{mathrsfs}
+    
+
+
+
+% User packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{import}
+%\theoremstyle{plain}
+\newtheoremstyle{theoremdd}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\itshape}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {:}% punctuation between head and body
+  { }% space after theorem head; " " = normal inter word space
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}} % Manually specify head
+\theoremstyle{theoremdd}
+% \usepackage{graphicx}
+% \usepackage{pgfplots}
+%\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+% \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+% \definecolor{mylilas}{RGB}{170,55,241}
+% \usepackage{graphicx}
+% \usepackage{epstopdf}
+% \usepackage{epsfig}
+\usepackage[hyperindex,colorlinks]{hyperref}
+%\usepackage[colorlinks=true, bookmarks=true]{hyperref}
+\usepackage{subcaption}
+%\usepackage{mathtools}
+%\usepackage{pdfpages}
+\linespread{1.4}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{array}
+\setdefaultlanguage{hebrew}
+\setotherlanguages{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David}
+% It's a clear bug in how Polyglossia manages the situation, 
+% as it seems not taking into account the current language. 
+% A temporary workaround is to say
+% This assuming that you don't need Hebrew in the minted environment.
+\let\hebrewfonttt\ttfamily
+%\usepackage{bidi}
+
 % User defined macros
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{definition}{הגדרה}[section]
+\newtheorem{theorem}{משפט}[section]
+\newtheorem{proposition}{טענה}[section]
+\newtheorem{conjecture}{השערה}[section]
+\newtheorem{corollary}{מסקנה}[section]
+\newtheorem{lemma}{למה}[section]
+\newtheorem{example}{דוגמה}[section]
+\newtheorem{comm}{הערה}[section]
+\newtheorem*{prove}{הוכחה}
+
+\newcommand{\sumi}[1]{\sum_{#1=1}^n}
+\newcommand{\Zn}{{\mathbb{Z}_2}^n}
+\newcommand{\Col}{\mathrm{Col}}
+\newcommand{\Nul}{\mathrm{Nul}}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{light\_out}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
 
 
 \begin{document}
@@ -128,7 +505,16 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
 
 \center % Center everything on the page
-
+%----------------------------------------------------------------------------------------
+%   LOGO SECTION
+%----------------------------------------------------------------------------------------
+\begin{figure}[ht]
+	\begin{center}
+		{\includegraphics[scale=0.5]{images/Braude_Logo.jpg}}
+	\end{center}
+%	\caption{הפונקציה $\arctan(x)$ - באדום, וסכום שלושת האיברים הראשונים של טור טיילור שלה - בכחול}
+%	\label{atan}
+\end{figure}
 %----------------------------------------------------------------------------------------
 %   HEADING SECTIONS
 %----------------------------------------------------------------------------------------
@@ -176,16 +562,6 @@
 %----------------------------------------------------------------------------------------
 
 {\large \today} \\[2cm] % Date, change the \today to a set date if you want to be precise
-%----------------------------------------------------------------------------------------
-%   LOGO SECTION
-%----------------------------------------------------------------------------------------
-\begin{figure}
-	\begin{center}
-		{\includegraphics[scale=0.3]{images/Braude_Logo.jpg}}
-	\end{center}
-%	\caption{הפונקציה $\arctan(x)$ - באדום, וסכום שלושת האיברים הראשונים של טור טיילור שלה - בכחול}
-%	\label{atan}
-\end{figure}
 
 %\includegraphics[scale=0.3]{Braude_Logo}\\[1cm] % Include a department/university logo - this will require the graphics package
 %----------------------------------------------------------------------------------------
@@ -203,52 +579,48 @@
 %   הקדמה
 %----------------------------------------------------------------------------------------
 \section{הקדמה}
-עבודה זה הינה עבדות סוף של סטודנט במחלקה למתמטיקה שימושית.
-עבודה זה 
-מבוססת על משחק האורות 
-ונבנתה 
-על  גבי שאלות שנשאלו במהלך חקירת המשחק.
-חיפוש פתרונות הוביל למחקר ותוצאות מעניינות 
-שלא ברורות מעליהן.
+פרוקיט זה הינו פרויקט סוף של סטודנט במחלקה למתמטיקה שימושית.
+הפרויקט 
+חוקר את משחק האורות 
+המטרה המקורית של הפרויקט היתה למצוא פתרונות למשחק, אך במהלך המחקר
+העלנו שאלות נוספות.
 
-השאלות לדוגמה שעלו בעבודה הן שיטות למציאת פתרון למשחק.
-נציג שתי שיטות, שבדיעבד נראו שונות אבל הצלחנו להראות את הקשר בשתי השיטות.
 
-בנוסף 
-לאחר שנמצא אלגוריתם שפותר את המשחק שמנו לב לתופעה מעניינת  כאשר המשחק האורות
-מתחיל כאשר כל הנורות דלוקות אז קיים לפחות פתרון אחד,
-תופעה מעניינת שכזה העסיקה רבות את פרויקט זה ומצאנו הוכחה מדוע תופעה זה מתקיימת.
+נציג שתי שיטות למציאת פתרון של המשחק,
+בתחילה השיטות נראו שונות אבל בפרויקט הראינו דמיון בינהם.
 
-דבר מרכזי נוסף שעסקנו בו הוא בחיפוש סוג מסוים של פתרונות, פתרונות מינמלי שנגדיר בעבודה. 
-סוג הפתרונות שכזה כל כך לא נפוץ שהצלחנו להוכיח את כל המקרים 
-בהם אתכן פתרון שכזה.
+דבר מרכזי נוסף שעסקנו בו הוא בחיפוש פתרונות אופטימלים,
+ מהו פתרון אופטימלי נגדיר בהגדרה
+ \ref{def: opt-sol}
+ , פתרונות אילו הם מועטים וכן הוכחנו את כולם.
 
-עבודה סוף זה הייתה מהנה עבורי אני מודה למחלקה
-למתמטיקה שימושית
-\\
+במהלך הפרויקט ראינו שבמשחק המתחיל כאשר כל הנורות דלוקות קיים לפחות פתרון אחד,
+תופעה זו העסיקה רבות את הפרויקט ובסיומו מצאנו הוכחה
+לקיום התופעה.
+
+עבודה סוף זו הייתה מהנה עבורי אני מודה למחלקה
+למתמטיקה שימושית,
 במיוחד לאלכס גולוורד על הזדמנות לעשות 
 עבודה מרתקת שכזה.
-
-תודה רבה
+עבודה זה לימדה אותי המון ונתנה לי את האומץ להשתמש בכלים שלמדתי במהלך התואר.
 
 \newpage
-
 \section{תאור של המשחק}
-משחק האורות או 
+משחק האורות,  בלועזית
 \textenglish{Lights Out}
-בלועזית,
-זהו משחק על לוח משבצות מלבני.
+,
+מתקיים על לוח משבצות מלבני.
 כל משבצת יכולה להיות באחד משני מצבים, נקרא להם דלוק וכבוי.
-כאשר משתמשים בשמות האלה מתכוונים שבכל משבצת יש נורה והיא יכולה להיות דולקת או כבויה. במצב התחלתי כל הנורות כבויות.
-יש לנו לוח בקרה שמאפשר בכל שלב של המשחק ללחוץ על משבצת ולשנות את מצב הנורה: אם היא דולקת לכבות אותה ואם היא כבויה להדליק אותה.
-לוח בקרה בנוי כך שכאשר מתבצעת לחיצה על משבצת אז מצב של נורה משתנה ומשתנה גם מצב של נורות סמוכות לה.
+כאשר משתמשים בשמות האלו מתכוונים שבכל משבצת יש נורה והיא יכולה להיות דלוקה או כבויה. במצב התחלתי כל הנורות כבויות.
+יש לנו לוח בקרה שמאפשר בכל שלב של המשחק ללחוץ על משבצת ולשנות את מצב הנורה, אם היא דלוקה אז ניתן לכבות אותה ואם היא כבויה אז ניתן להדליק אותה.
+לוח הבקרה בנוי בצורה כזאת שכאשר מתבצעת לחיצה על משבצת אז מצבה של הנורה משתנה, בנוסף משתנים גם מצבם של הנורות הסמוכות לה.
 שתי נורות נקראות סמוכות אם הן נמצאות במשבצות בעלות צלע משוטפת.
-המטרה של המשחק היא לעבור ממצב התחלתי למצב בו כל הנורות יהיו דולקות. 
+המטרה של המשחק היא לעבור ממצב התחלתי שבו כל הנרות כבויות, למצב בו כל הנורות יהיו דולקות. 
 
 \begin{comm}
-    בחירת מצב התחלתי להיות דלוק או כבוי אינה תשנה את המשחק.
+    בחירת מצב התחלתי של כל הנורותת במשחק אינה תשנה את תוצאות המשחק.
 \end{comm}
-הערה מדגישה כי כל המטרה של המשחק היא לעבור ממצב מסוים בו נמצאים כל הנורות למצב אחר.
+ההערה מדגישה כי כל המטרה של המשחק היא לעבור ממצב מסוים בו נמצאים כל הנורות למצב האחר.
 איך ניקרא למצב או איך שהוא יראה בפועל לא משנה את אופי המשחק אבל מה שחשוב שיש שני מצבים התחלתי וסופי.
 
 \subsection{תאור גרפי של המשחק}
@@ -282,25 +654,25 @@
         \caption{לוח לאחר שני לחיצות}
         \label{subfig: explain game, next move}
         \centering
-        \includegraphics[scale=0.49]{images/4x4_next_press.PNG}
+        \includegraphics[scale=0.67]{images/4x4_next_press.PNG}
         % \sethebrew
     \end{subfigure}%
 \end{figure}
 פירוט:
 נבחין כי המשחק 
 על לוח
-$4 \times 4$
+$4 \times 4$.
 המצב התחלתי מתואר
 באיור
 \ref{subfig: explain game, start}
-במצב של הלוח
-כל הנורות צהובות.
+במצב זה
+כל הנורות במצבם התחלתי, דלוקות.
 לאחר ביצוע לחיצה על משבצת שמסומנת בירוק נעבור ללוח שמתואר באיור 
 \ref{subfig: explain game, move}.
-נתאר לחיצה נוספת באיור 
+ובעקבות לחיצה נוספת נעבור למצב באיור 
 \ref{subfig: explain game, next move}.
 
-אחרי שהסברנו על כללי משחק והצגנו הדגמה קטנה הדרך הטובה ביותר לוודא הבנה היא בלשחק,
+אחרי שהסברנו על כללי משחק והצגנו הדגמה, הדרך הטובה ביותר לוודא הבנה היא בלשחק.
 כפי שנאמר "עדיף לראות פעם אחת, מאשר לשמוע מאה פעמים"
 או במקרה שלנו לשחק.
 את המשחק אפשר לשחק בקישור הבאה:
@@ -308,7 +680,7 @@ $4 \times 4$
 
 אתגר שכל שחקן חווה היא 
 שאין אסטרטגיה גלויה למציאת פתרון, בפועל מנסים להגיע למצבים ידועים
-שמהם אתה מכיר את איך לפתרו את המשחק. 
+שמהם אתה מכיר איך להגיע לפתרון. 
 לכן כל פעם שמנסים משחק על לוח בממדים חדשים, חוויה
 המשחק מתחדשת כאילו ולא שיחקת במשחק מעולם.
 
@@ -323,6 +695,8 @@ $4 \times 4$
 	הרחבה של משחק מלוח משבצות למשחק על גרף.
 	\item 
     חיפוש לוחות של משחקים בהם מתקיים פתרון כזה שנורות שינו את מצבן רק פעם אחת בלבד.
+    \item 
+    נציג שיטה למציאת פתרונות שנורות השתנו רק פעם אחת.
     \item 
     נתן התייחסות למספר הפתרון האפשריים בלוח ונדבר על חסם מספר הפתרונות על לוח בממדים כלשהם
 \end{enumerate}
@@ -371,7 +745,7 @@ $4 \times 4$
 ניתן לראות
 $6$
 קודקודיים
-צבועים באפור כלומר כבויים ומטרה של המשחק להדליק את כל הצמתים כלומר לצבוע את כולם בצהוב.
+צבועים בכחול כלומר כבויים ומטרה של המשחק להדליק את כל הצמתים כלומר לצבוע את כולם באדום.
 בשלב 
 \ref{subfig: graph game move}
 צומת שנלחצה נצבע בירוקה היא ושכניה נדלקות ונצבעות בצהוב.
@@ -473,7 +847,7 @@ $2 \times 3$
 על לוח 
 $4 \times 4$
 דורשת פחות לחיצות מהלוח 
-$3 \time 3$.
+$3 \times 3$.
 ההנחה הגיונית 
 שאפשר היה לחשוב היא שככל שהלוח גדול יותר נדרש 
 יותר לחיצות 
@@ -544,15 +918,15 @@ $n \in \{9, 16 \}$.
 על מידול הבעיה לשדה לינארי ולמערכת משוואות שפתרון שלה יוביל לפתרון של המשחק עצמו.
 אתכן ויש כמה דרכים להגיע לאותו מודלו לינארי שנציע, נציג בעובדה זה שני דרכים.
 כשנתאר את שתי שיטות הן יראו שונות בתכלית אבל,
-היופי הוא שאפשר להראות ששתי השיטות מובילות לאותה מערכת משוואות
+היופי הוא שאפשר להראות ששתי השיטות מובילות לאותה מערכת משוואות.
 כלומר צורת הפתרון המתוחכמת יותר נעזרת בצורה של הלוח כדי לפתור ביעילות גבוה יותר את הבעיה.
 
 \subsection{אלגוריתם שמבוסס על מטריצת שכנויות}
-% TODO: change nam eveytwhere based on title
 כדי למדל את הבעיה על שדה לינארי נזכר בייצוג גרפי שאומר כי לחיצה על צומת משנה את הצומת ושכניה 
 אם נסמן את צמתים ב
 $n_i$
-אז משלב זה נתאר את המשחק בצורה נוחה יותר לתיאור אלגברי.
+אז
+ניתן לתאר את המשחק בצורה נוחה יותר בעזרת תיאור אלגברי.
 \begin{enumerate}
     \item 
     כל צומת יכול להיות בשתי מצבים,
@@ -574,7 +948,11 @@ $n_i$
     שהוא
     $1$.
 \end{enumerate}
-
+\begin{comm}
+    עבור משחקים על לוח נתאר את המשבצות ומצבם הנוכחים ב
+    $a_{i,j}$.
+    זאת מכיוון שמשחק על לוח ניתן לתאר בעזרת מטריצה.
+\end{comm}
 \begin{comm}
     \label{comm: sum as press operator on board}
     פעולת לחיצה על לחצן משנה 
@@ -697,7 +1075,7 @@ $i$.
     \label{fig:numbering_board_2x2}
     % \unsethebrew
     \centering
-    \includegraphics[width=0.3\textwidth,keepaspectratio]{images/numbering_board_2x2.PNG}
+    \includegraphics[width=0.3\textwidth,keepaspectratio]{images/2x3_board.PNG}
 \end{figure}
 
 \begin{comm}
@@ -706,12 +1084,12 @@ $i$.
     \ref{fig:numbering_board_2x2},
      היה שיטת המספור הקבוע בפרויקט זה עבור משחקים על לוח.
 \end{comm}
-ניקח דוגמה קצת יותר מסובכת
-עבור גרף באיור
+נדגים על גרף תיאור וקטורי השינוי,
+נבצע זאת על גרף באיור
 \ref{fig: change vector on graph}.
-באיורים עלו נצבע בכחול צמתים שמצבם  
+באיורים עלו נצבע אדום צמתים שמצבם  
 $1$
-ובאדום 
+ובכחול 
 צמתים שמצבם 
 $0$.
 בעזרת וקטור השינוי אפשר לתאר תוצאה של מספר לחיצות,
@@ -834,7 +1212,7 @@ $t_i + t_i = \vec{0}$.
 \begin{comm}
     \label{comm: press is uneven presses}
     לא משנה כמה תלחץ על לחצן בודד הלחצן 
-    יכול להעביר אותך לשני מצבים.
+    יכול להעביר אותך לשני מצבים שונים בלוח.
 \end{comm}
 מספר הלחיצות על אותו לחצן אינו משנה 
 לחצן עכשיו 
@@ -845,7 +1223,6 @@ $0,1$.
 לכן בהמשך
 הפתרון יתואר אם יש צורך ללחוץ בלחצן או לא,
 לא תהיה התייחסות לכמות הלחיצות כי התוצאה מתקבלת רק תלויה בזוגיות של מספר הלחיצות.
-
 \begin{comm}
     היות ומצב התחלתי הוא שכל הצמתים 
     במצב 
@@ -921,7 +1298,7 @@ $x$.
 $m \times n$
 מספר אפשרויות לחיצה 
 $2^{m \cdot n}$.
-כדי להבין את עוצמה של מספר מסדר שכזה נסתכל במשחק על לוח 
+כדי להבין גודל מספר זה נסתכל במשחק על לוח 
 $6 \times 6$
 כמות  אפשרויות לחיצה גדולה 
 מכמות הסטנדרטית שמציגים מספר שלמים,
@@ -934,7 +1311,6 @@ $4$
 $2^{32}-1$
 המטרה של המחשה זה להדגיש כמה לא פרקטית לנסות לפתור בעזרת
 ניסיון כל האופציות האפשריות.
-
 
 מערכת משוואות 
 שמתוארת בנוסחה
@@ -1018,7 +1394,6 @@ $i = j$.
         1 & 0 & 1 & 1\\
     \end{bmatrix}
 \]
-
 \begin{definition}
     \label{ def: solution vector}
     תהי משחק ומערכת משוואת שמתארת אותו מצורה 
@@ -1041,10 +1416,10 @@ $i$.
 \begin{definition}
     \label{def: standard solution}
     שיטת פתרון בעזרת יצירת  מטריצה שכנויות על ידי וקטור שינויים תקראה
-    שיטה מציאת פתרון לפי מטריצת שכנויות.
+    אלגוריתם מבוסס מטריצת שכנויות.
 \end{definition}
 תוצאה דומה
-לתיאור שיטת הפתרון לפי מטריצת השכנויות 
+לתיאור שיטת הפתרון מבוססת מטריצת השכנויות 
 אפשר לראות מהספר
 \cite{B2}.
 מרגע שהצלחנו לתאר את הבעיה מערכת משוואות לינארית
@@ -1070,7 +1445,7 @@ $m \cdot n$
 קיבלנו גודל שכזה.
 השאלה הטבעית שעולה האם אפשר לצמצם את גדול זה?
 
-\subsection{שיטה למציאת פתרון לפי שורה העליונה}
+\subsection{אלגוריתם שמבוסס על מילוי עקבי של שורות}
 עד כה
 הצגנו
 בעבודה
@@ -1095,16 +1470,16 @@ $\min(m,n)$
 בפרק זה נציג את הגישה שמתוארת 
 \cite{B1}
 ונראה את הקשר של בין שתי השיטות.
-לגישה החדשה ניקרא לאורך כל הפרק שיטה למציאת פתרון לפי שורה העליונה.
-
+לגישה החדשה ניקרא לאורך כל הפרק שאלגוריתם שמבוסס על מילוי עקבי של שרות
+או בקצרה מילוי עקבי.
 \begin{definition}
     \label{def: spanish way}
-    שיטה למציאת פתרון לפי שורה העליונה, היא שיטה שמבוססת על עיקרון 
+    שאלגוריתם שמבוסס על מילוי עקבי של שרות, היא שיטה שמבוססת על עיקרון 
     שאם, ידוע איזה כפתורים צריכים להילחץ בשורה העליונה כדי להגיע לפתרון, אפשר לגלות את כל שאר הכפתורים שצריכים להילחץ 
     כמעט מידית.
 \end{definition}
 נתאר את 
-שיטה למציאת פתרון לפי שורה העליונה
+שאלגוריתם שמבוסס על מילוי עקבי של שרות
 בשלבים,
 כל שלב נדגים
 על לוח 
@@ -1116,7 +1491,7 @@ $3 \times 3$
 הנתון ממספור באינדקסים 
 בשיטה דומה כפי שתיארנו בהערה 
 \ref{ comm: indexing board game}.
-שיטה למציאת פתרון לפי שורה העליונה
+שאלגוריתם שמבוסס על מילוי עקבי של שרות
 מתבסס על רעיון,
 שפתרון של המשחק הוא סדרה של לחיצות על משבצות מסוימות. נשייך
  לכל משבצת משתנה שיכול לקבל שני ערכים: 
@@ -1147,6 +1522,7 @@ $3 \times 3$
     \end{bmatrix}    
     \]
 \end{figure}
+
 נבחין בתופעה הבאה,
 על מנת שהנורה במשבצת ראשונה בשורה ראשונה תהיה דולקת סכום המשתנה שלה 
 ומשתנים של משבצות השכנות במודולו
@@ -1203,7 +1579,6 @@ $x_1+x_2+x_3+1$
 נבחין שלאחר שמילאנו את כל הלוח כמו שמתואר באיור 
 \ref{fig: 3 x 3 board fill intire board}.
 אם היה ידוע איזה לחצנים משורה העליונה שייכים לסדרת הלחיצות של פתרון אז, פתרנו את המשחק.
-
 \begin{definition}
     \label{ def: depndeciy equation}
     המשוואה של סכום
@@ -1231,7 +1606,7 @@ $n$
     \hspace{10pt}
     x^*_i =
     \begin{cases}
-        x_i & \text{if } i \in [1,n^2]
+        x_i & \text{if } i \in [1,n \cdot m]
         \\
         0 & \text{otherwise}
     \end{cases}
@@ -1285,6 +1660,7 @@ $4$
             x_1 & x_2 & x_3 \\
             1 + x_1 + x_2 & 1 + x_1 + x_2 + x_3 & 1 + x_2 + x_3 \\
             1 + x_1 + x_3 & 0 & 1 + x_1 + x_3 \\
+            \hline
             1 + x_2 + x_3 & x_1 + x_2 + x_3 & 1 + x_1 + x_2 \\
         \end{bmatrix}
     \]
@@ -1328,7 +1704,7 @@ $3 \times 3$,
 \begin{theorem}
     מטריצה המיצג של מערכת המשוואות האילוצים היא מטריצת שכנויות
 \end{theorem}
-משוואות האילוצים פורמלית היא לב השיטה הספרדית
+משוואות האילוצים היא כל מהות של האלגוריתם למילוי עקבי
 מכיוון שהתקדמות בשורות מבוססת על המשוואות עלו.
 אם נפרוס את משוואת האילוצים נקבל גם מערכת משוואת שפותרת את המשחק
 אבל כמות המשואות הינה 
@@ -1402,24 +1778,25 @@ $2 \times 2$
     x_0 + x_2 + x_3 &= 1\\
     x_1 + x_2 + x_3 &= 1
 \end{align*}
-אפשר בקלות לראות שאם נבנה את המטריצה המייצגת של המערכת נקבל מטריצה דומה למטריצת השכנויות.
+אפשר לראות שאם נבנה את המטריצה המייצגת של המערכת נקבל מטריצה דומה למטריצת השכנויות.
 
-תעלומה נוספת שננה לפתור בשיטה פתרון לפי שורה העליונה היא למה צריך שורה וירטואלי, למה ערכה 
+תעלומה נוספת שנסנה לפתור באלגוריתם למילוי עקבי היא למה צריך שורה וירטואלי, למה ערכה 
 שווה ל
 $0$,
 וכיצד באמת מתבצע צמצום כמות המשתנים ל
 $n$
 משתנים.
 הסבר לתופעה זה
-ניתן בעזרת תיאור שיטת מציאת פתרון לפי שורה העליונה רק שהפעם את
-הפעולות במקום לעשות על טבלה שתיארה את הלוח נבצע על המטריצה שמתארת את מערכת המשוואות 
+ניתן בעזרת תיאור אלגוריתם מילוי עקבי רק שהפעם את
+הפעולות במקום לעשות על טבלה שתיארה את הלוח, נבצע על המטריצה שמתארת את מערכת המשוואות 
 ,
 מטריצת השכנויות.
 נראה את הפעולות שעושים בשיטה על אותה דוגמה 
 על לוח 
 $3 \times 3$.
-נשים לב ששיטה הספרדית מדרג את המטריצה מורחבת 
+ ונרצה להראות שאלגוריתם מילוי עקבי הוא דירג מתוחכם של מטריצה מורחבת 
 $[M | \vec{1}]$.
+
 \begin{figure}[ht]
     \caption{
         מערכת משוואות מורחבת של משחק על לוח 
@@ -1444,7 +1821,6 @@ $[M | \vec{1}]$.
         \end{center}
     \end{english}
 \end{figure}
-
 
 כדי לחשב את 
 $x_4$
@@ -1498,7 +1874,7 @@ $x_7$,
 של 
 $x_7$
 בעזרת המשתנים של שורה העליונה.
-בכך תרגמנו את השיטה למציאת פתרון בעזרת השורה העליונה לפעולות על מטריצה מורחבת.
+בכך תרגמנו את אלגוריתם מילוי עקבי בעזרת פעולת שורות על מטריצה מורחבת.
 אחרי שנעבור על כל השורות בצורה שכזה נקבל את המטריצה
 \ref{fig: matrix after spanish}.
 \begin{figure}[ht]
@@ -1533,12 +1909,13 @@ $x_7$
 $x_1, x_2, x_3$,
 אם נתאר את שורות עלו כמערכת משוואות נקבל
 את אותה מערכת משוואת של 
-שיטה למציאת פתרון לפי שורה העליונה על לוח 
+שאלגוריתם מילוי עקבי תיאר על לוח 
 $3 \times 3$
-שתיארנו במערכת המשוואות
+את מערכת המשוואות הזה תיארנו 
+במערכת
 \ref{fig: eq system for spanish method 3 x 3}.
 
-אחת התוצאות שקיבלנו בזה שתיארנו את השיטה למציאת פתרון לפי שורה העליונה 
+אחת התוצאות שקיבלנו בזה שתיארנו את אלגוריתם שמבוסס על מילוי עקבי של שרות 
 בעזרת פעולת שורות היא, שקבלנו הסבר לשורה דמיוניות.
 משבצות בשורה הדמיונית 
 הן השורות במטריצה
@@ -1558,10 +1935,6 @@ $n$
 בעזרת
 שורות עלו בלבד.
 
-
-
-
-
 \subsection{השוואה בין שתי השיטות למציאת פתרון}
 לפי חישוב סיבוכיות
 לדרג מטריצה 
@@ -1579,10 +1952,10 @@ $O(n^2 \cdot n^4) = O(n^6)$.
 $5$
 ערכים ששווים 
 $1$.
-כל החוכמה בדירוג בשיטה הספרדית היא 
-שפעולות השורות הם על משתנים שכבר דורגו
-לכן 
-כמות הפעולות שורות לא משתנה.
+כל החוכמה בדירוג לפי אלגוריתם מילוי עקבי הוא 
+שפעולות השורות
+אינן פוגעות בשורות 
+שנדרג בהמשך והמשתנים היחידים שמשתנים לאחר הפעולה הם המשתנים בשורה העליונה.
 לכן דירוג שורה היה חיבור 
 של עד כ
 $5$
@@ -1590,7 +1963,6 @@ $5$
 לכן הסיבוכיות 
 $O(n^2 \cdot n^2) = O(n^4)$
 .
-
 לדרג את
 $n$
 משתנים  
@@ -1598,7 +1970,36 @@ $n$
 הוא בסיבוכיות 
 $O(n \cdot n^2) = O (n^3)$.
 
-ננסה להראות זאת בפועל על ידי חישוב זמני חישוב.
+ננסה להראות את סיבוכיות בפועל על ידי חישוב זמני חישוב.
+באיור 
+\ref{fig:prefofmance_diagram}
+אפשר לראות ביצועים
+של שני האלגוריתמים ציר 
+ה
+$x$
+גודל שורה של לוח המלבני.
+את שני האלגוריתמים
+הרצנו על 
+לוחות בגדלים 
+מ
+$10$
+עד 
+$60$
+משבצות
+בשורה.
+ציר ה
+$y$
+זמן שלקח 
+בשניות
+לפי התוצאות של איור 
+\ref{fig:prefofmance_diagram}
+ניראה 
+שגישה הספרדית שבתאוריה יותר אופטימליות לוקחת יותר זמן.
+אחת הסיבות לקח 
+שפונקציה שפותרת מערכת משוואות הינה פונקציה ספרייה
+וכנראה יש מימוש אופטימלי לפתרון הבעיה שאפילו 
+שאלגוריתם מילוי עקבי מקטין את כמות 
+המשתנים היא אינה יכולה להתחרות במימוש אופטימלי שמממשת ספרייה.
 
 \begin{figure}[ht]
     \caption{ 
@@ -1607,41 +2008,12 @@ $O(n \cdot n^2) = O (n^3)$.
     \label{fig:prefofmance_diagram}
     % \unsethebrew
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/benchmark.png}
+    \includegraphics{images/benchmark.png}
 \end{figure}
-% \sethebrew
-
-באיור 
-\ref{fig:prefofmance_diagram}
-אפשר לראות ביצועים
-של שני האלגוריתמים ציר 
-ה
-$x$
-גודל שורה של לוח המלבני
-הרצנו על 
-לוח בגדלים 
-מ
-$10$
-עד 
-$60$
-משבצות.
-ציר ה
-$y$
-זמן שלקח 
-בשניות
-\\
-לפי התוצאות של איור 
-\ref{fig:prefofmance_diagram}
-ניראה 
-שגישה הספרדית שבתאוריה יותר אופטימליות לוקחת יותר זמן.
-אחת הסיבות לקח 
-שפונקציה שפותרת מערכת משוואות הינה פונקציה של ספירה שנעזרתי וכנראה יש מימוש אופטימלי לפתרון הבעיה שאפילו 
-ששיטה הספרדית מקטינה את כמות 
-המשתנים היא אינה יכולה להתחרות במימוש אופטימלי שממשה בספריה.
 
 \subsection{דיון לגבי משחק על גרף}
-קיימים הרבה סיבות בהם תירצה להגדיר את הבעיה על מבנה כללי שכזה:
-
+כאשר תיארנו את המשחק על גרף אתכן 
+והסיבות לקח היו:
 \begin{enumerate}
     \item 
     ככול שמבנה כללי יותר תאוריה שאתה מפתח מתאימה ליותר בעיות.
@@ -1650,14 +2022,11 @@ $y$
     \item 
     מבליט את מהות הבעיה והגדרה הבסיסית ביותר של המשחק.
 \end{enumerate}
+בפועל כשהצגנו את אלגוריתמים לפתרון המשחק 
+התגלתה התמונה המלאה.
+שני האלגוריתמים שתיארנו מתארים את המשחק כגרף היות ושני האלגוריתמים בנויים על מטריצת השכנויות.
+קשר זה מדגיש ומראה שלפעמים רק תיאור מהות הבעיה מספיק כדי למצוא לבעיה פתרון.
 
-ארצה להתייחס לנקודה אחרונה, תיאור הבעיה של משחק
-כאוסף של כללים על גרף.
-\\
-הקשר בין המשחק עצמו לתיאור לגרפי כל כך מהותי
-שבשלב מסוים של הפתרון נקבל את אחת הצורות לייצג גרפים וזאת על ידי מטריצת שכנויות.
-
-\newpage
 \section{קיום פתרון ומספר הפתרונות עבור משחק על גרף}
 עד כה הסתכלנו הצגנו שיטות למציאת פתרון,
 שיטות עלו האירו את העובדה
@@ -1668,6 +2037,10 @@ $y$
 אחד המקומות ששאלה זה נשאלה היא בספר 
 \cite{B3},
 בעבודתנו נראה הוכחה קצת שונה בעזרת הכלים שפיתחנו.
+אומנם הוכחה קיום פתרון הופיע לראשונה במאמר 
+\cite{Sutner}.
+כמו כן המחבר כותב שיש רק הוכחה שמבוססת על אלגברה לינארית.
+
 \subsection{הוכחת קיום פתרון על גרף}
 \begin{definition}
     תהי 
@@ -1803,14 +2176,9 @@ $y$
     $\Col A \perp \Nul A^T$
 \end{theorem}
 \begin{prove}
-    כדי להוכיח את המשפט קודם 
-    נוכיח 
-    עבור מטריצות ב
-    $\mathbb{R}^{m \times n}$.
-    \\
     תהי 
     מטריצה
-    $A \in \mathbb{R}^{m \times n}$
+    $A \in \mathbb{Z}_2^{m \times n}$
     ניקח 
     $\vec x \in \mathrm{Nul} A$.
     לכן
@@ -1819,7 +2187,7 @@ $y$
     \[
         \vec x \perp \mathrm{Row}A=\mathrm{Col} A^T
     \]
-    נותר לציין 
+    רצוי לציין 
     שעבור 
     מטריצות 
     $A \in {Z_2}^{m \times n}$
@@ -1878,9 +2246,9 @@ $\Zn$.
     מטריצה הפיכה אז קיים פתרון יחיד.
     עבור המקרה שמטריצה אינה הפיכה 
     כלומר 
-    $Nul A \neq \{ \vec{0}\}$
+    $\Nul A \neq \{ \vec{0}\}$
     ניקח 
-    $\vec{x} \in Nul A$
+    $\vec{x} \in \Nul A$
     מהגדרה מתקיים
     $A\vec{x} = \vec{0}$
     לכן מתקיים:
@@ -1922,15 +2290,15 @@ $\Zn$.
     כלומר 
     $\vec{1} \perp  \vec{x}$
     כאשר 
-    $x \in Nul A$
+    $x \in \Nul A$
     לפי משפט 
     \ref{the: Nul A and Col AT}
     מתקבל 
-    $\vec{1} \in Col A^T$
+    $\vec{1} \in \Col A^T$
     היות ומטריצה סימטרית 
     $A^T = A$
     לכן
-    $\vec{1} \in Col A$
+    $\vec{1} \in \Col A$
     והוכחנו שלמערכת
     $A\vec{x} = \vec{1}$
     יש פתרון.
@@ -1957,7 +2325,7 @@ $2 \times 1$
 הלוחות השונים שניתן להגיע בעזרת לחיצות היא מצומצמת.
 אפשר לתאר את כל המצבים האפשריים לפי 
 כל צירופים לא סדורים האפשריים של לחיצות אפשריות.
-אם נמספר את הלחצנים לפי שיטת המספור שצינו בהערה 
+אם נמספר את הלחצנים לפי שיטת המספור שציינו בהערה 
 \ref{ comm: indexing board game}.
 אז אוסף כל צירופים הלא סדורים 
 של אוסף לחיצות אפשריים הם 
@@ -2015,7 +2383,7 @@ $2 \times 1$
 כדי לבדוק אם קיים פתרון למשחק הכללי שהגדרנו 
 בהגדרה 
 \ref{def:diff-game}
-נוכל להעזר בהוכחה
+נוכל להיעזר בהוכחה
 \ref{thrm: clean game has solution}.
 \begin{theorem}
     למשחק הזה יש פתרון אם ורק אם וקטור הפרש בין מצב סופי ומצב ההתחלתי אורתוגונלי למרחב 
@@ -2111,7 +2479,7 @@ $G = \{\{v_1\}, \{v_2\}, \{v_3\} \}$
     \label{fig: clic 3 node graph game} 
     % \unsethebrew
     \centering
-    \includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{images/clic_graph_3_node.png}
+    \includegraphics[width=.3\textwidth,keepaspectratio]{images/clic_graph_3_node.png}
 \end{figure}
 
 שאלה טביעת שנובעת שנשאלת היא כמה פתרונות יש למשחק מסוים.
@@ -2124,7 +2492,7 @@ $G = \{\{v_1\}, \{v_2\}, \{v_3\} \}$
     לאחר דירוג.
 \end{definition}
 \begin{definition}
-    נעלמים שאיברהם מובילים אחרי דירוג אקראו נעלמים מובילים.
+    נעלמים שאברהם מובילים אחרי דירוג אקראו נעלמים מובילים.
 \end{definition}
 \begin{definition}
     במטריצה מדורגת בשיטת גאוס עבור עמודות שאין בהם איבר מוביל 
@@ -2158,7 +2526,7 @@ $G = \{\{v_1\}, \{v_2\}, \{v_3\} \}$
     $A$
     הוא 
     $\mathrm{rank}(A) $
-    בעזרת הנוחסה הבאה:
+    בעזרת הנוסחה הבאה:
     \[
         F(A) = n - rank(A)
     \]
@@ -2193,7 +2561,7 @@ $0$
 היות ומניחים שיש כמה פתרונות אפשר לתאר את כל פתרונות כ
 $x = x_n + x_0$
 כאשר 
-$x_n \in Nul(A)$ ,
+$x_n \in \Nul(A)$ ,
 $x_0$ 
 פתרון פרטי שידוע שקיים 
 ו
@@ -2205,16 +2573,13 @@ $x$
 את מרחב האפס שווה לדרגת החופש שנסמן ב
 $k$.
 כמות הווקטורים במרחב זה שווה לכל וקטורים שניתן ליצור בצירוף לינארי 
-
 \[x = a_1 x_1 + a_1 x_1 + a_2 x_2 + \cdots + a_k x_k\]
-
 כאשר הערכים של
 $a_i \in Z_2$
 לכן 
 לכל מקדם יכול להיות
 $2$
 ערכים,
-\\
 לכן כל הקונבנציות האפשריות 
 $2^k$
 ששווה
@@ -2227,7 +2592,6 @@ $2^n$
 פתרונות כאשר
 $n$
 שווה למספר הלחצנים כלומר לא יכול להיות יותר פתרונות מאשר כמות הלחיצות השונות האפשריות במשחק.
-
 \begin{comm}
     עבור משחק לוח מלבני
     בגודל 
@@ -2249,25 +2613,67 @@ $k$
 יכול להיות מספר שורות או עמודות 
 לכן ניקח את המספר הקטן יותר.
 
+לסיכום נרצה להציג טבלה של מספר הפתרונות כתלות לממדי הלוח.
+את הטבלה אפשר לראות באיור 
+\ref{fig:num-sol-in-table}
+כאשר, השורות ועמודות בטבלה מייצגות 
+את ממדי הלוח בהתאמה.
 
-\section{פתרון מינימלי עבור לוחות מלבניים}
-בפרק זה נציג פתרון לסוג מסוים של פתרונות שרצינו להציע. סוג זה של פתרונות 
-מביאים רמז וניראה שמקלים את משחק. הקלה שכזאת על משחק אולי 
-יכולה ליצור ביטחון לשחקנים חדשים וכמובן לאפיין תכונות לסוג של פתרון של כזה.
+\begin{figure}
+    \caption{טבלה מתארת מספר פתרונות בלוחות 
+    $m \times n$
+    }
+    \centering
+    \label{fig:num-sol-in-table}
+    \begin{english}
+        \begin{tabular}{ |c||c|c|c|c|c|c|c|c|c| }
+            \hline
+            \ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+            \hline
+            \hline
+            1 & 1 & 2 & 1 & 1 & 2 & 1 & 1 & 2 & 1 \\
+            \hline
+            2 & 2 & 1 & 4 & 1 & 2 & 1 & 4 & 1 & 2 \\
+            \hline
+            3 & 1 & 4 & 1 & 1 & 8 & 1 & 1 & 4 & 1 \\
+            \hline
+            4 & 1 & 1 & 1 & 16 & 1 & 1 & 1 & 1 & 16 \\
+            \hline
+            5 & 2 & 2 & 8 & 1 & 4 & 1 & 16 & 2 & 2 \\
+            \hline
+            6 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 64 & 1 \\
+            \hline
+            7 & 1 & 4 & 1 & 1 & 16 & 1 & 1 & 4 & 1 \\
+            \hline
+            8 & 2 & 1 & 4 & 1 & 2 & 64 & 4 & 1 & 2 \\
+            \hline
+            9 & 1 & 2 & 1 & 16 & 2 & 1 & 1 & 2 & 256 \\
+            \hline
+        \end{tabular}
+    \end{english}
+\end{figure}
 
+\section{פתרון אופטימלי עבור לוחות מלבניים}
+בפרק זה נציג סוג מסוים של פתרונות,
+סוג זה אקרה פתרון אופטימלי.
+סוג זה של פתרון מקל רבות על המשחק 
+כיוון שמצמצם את כמות הלחיצות האפשריות בכל מצב במשחק.
 \begin{definition}
-משחקים על לוח שקיים פתרון שלחצנים 
-שינו את מצב רק פעם אחת.
-למשחקים כאלו נקראה משחק מנמליים.
+    \label{def: opt-sol}
+    פתרון אופטימלי של משחק הינו פתרון 
+    בו שינוי מצב כל הנורות 
+    היה יחיד.
+    כלומר 
+    השחקן פתר את המשחק כאשר 
+    כל נורה עברו ממצב התחלתי למצב הסופי פעם אחת בלבד
 \end{definition}
-
 באיור 
 \ref{fig: min sol 2x3}
 ניתן דוגמא לפתרון מינמלי 
 בלוח 
 $2 \times 3$.
 כשלוחצים על לחצנים 
-$2, 3$
+$3, 4$
 על לוח כל נורות נדלקות ואף 
 אחת מהם לא נכבה באף שלב של לחיצה.
 
@@ -2276,196 +2682,78 @@ $2, 3$
     \label{fig: min sol 2x3}
     % \unsethebrew
     \centering
-    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/min_sol_2x3.PNG}
+    \includegraphics[width=.3\textwidth,keepaspectratio]{images/min_sol_2x3.PNG}
 \end{figure}
-% \sethebrew
+
+נרצה לחדד ולהדגיש עד כמה קל למצוא פתרונות אופטימלי.
+אם ניקח לוח 
+$2 \times 3$
+כפי שמתואר 
+באיור 
+\ref{fig: min sol 2x3},
+ונתבונן במספר כל הפתרונות שיש ללוח זה
+כפי
+שמתואר בטבלה 
+\ref{fig:num-sol-in-table}
+ניראה שיש 
+$4$
+פתרונות.
+קיימים שני פתרונות אופטימליים 
+ושני פתרונות לא אופטימליים,
+ופה נשאלת השאלה כמה פתרונות בהתבוננות חפזה הקרואה רואה.
+כנראה ששני הפתרונות האופטימליים מיידית נמצאו. כנראה גם שכדי למצוא פתרונות הנותרים 
+נצטרך לקחת דף ועט ולחפש אותם גם עבור לוח בממד מצומצם שכזה.
+את כל ארבעת הפתרונות נציג באיור 
+\ref{fig:all-2x3-sol}.
+
+\begin{figure}[ht]
+    \caption{משחק על גרף לדוגמה}
+    \label{fig:all-2x3-sol}
+    \centering
+    \begin{subfigure}{.20\textwidth}
+        % \unsethebrew
+        \centering
+        \includegraphics{images/min_sol_2x3.PNG}
+        % \sethebrew
+    \end{subfigure}%
+    \begin{subfigure}{.20\textwidth}
+        % \unsethebrew
+        \centering
+        \includegraphics{images/2x3_2.png}
+        % \sethebrew
+    \end{subfigure}%
+    \begin{subfigure}{.20\textwidth}
+        % \unsethebrew
+        \centering
+        \includegraphics{images/2x3_3.png}
+        % \sethebrew
+    \end{subfigure}%
+    \begin{subfigure}{.20\textwidth}
+        % \unsethebrew
+        \centering
+        \includegraphics{images/2x3_4.png}
+        % \sethebrew
+    \end{subfigure}%
+\end{figure}
 
 השאלה שנפתור בפרק זה לאיזה לוחות קיים פתרון מינמלי כאשר מצב התחלתי הוא שכל הנורות במצב
 $0$.
 
-\begin{definition}
-    \label{def: dead zone}
-    אזור מת זהו אוסף לחצנים בלוח
-    שלחיצה עליהם 
-    גורמת לחצן שכבר השתנה בעבר להשתנות שוב
-\end{definition}
-
-אזורים מתים על איור 
-\ref{fig: min sol 2x3}
-נראה שלאחר לחיצה על
-לחצן
-$2$
-האזור מת שנוצר מלחיצה הינו
-$\{0,1,2,4,5\}$
-
+\subsection{הוכחת אי קיום לפתרון אופטימלי על לוחות ששני הממדים גדולים מ
+\texorpdfstring{$4 \times 4$}{4 x 4}}
+לפני שבאמת נוכיח את הטענה 
+נציין את משמעות ששני הממדים גדולים מ
+$4 \times 4$.
 \begin{comm}
-    אזור מת שנוצר מלחיצה 
-    הוא כל הלחצנים במרחק לכל יותר 
-    $2$
-    משבצות מלחצן שנלחץ
-    כאשר המרחק הוא מרחק מנהטן כלומר כל צדע למשבצת סמוכה למעלה למטה ימינה ושמאלה מגדילה את המרחק באחד
+    \label{comm:sol to 2 x m}
+    קיים פתרון אופטימלי למשחק 
+    $2 \times m$
+    כאשר 
+    $m$
+    הוא אי זוגי.
 \end{comm}
-
-\begin{figure}[ht]
-    \caption{אזור מת שנוצר מלחצן באמצע הלוח}
-    \label{fig: dead zone}
-    % \unsethebrew
-    \centering
-    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/dead_zone.PNG}
-\end{figure}
-% \sethebrew
-
-באיור 
-\ref{fig: dead zone}
-אפשר לראות שאם נלחץ על לחצן בצהוב האזור המת הי האזור באדום כולל 
-הלחצן עצמו.
-תכונה זה כלי מרכזי בהוכחה במשפט הבאה
-
-\begin{theorem}
-    \label{thrm: bigger then 7x7 board no minimal solution}
-    במשחק על לוח 
-    $m \times n$
-    שמתקיים
-    $\min(m,n) >= 7$
-    למשחק אין פתרון מינמלי
-\end{theorem}
-
-נניח ויש לנו לוח דו ממדי שמתואר כך נקודת התחלה בכיוון למטה 
-"קומת ראשונה"
-והולך כלפי מעלה לאינסוף 
-ואינסוף לצד ימין וצד שמאל.
-\\
-נקרה לכל שורה אינסופית
-קומה ונמספר אותם מאחת לאינסוף לכן קראנו לקומה נמוכה ביותר קומה ראשונה
-
-נרצה למצוא פתרון מינמלי ללוח
-וגישה לחיפוש הפתרון תהיה
-להדליק שורה אחר שורה במלואה,
-\\
-היות ושורת אינסופיות נציעה אסטרטגיה להדלקת השורה וניראה את הקשיים שנפגוש.
-\\
-אם נרצה להדליק 
-את כל קומה ראשנה רק על ידי לחצות 
-בשורה ראשונה נקבל את הדפוס 
-שאם לחצתי על לחצן מסוים חייב אני ללחוץ על לחצן
-$3$
-מימינו
-כמו שמתואר באיור
-\ref{fig: fill first stage only pressing first stage}
-שמתאר לחצנים בירוק כלחצנים שנלחצו 
-צהוב לחצנים שנדלקו ובאדום אזורים מתים שלא נדלקו.
-באיור מוצג רק שתי לחיצות עוקבות של אסטרטגיה זה אבל כך נדליק את השורה הראשונה.
-
-נשים לב באיור 
-\ref{fig: fill first stage only pressing first stage}
-על שני אזורים המתים הצמודים שלא נדלקו שצמודים אחד לשני כדי להדליק את שינהם
-לא נוכל לעשות זאת ללא כיבוי לחצן שכבר נדלק.
-זאת אומר שאסטרטגיה שכזאת
-נפסלת עבור מילוי משחק שקומה שלו גדולה מ
-$1$.
-
-\begin{figure}[ht]
-    \caption{מילוי קומה ראשונה על ידי לחיצות רק בקומה ראשונה}
-    \label{fig: fill first stage only pressing first stage}
-    % \unsethebrew
-    \centering
-    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/first_stage_fill_only_first_stage_click.PNG}
-\end{figure}
-% \sethebrew
-
-אסטרטגיה אחרת ויחידה למילוי קומה ראשונה הינה להדליק 
-פעם לחצן בקומה ראשנה 
-ופעם לחצן בקומה שניה צמודים.
-היות ורק שני קומות ראשונות משנות את מצב הלחצנים בקומה ראשונה ולא קיים דפוסים נוספים
-אפשריים למילוי שורה ראשונה בעזרת שני שורות עלו לכן עלו הן כל אסטרטגיות למילוי קומה ראשונה.
-
-\begin{figure}[ht]
-    \caption{מילוי קומה ראשונה}
-    \label{fig: fill first stage second attempt}
-    % \unsethebrew
-    \centering
-    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/first_stage_fill_only_first_stage_click.PNG}
-\end{figure}
-% \sethebrew
-
-באיור 
-\ref{fig: fill first stage second attempt}
-אפשר לראות הדגמה קטנה של אסטרטגיה שכזה.
-
-נרצה להראות אסטרטגיה שכזה מובילה לאזורים מתים שלא ניתן למלאות 
-כל עוד רוצים שהפתרון היה מינימלי.
-אם נסתכל באיור 
-\ref{fig: fill first stage second attempt fails}
-ניראה שאזורים המתים ששלשת
-המשבצות הרצופות באדום לא ניתן היה למלאה אותם לכן צירוף כזה אין חוקי
-כלומר הראינו שלמשחק כפי שהגדרנו לא קיים בכלל פתרונות מינימליים.
-
-\begin{figure}[ht]
-    \caption{מילוי קומה ראשונה}
-    \label{fig: fill first stage second attempt fails}
-    % \unsethebrew
-    \centering
-    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/first_stage_fill_only_first_stage_click_fail.PNG}
-\end{figure}
-% \sethebrew
-
-בשלב זה נרצה להקטין את הרוחב ואורך כך שאם קיים 
-משחק אופטימלי בלוח המוקטן אסטרטגיות המילוי קומה קומה היחידות 
-שהיו חוקיות הן עלו שהצגנו.
-נדע שהקטנה לא היו לה פתרונות אופטימליים אם היו משבצות סמוכות באזורים מתים.
-
-נחזור ונסתכל על איור 
-\ref{fig: fill first stage only pressing first stage}
-נשים לב שלכל לוח שמספר המשבצות לרוחב גדול או שווה 
-מ
-$6$
-שיטת המילוי שכזה תהיה לא חוקית כי היו 
-$2$
-משבצות סמוכות שבאזורים לא חוקיים.
-ובאיור 
-\ref{fig: fill first stage second attempt fails}
-ניראה
-שלרוחב גדול או שווה 
-מ
-$5$
-היות ובניה
-של קומה ראשונה מסתמכת על זה שיש 
-$7$
-משבצות ניקח ליתר ביטחון 
-$7$
-משבצות ולכן באסטרטגיה זה לא היה פתרון מינמלי.
-
-קיבלנו שאפשר להקטין את הלוח לרוחב של
-$7$
-משבצות 
-ועדיין לא היה פתרון  מינמלי. 
-
-את אותם טענות אפשר היה לבנות לא רק להגביל את רוחב ל
-$7$
-משבצות עלה גם לגובה.
-לכן לסיכום קיבלנו 
-במשחק על לוח 
-שאורך או רוחב גדולים או שווים מ
-$7$
-אז
-למשחק אין פתרון מינמלי
-והוכחנו את הטענה.
-
-
-\subsection{הלוח הגדול ביותר בעל פתרון מינמלי}
-טענה 
-\ref{thrm: bigger then 7x7 board no minimal solution} 
-מגבילה מאד את המשחקים שיש להם פתרון מינמלי ובשיטת הפתרון שהצגנו
-אחד המסקנות המתקבלות שאם יש שלוש קומות או יותר מתחילה
-להיות בעיתיות בגישת מילוי השורות.
-אפשר להבחין בתופעה זה היות וקיים פתרון מינמלי למשחק 
-$2 \times m$
-כאשר 
-$m$
-הוא אי זוגי
-האסטרטגיה השנייה מאפשרת מילוי קומות ולקבל פתרון מינמלי
-נדגים זאת על באיור 
-\ref{fig: 2x9 have min sol}
+הפתרון הוא פשוט נלחץ פעם אחת בשורה ראשונה ופעם אחרת בשורה השנייה כמו שמתואר באיור 
+\ref{fig: 2x9 have min sol}.
 
 \begin{figure}[ht]
     \caption{פתרון ללוח 
@@ -2473,38 +2761,203 @@ $m$
     \label{fig: 2x9 have min sol}
     % \unsethebrew
     \centering
-    \includegraphics[width=.7\textwidth,height=.7\textheight,keepaspectratio]{images/2xm_sol.PNG}
+    \includegraphics[width=.5\textwidth,keepaspectratio]{images/2xm_sol.PNG}
 \end{figure}
-% \sethebrew
 
-לאחר שהבנו שלוחות בגודל 
+הסיבה שקיים פתרון אופטימלי לכל לוח 
 $2 \times m$
-כאשר 
-$m$
-אי זוגי 
-קיים פתרון מינמלי נשאל מהו הלוח 
-הגדול ביותר
-בעל פתרון מינמלי כאשר 
-הלוח אורך ורוחב גדולים מ
-$2$.
+שפשוט שיטת הפתרון שהצגנו ניתן להרחבה לכל 
+$m$.
+ניקח לדוגמה את איור 
+\ref{fig: 2x9 have min sol}
+אם נוסיף שתי עמודות ימינה 
+אז לחיצה על שורה העליונה 
+בעמודה הימנית ביותר תפתור את המשחק.
 
-לפי טענה 
-\ref{thrm: bigger then 7x7 board no minimal solution} 
-אין טעם לבדוק לוחות שעמודות ושורות גדולים מ
-$7$
-ומבניית ההוכחה 
-אמרנו שאם 
-הגדול של עמודות או שורות לא קטן
-מ
-$3$
-כלומר נותר לבדוק לוחות שממד שלהם 
-$m \times n$
-שייכים לקבוצה
-$\{ (m,n) : 2 < m,n <7 \}$.
+בגלל הערה 
+\ref{comm:sol to 2 x m}
+הגבלנו חיפוש לפתרון אופטימלי ללוחות 
+ששני הממדים שלהם גדולים מ
+$4 \times 4$.
+בכך פסלנו את אינסוף הלוחות שתיארנו בהערה 
+\ref{comm:sol to 2 x m}.
 
-אפשר לנסות ולחפש פתרון ידנית
-או לעבור על כל הפתרונות של משחק רגיל ולבדוק עם יש מבניהם פתרון 
-מינמלי.
+כדי להוכיח טענת הפרק נעזר בלוח שמתואר כך,
+ללוח יש משבצת שהיא ראשית הצירים 
+נסמן אותה כ 
+$a_{1,1}$.
+בלוח זה  הצירים ממשיכים אינסוף ימינה ולמעלה.
+נתאר את המשחק הנתון בעזרת מטריצה אינסופית.
+\begin{theorem}
+    \label{thm:cant-press-a11}
+    אין אף פתרון 
+    אופטימלי בו המשבצת בראשית הצירים נלחצה 
+\end{theorem}
+\begin{prove}
+    לאחר לחיצה על 
+    $a_{1,1}$
+    מתקבל הלוח הבאה:
+    \[
+        \begin{bmatrix}
+            1 & 1 & 0 & 0 \\
+            1 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix}
+    \]
+    כדי להדליק 
+    את הנורה
+    $a_{2,2}$
+    נצטרך 
+    ללחוץ
+    $a_{2,3}$
+    או 
+    $a_{3,2}$
+    .
+    אם נילחץ על
+   $a_{2,3}$
+   נקבל את הלוח הבאה:
+   \[
+        \begin{bmatrix}
+            1 & 1 & 1 & 0 \\
+            1 & 1 & 1 & 1 \\
+            0 & 0 & 1 & 0 \\
+        \end{bmatrix}
+    \]
+    נשים לב כי הגענו למבוי סתום כי
+    ניתן להדליק את 
+    $a_{3,2}$
+    רק על ידי לחיצה על 
+   $a_{4,2}$ 
+   ואז לא היה ניתן להדליק את 
+   $a_{3,1}$.
+   ניתוח דומה אפשר לתאר עבור 
+   לחיצה על 
+   $a_{3,2}$.
+\end{prove}
+לפי טענה
+\ref{thm:cant-press-a11}
+אם ברצוננו למצוא למשחק האינסופי שהגדרנו פתרון מינמלי לא נוכל 
+להדליק את נורה 
+$a_{1,1}$
+על ידי לחיצה עליו.
+לכן על מנת להדליק את 
+$a_{1,1}$
+נלחץ על 
+$a_{1,2}$.
+\begin{theorem}
+    \label{thm:cant-press-a12}
+    אין אף פתרון 
+    אופטימלי בו נלחצה 
+    משבצת
+    $a_{1,2}$
+\end{theorem}
+\begin{prove}
+    כדומה להוכחה 
+    טענה 
+    \ref{thm:cant-press-a11}
+    נגיע למצב סתום.
+    אם נסתכל על מצב הלוח לאחר לחיצה על משבצת 
+   $a_{1,2}$ 
+   ניראה כי יש סידרת לחיצות מאולצת כדי להדליק נורות מסוימות.
+   \[
+        \begin{bmatrix}
+            1 & 1 & 1 & 0 & 0 \\
+            0 & 1 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0
+        \end{bmatrix}
+    \]
+    כדי להדליק את הנורות 
+    $a_{2,1}$
+    נהיה חייבים ללחוץ על 
+    $a_{3,1}$.
+    כדי להדליק את הנורות 
+    $a_{2,3}$
+    נהיה חייבים ללחוץ על 
+    $a_{2,4}$.
+    כדי להדליק את הנורות 
+    $a_{3,3}$
+    נהיה חייבים ללחוץ על 
+    $a_{4,3}$.
+    כדי להדליק את הנורות 
+    $a_{5,2}$
+    נהיה חייבים ללחוץ על 
+    $a_{6,2}$.
+    כדי להדגיש את הכפתורים שנלחצו נסמן
+    אותם 
+    $*$
+    ונקבל את הלוח הבאה:
+    \[
+        \begin{bmatrix}
+            1 & * & 1 & 1 & 0 \\
+            1 & 1 & 1 & * & 1 \\
+            * & 1 & 1 & 1 & 0 \\
+            1 & 1 & * & 1 & 0 \\
+            0 & 1 & 1 & 0 & 0 \\
+            1 & * & 1 & 0 & 0
+        \end{bmatrix}
+    \]
+    נשים לב ששוב הגענו למבוי סתום.
+\end{prove}
+אפשר להחליף בין הצירים ולקבל בעזרת אותה הוכחה 
+למה לא קיים פתרון 
+בו נלחצת משבצת 
+$a_{2,1}$.
+היות ועברנו על כל האפשרויות שאפשר 
+לנסות להדליק את 
+$a_{1,1}$
+והראינו שבכל מצב מגיעים למבוי סתום.
+\begin{corollary}
+    למשחק אינסופי שכזה לא קיים פתרון אופטימלי.
+\end{corollary}
+\begin{corollary}
+    למשחק 
+    $ n \times 4$
+    לא קיים פתרון אופטימלי
+    כאשר 
+    $n > 4$
+\end{corollary}
+עבור משחק שכזה
+אותם 
+טענות
+\ref{thm:cant-press-a11}
+ו
+\ref{thm:cant-press-a12}
+מתקיימות.
+עבור 
+תחילת משחק 
+מלחיצה על 
+$a_{2,1}$
+נקבל את סידרת לחיצות המאולצת
+$\{a_{2,1}, a_{1,3}, a_{3,4}, a_{4,2}, a_{6,3}\}$
+שמתוארת בלוח הבאה:
+\[
+    \begin{bmatrix}
+        1 & 1 & * & 1\\
+        * & 1 & 1 & 1\\
+        1 & 1 & 1 & *\\
+        1 & * & 1 & 1\\
+        0 & 1 & 1 & 0\\
+        0 & 1 & * & 1
+    \end{bmatrix}
+\]
+והגענו שוב למבוי סתום.
+\begin{corollary}
+    \label{thrm: bigger then 7x7 board no minimal solution}
+    במשחק על לוח 
+    $m \times n$
+    שמתקיים
+    $\min(m,n) > 4$
+    למשחק אין פתרון אופטימלי
+\end{corollary}
+
+\subsection{אלגוריתם למציאת פתרון אופטימלי}
+קיימים מספר דרכים למציאת פתרון אופטימלי.
+אפשר לנסות ולחפש פתרון ידנית.
+דרך נוספת היא לעבור על כל הפתרונות של משחק רגיל ולבדוק עם יש מבניהם פתרון 
+אופטימלי.
 נציעה דרך אחרת לחפש פתרון 
 מינמלי
 והיא בעזרת להשתמש באותה מטריצה שכנויות כפי שהגדרנו רק להגדיר 
@@ -2538,7 +2991,7 @@ $\{ (m,n) : 2 < m,n <7 \}$
 לוח 
 $4 \times 4$
 ופתרון מתואר באיור 
-\ref{fig:4x4_have_min_sol}
+\ref{fig:4x4_have_min_sol}.
 
 \begin{figure}[ht]
     \caption{פתרון ללוח 
@@ -2546,20 +2999,18 @@ $4 \times 4$
     \label{fig:4x4_have_min_sol}
     % \unsethebrew
     \centering
-    \includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{images/4x4_min_sol.PNG}
+    \includegraphics[width=.3\textwidth,keepaspectratio]{images/4x4_min_sol.PNG}
 \end{figure}
-% \sethebrew
 
 \newpage
 \section{נספחים}
 מימוש של הפרויקט בוצע על ידי 
 שפת תוכנה 
 {Python}
-עם הכלי 
-{Sage}.
-
-% \unsethebrew
-\includepdf[pages=-]{light_out_jupyter.pdf}
+בעזרת הכלי
+{Sage}
+וספריות מתמטיות נוספות.
+\input{light_out_jupyter.tex}
 % \sethebrew
 %----------------------------------------------------------------------------------------
 %   רשימת מקורות
@@ -2581,6 +3032,8 @@ Jamie Mulholland
     Permutation Puzzles
 }
 Lecture 24: Light out Puzzle , SFU faculty of science department of mathematic
+\bibitem{Sutner}
+K. Sutner, \emph{Linear Cellular Automata and the Garden-of-Eden,} The Mathematical Intelligencer, Vol. 11, No. 29, 1989, Springer-Verlag, New York.		
 \end{english}
 \bibitem{B3}
 אברהם ברמן, בן-ציון קון, 
