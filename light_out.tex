@@ -182,16 +182,14 @@
 
 % User defined macros
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newtheorem{definition}{הגדרה}[section]
-\newtheorem{theorem}{משפט}[section]
-\newtheorem{proposition}{טענה}[section]
-\newtheorem{conjecture}{השערה}[section]
-\newtheorem{corollary}{מסקנה}[section]
-\newtheorem{lemma}{למה}[section]
-\newtheorem{example}{דוגמה}[section]
-\newtheorem{comm}{הערה}[section]
-\newtheorem*{prove}{הוכחה}
+\newtheorem{definition}{הגדרה}
+\newtheorem{theorem}{משפט}
+\newtheorem{proposition}{טענה}
+\newtheorem{conjecture}{השערה}
+\newtheorem{corollary}{מסקנה}
+\newtheorem{lemma}{למה}
+\newtheorem{example}{דוגמה}
+\newtheorem{comm}{הערה}
 
 \newcommand{\sumi}[1]{\sum_{#1=1}^n}
 \newcommand{\Zn}{{\mathbb{Z}_2}^n}
@@ -585,7 +583,6 @@
 המטרה המקורית של הפרויקט היתה למצוא פתרונות למשחק, אך במהלך המחקר
 העלנו שאלות נוספות.
 
-
 נציג שתי שיטות למציאת פתרון של המשחק,
 בתחילה השיטות נראו שונות אבל בפרויקט הראינו דמיון בינהם.
 
@@ -783,7 +780,7 @@ $2 \times 3$
         \label{2x3_board}
         % \unsethebrew
         \centering
-        \includegraphics[scale=0.9]{images/2x3_board.PNG}
+        \includegraphics[scale=.95]{images/2x3_board.PNG}
         % \sethebrew
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
@@ -795,7 +792,7 @@ $2 \times 3$
         % \unsethebrew
         \centering
         \label{2x3_graph}
-        \includegraphics[scale=0.7]{images/2x3_graph.png}
+        \includegraphics[scale=0.8]{images/2x3_graph.png}
         % \sethebrew
     \end{subfigure}%
 \end{figure}
@@ -2138,7 +2135,7 @@ $y$
     $\Col A^T \perp \Nul A$
     $\Col A \perp \Nul A^T$
 \end{theorem}
-\begin{prove}
+\begin{proof}
     תהי 
     מטריצה
     $A \in \mathbb{Z}_2^{m \times n}$
@@ -2158,7 +2155,7 @@ $y$
     רק עבור מכפלה הסקלרית שהגדרנו 
     בהגדרה 
     \ref{def:inner_mul}.
-\end{prove}
+\end{proof}
 נרצה לחדד תופעה מעניינת שקוראת בשדה וקטורי 
 $\Zn$
 עם המכפלה הסקלרית שהגדרנו.
@@ -2174,7 +2171,7 @@ $\Zn$.
     \label{thrm: clean game has solution}
     לכל משחק על גרף קיים פתרון.
 \end{theorem}
-\begin{prove}
+\begin{proof}
     כשפיתחנו את 
     שיטת פתרון 
     בעזרת מטריצת השכנויות 
@@ -2265,7 +2262,7 @@ $\Zn$.
     והוכחנו שלמערכת
     $A\vec{x} = \vec{1}$
     יש פתרון.
-\end{prove}
+\end{proof}
 הוכחת קיום הפתרון עבור המשחק כפי שהגדרנו  על גרף הושגה, מסקנה נאיבית שניתן אולי לחשוב היא שלכל מצב התחלתי
 אפשרי היה ניתן לפתור את המשחק. בחלק זה של הפרק ננסה לחדד ולהעביר.
 \begin{definition}
@@ -2352,7 +2349,7 @@ $2 \times 1$
     למשחק הזה יש פתרון אם ורק אם וקטור הפרש בין מצב סופי ומצב ההתחלתי אורתוגונלי למרחב 
     העמודות של מטריצת השכנויות של המשחק.
 \end{theorem}
-\begin{prove}
+\begin{proof}
     נגדיר קודם את המשחק החדש אלגברית.
     לפי משוואה 
     \ref{eq: sum change vectors}
@@ -2396,7 +2393,7 @@ $2 \times 1$
     פתיר, 
     מספיק להראות 
     $S_e - s_0 \in \Nul A$
-\end{prove}
+\end{proof}
 \begin{comm}
     דרך קלה לבדוק שוקטור 
     $\vec v \in \mathbb{R}^{n}$
@@ -2756,7 +2753,7 @@ $a_{1,1}$.
     אין אף פתרון 
     אופטימלי בו המשבצת בראשית הצירים נלחצה 
 \end{theorem}
-\begin{prove}
+\begin{proof}
     לאחר לחיצה על 
     $a_{1,1}$
     מתקבל הלוח הבאה:
@@ -2796,7 +2793,7 @@ $a_{1,1}$.
    ניתוח דומה אפשר לתאר עבור 
    לחיצה על 
    $a_{3,2}$.
-\end{prove}
+\end{proof}
 לפי טענה
 \ref{thm:cant-press-a11}
 אם ברצוננו למצוא למשחק האינסופי שהגדרנו פתרון מינמלי לא נוכל 
@@ -2814,7 +2811,7 @@ $a_{1,2}$.
     משבצת
     $a_{1,2}$
 \end{theorem}
-\begin{prove}
+\begin{proof}
     כדומה להוכחה 
     טענה 
     \ref{thm:cant-press-a11}
@@ -2863,7 +2860,7 @@ $a_{1,2}$.
         \end{bmatrix}
     \]
     נשים לב ששוב הגענו למבוי סתום.
-\end{prove}
+\end{proof}
 אפשר להחליף בין הצירים ולקבל בעזרת אותה הוכחה 
 למה לא קיים פתרון 
 בו נלחצת משבצת 
@@ -2962,7 +2959,7 @@ $4 \times 4$
     \label{fig:4x4_have_min_sol}
     % \unsethebrew
     \centering
-    \includegraphics[width=.3\textwidth,keepaspectratio]{images/4x4_min_sol.PNG}
+    \includegraphics[width=.3\textwidth,keepaspectratio]{images/4x4_sol.PNG}
 \end{figure}
 
 \newpage
