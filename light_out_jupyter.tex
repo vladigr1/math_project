@@ -49,7 +49,20 @@ Adj matrix for 3,2 board:
     \newpage
     \hypertarget{solver-based-on-adjacency-matrix}{%
 \subsection{מציאת פתרון}\label{solver-based-on-adjacency-matrix}}
-הצגה כיצד לקבל פתרון ממטריצת השכנויות.
+מתאר אלגוריתם למציאת פתרון בעזרת ממטריצת השכנויות.
+הפתרון המתקבל הם וקטורי עמודות.
+ניקח לדוגמה את הפתרון
+$(1, 0, 1, 0, 1, 0, 1, 0, 1^)$
+עבור לוח 
+$3 \times 3$
+את אותו פתרון נתאר בעזרת מטריצה כך:
+\[
+    \begin{bmatrix}
+        1 & 0 & 1 \\
+        0 & 1 & 0 \\
+        1 & 0 & 1
+    \end{bmatrix}
+\]
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{7}{\boxspacing}
@@ -75,6 +88,8 @@ Solution for 3x3 board:
 שיטת הפתרון השניה שהצגנו בעבודה.
 הקוד מחולק לשלושה פונקציות: פעולת דירוג של מטריצה לפי שיטה, פונקציה שפותרת את המערכת 
 ופונקציה שעוטפת את שני הפונקציה וממש את השיטה כולה.
+הפתרון מוצג כוקטור עמודה כמו שתיארנו ב
+\ref{solver-based-on-adjacency-matrix}.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{3}{\boxspacing}
@@ -144,9 +159,10 @@ check solution by multiply matrix with soultion vector:
 (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     \end{Verbatim}
 \end{english}
+\newpage
     \hypertarget{benchmark}{%
 \subsection{השווה בין שתי שיטות}\label{benchmark}}
-אחת התוצאות המענינות היא לראות השווה זמני ריצה בין שתי אלגוריתמים.
+השווה זמני ריצה בין שתי אלגוריתמים.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{4}{\boxspacing}
@@ -229,10 +245,20 @@ Optimal solution:
 \newpage
     \hypertarget{solution-amount}{%
 \subsection{מספר פתרונות על לוח}\label{solution-amount}}
-קוד זה מציג מספר הפתרונות שיש על לוחות 
+חישוב מספר הפתרונות שיש על לוחות 
 $m\times n$ 
 כאשר 
 $m,n \le 9$.
+שורות ועמודות בטבלה מתארות את מימדי הלוח שמעונינים לדעת מספר פתרונותיו.
+לדוגמה אפשר לראות מטבלת התוצאות שללוח 
+$3 \times 5$
+כמות הפתרונות הוא 
+$8$
+כפי שמתואר בשורה 
+$3$
+עמוד 
+$5$
+בטבלת התוצאות.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{6}{\boxspacing}
@@ -287,8 +313,12 @@ Number solution based on m x n board size:
 
 \hypertarget{all-solution}{%
 \subsection{כל הפתרונות עבור לוח נתון}\label{all-solution}}
-קוד זה מציג כל הפתרונות עבור לוח בגודל
+חישוב כל הפתרונות עבור לוח בגודל
 $m\times n$.
+הפתרון שמתקבל הוא רשימה של פתרונות כאשר כל פתרון 
+הוא וקטור עמודות כפי שתאירנו 
+ב
+\ref{solver-based-on-adjacency-matrix}.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{81}{\boxspacing}
