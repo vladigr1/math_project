@@ -953,7 +953,7 @@ $n_i + 1$.
     ושל שכנותיה הוא זוגי כלומר, מצבן לא ישתנה.
 \end{proof}
 \begin{corollary}
-    \label{comm: press is uneven presses}
+    \label{corollary:gamplay-desc-single-press-key}
     בעבור משבצת מסוימת שנלחצה 
     $m$
     פעמים.
@@ -967,7 +967,7 @@ $n_i + 1$.
     פעמים.
 \end{corollary}
 מסקנה
-\ref{comm: press is uneven presses}
+\ref{corollary:gamplay-desc-single-press-key}
 ממיחשה 
 שכדי לתאר פתרון של משחק מספיק לתאר רק את המשבצות שנלחצו.
 
@@ -980,7 +980,7 @@ $n_i + 1$.
 \end{lemma}
 \begin{proof}
     לפי הערה 
-\ref{comm: press is uneven presses}
+\ref{corollary:gamplay-desc-single-press-key}
 כל לחצן יכול להיות בשתי מצבים 
 והיות לפי
 למה
@@ -1070,6 +1070,7 @@ $(1,1)$:
 וקטור המתאר הלחיצה
 על משבצת מסוימת יקרא וקטור שינוי שלה.
  \begin{definition}
+    \label{def:chang-vector}
     תהי 
     משחק על גרף בעל
     $n$
@@ -1108,6 +1109,10 @@ $t_i$:
     היו 
     $0$.
 \end{itemize}
+\begin{definition}
+    \label{def:board-vector}
+    וקטור המתאר את מצב בו הלוח נמצא כרגע יקרא וקטור הלוח.
+\end{definition}
 \begin{comm}
     \label{ comm: indexing board game}
     שיטת המספור בפרויקט 
@@ -1115,7 +1120,6 @@ $t_i$:
     על שורות ואז על עמודות כמו שמתואר באיור
     \ref{fig:numbering_board_2x2}.
 \end{comm}
-
 \begin{figure}[ht]
     \caption{שיטת מספור משבצות על לוח}
     \label{fig:numbering_board_2x2}
@@ -1124,90 +1128,92 @@ $t_i$:
     \includegraphics[width=0.3\textwidth,keepaspectratio]{images/2x3_board.PNG}
 \end{figure}
 
-נדגים על גרף תיאור וקטורי השינוי,
-נבצע זאת על גרף באיור
-\ref{fig: change vector on graph}.
-באיורים עלו נצבע אדום צמתים שמצבם  
-$1$
-ובכחול 
-צמתים שמצבם 
-$0$.
-בעזרת וקטור השינוי אפשר לתאר תוצאה של מספר לחיצות,
-נעשה זאת בעזרת חיבור וקטור שינויים
-וחיבור מצב הגרף.
-התוצאה שנקבל 
-תהיה הגרף המתקבל לאחר לחיצה של צמתים
-הללו.
-נדגים רעיון זה כאשר מצב של גרף מתואר באיור
-\ref{fig:start graph presses}.
-נניח שצומת 1 היא יחידה שדלוקה.
-נרצה להראות איך הגרף יראה אם ילחצו על כפותרים 
-$1, 3$.
-וקטור שינוי של צומת 
-$1$
-הוא
-\[
-    t_1 = 
-    \begin{bmatrix}
-        1 \\
-        0 \\
-        1 \\
-        1 \\
-    \end{bmatrix}
-\]
-\[
-    t_1 + t_3 = 
-    \begin{bmatrix}
-        1 \\
-        0 \\
-        1 \\
-        1 \\
-    \end{bmatrix}
-    +
-    \begin{bmatrix}
-        1 \\
-        1 \\
-        1 \\
-        1 \\
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-        0 \\
-        1 \\
-        0 \\
-        0 \\
-    \end{bmatrix}
-\]
-ומצב התחלתי שמתואר באיור נסמן ב
-$S_0$
-לכן מתקבל
-\[
-    S_0 + t_1 + t_3 = 
-    \begin{bmatrix}
-        1 \\
-        0 \\
-        0 \\
-        0 \\
-    \end{bmatrix}
-    +
-    \begin{bmatrix}
-        0 \\
-        1 \\
-        0 \\
-        0 \\
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-        1 \\
-        1 \\
-        0 \\
-        0 \\
-    \end{bmatrix}
-\]
-הגרף המתקבל לאחר חיבור אכן תואם לתוצאה המצופה
-מתואר באיור 
-\ref{fig:start graph presses solution}.
+\begin{example}
+    תהי גרף בעל 
+    $4$
+    צמתים כפי שמתואר באיור
+    \ref{fig: change vector on graph}.
+    צמתים שמצבם 
+    $1$
+    יצבעו באדום
+    ובכחול 
+    יצבעו צמתים שמצבם 
+    $0$.
+    נדגים איך אפשר לתאר מהלך משחק 
+    בעזרת וקטורי השינויים ווקטור לוח.
 
+
+    באיור
+    \ref{fig:start graph presses}
+    מתואר גרף במצבו הנוכחי.
+    נראה את שינוי הגרף לאחר לחיצה על הצמתים 
+    $1, 3$.
+ 
+    וקטור שינוי של צומת 
+    $1$:
+    \[
+        t_1 = 
+        \begin{bmatrix}
+            1 \\
+            0 \\
+            1 \\
+            1 \\
+        \end{bmatrix}
+    \]
+    נשרשר את וקטורי השינויי של שתי הלחיצות:
+    \[
+        t_1 + t_3 = 
+        \begin{bmatrix}
+            1 \\
+            0 \\
+            1 \\
+            1 \\
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            1 \\
+            1 \\
+            1 \\
+            1 \\
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            0 \\
+            1 \\
+            0 \\
+            0 \\
+        \end{bmatrix}
+    \]
+    אם נחבר וקטור זה אם וקטור הלוח שנסמן ב
+    $S_0$
+    מתקבל:
+    \[
+        S_0 + t_1 + t_3 = 
+        \begin{bmatrix}
+            1 \\
+            0 \\
+            0 \\
+            0 \\
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 \\
+            1 \\
+            0 \\
+            0 \\
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            1 \\
+            1 \\
+            0 \\
+            0 \\
+        \end{bmatrix}
+    \]
+    וקטור לוח שמתקבל לאחר חיבור אכן תואמת לתוצאה המצופה
+    שמתוארת באיור 
+    \ref{fig:start graph presses solution}.
+\end{example}
 \begin{figure}[ht]
     \caption{
         דוגמה לתיאור וקטור שינוי במהלך משחק על גרף
@@ -1231,21 +1237,22 @@ $S_0$
 \end{figure}
 
 \begin{comm}
-    היות ווקטור שינוי שדה
-    $\Zn$
-    חיבור בין וקטורים הינו חיבור בין האינדקסים מודולו 
-    $2$
-    וכפל בסקלר
-    הוא לכפול את כל ערכי וקטור בסקלר
-    כאשר הסקלרים יכולים להיות
+    היות ווקטור שינוי שייך לשדה
+    $\Zn$,
+    ניתן לתאר מהלך משחק 
+    בעזרת צירוף לינארי 
+    בשדה זה.
+    כפי שתיארנו במסקנה 
+    \ref{corollary:gamplay-desc-single-press-key}
+    סקלרים בצירוף לינארי זה הם
     $0$
     או 
-    $1$
+    $1$.
 \end{comm}
-
 \begin{comm}
-    היות ומצב התחלתי הוא שכל הצמתים 
-    במצב 
+    היות והגדרנו שכל משחק מתחיל כאשר 
+    הצמתים 
+    במצבם התחלתי 
     $0$
     לכן,
     ניתן לתאר 
@@ -1253,6 +1260,7 @@ $S_0$
     רק
     בעזרת צירוף לינארי של וקיטורי שינוי בלבד.
 \end{comm}
+
 היות ומצב התחלתי נסמן כרגע ב
 $S_0$
 הוא כולו וקטור האפס
@@ -1281,10 +1289,11 @@ $x = \begin{bmatrix}
 \end{bmatrix}$
 שמקיים את המשוואה 
 \ref{eq: lin eq for solving problem}
-קיבלנו פתרון של משחק על גרף.
+אז הוא פתרון של משחק על גרף.
 כדי להגיע לפתרון על גרף נלחץ על הצמתים שמספורם 
 שווה 
 לאינדקסים 
+$j$
 שמקיימים
 $x_j = 1$
 בצירוף 
@@ -1293,8 +1302,7 @@ $x$.
 מערכת משוואות 
 שמתוארת בנוסחה
 \ref{eq: lin eq for solving problem}
-אפשר לתאר במספר צורות.
-נפוצה מבניהם היא
+אפשר לתאר
 בעזרת מטריצה כמו שמתואר 
 בנוסחה 
 \ref{eq: matrix eq for solving problem}.
@@ -1344,12 +1352,19 @@ $x$.
 $A$
 במשוואה
 \ref{eq: matrix eq for solving problem}
-מתקבל ש
+ערכי המטריצה 
+שמקיימים
 $A_{i,j} = 1$
-כאשר 
+הם 
+באינדקסים 
 $i, j$
-צמתים שהם שכנים או זהים
-$i = j$.
+בהם 
+צמתים
+$n_i, n_j$
+שהם שכנים או זהים
+(
+$i = j$
+).
 \begin{definition}
     \label{def: neighbor matrix}
     מטריצה שמתארת את משחק 
@@ -1359,10 +1374,10 @@ $i = j$.
 \end{definition}
 \begin{comm}
     \label{comm: symetic matrix}
-    היות וכל צומת שכנה היא שכנה אחד לשני לכן במטריצה
-    סימטרית
+    היות ובגרף יחס שכנות הוא סימטרי לכן, מטריצה שכנות סימטרית.
 \end{comm}
-דוגמה למטריצה  המתקבלת מגרף באיור 
+\begin{example}
+    מטריצה השכנות עבור גרף באיור 
 \ref{fig:start graph presses solution}:
 \[
     \begin{bmatrix}
@@ -1372,6 +1387,7 @@ $i = j$.
         1 & 0 & 1 & 1\\
     \end{bmatrix}
 \]
+\end{example}
 \begin{definition}
     \label{ def: solution vector}
     תהי משחק ומערכת משוואת שמתארת אותו מצורה 
@@ -2443,7 +2459,7 @@ $0$
 לחיצות לא משנה את הפתרון.
 לכן פתרון הינו קבוצה של לחצנים.
 בנוסף נזכר לפי הערה
-\ref{comm: press is uneven presses}
+\ref{corollary:gamplay-desc-single-press-key}
 מספר אי זוגי של לחיצות נחשב ללחיצה לכן מספר הלחיצות על אותו לחצן לא משנה 
 אלה רק זוגיות של מספר לחיצות 
 לכן לכל לחצן יש רק שני מצבים שיכול להיות 
