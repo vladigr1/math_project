@@ -7,7 +7,6 @@ $m \times n$.
 \prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-\PY{c+c1}{\PYZsh{} to prove the minimal case on not square we need to build matrix for not rectangler board}
 \PY{k}{def} \PY{n+nf}{genenerate\PYZus{}neighbord\PYZus{}matrix\PYZus{}m\PYZus{}n}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{n}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{:}
     \PY{n}{mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{m}\PY{o}{*}\PY{n}{n}\PY{p}{,} \PY{n}{m}\PY{o}{*}\PY{n}{n}\PY{p}{)}\PY{p}{,} \PY{n}{dtype}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int8}\PY{p}{)}
 
@@ -46,15 +45,17 @@ Adj matrix for 3,2 board:
     \end{Verbatim}
 \end{english}
 
-    \newpage
+\newpage
     \hypertarget{solver-based-on-adjacency-matrix}{%
-\subsection{מציאת פתרון}\label{solver-based-on-adjacency-matrix}}
-מתאר אלגוריתם למציאת פתרון בעזרת ממטריצת השכנויות.
-הפתרון המתקבל הם וקטורי עמודות.
+\subsection{אלגוריתם שמבוסס על מטריצת השכנויות}\label{solver-based-on-adjacency-matrix}}
+קוד זה מוצא פתרון לפי אלגוריתם שמבוסס על ממטריצת שכנויות.
+הפתרון המתקבל הוא וקטור שורה שאינדקסים של וקטור הם 
+אינדקסים של משבצות לפי שיטת המספור שהצגנו בפרויקט.
 ניקח לדוגמה את הפתרון
-$(1, 0, 1, 0, 1, 0, 1, 0, 1^)$
 עבור לוח 
 $3 \times 3$
+שהתקבל בפלט:
+\[(1, 0, 1, 0, 1, 0, 1, 0, 1 )\]
 את אותו פתרון נתאר בעזרת מטריצה כך:
 \[
     \begin{bmatrix}
@@ -83,18 +84,20 @@ Solution for 3x3 board:
     \end{Verbatim}
 \end{english}
 
+\newpage
     \hypertarget{solver-based-on-calculating-raw-by-raw}{%
-\subsection{אלגוריתם מבוסס על מילוי עקבי}\label{solver-based-on-calculating-raw-by-raw}}
-שיטת הפתרון השניה שהצגנו בעבודה.
-הקוד מחולק לשלושה פונקציות: פעולת דירוג של מטריצה לפי שיטה, פונקציה שפותרת את המערכת 
-ופונקציה שעוטפת את שני הפונקציה וממש את השיטה כולה.
-הפתרון מוצג כוקטור עמודה כמו שתיארנו ב
+\subsection{אלגוריתם מבוסס על מילוי עקבי של שורות}\label{solver-based-on-calculating-raw-by-raw}}
+קוד זה מוצא פתרון לפי אלגוריתם שמבוסס על מילוי עקבי של שורות.
+הקוד מחולק לשלושה פונקציות: פעולת דירוג של מטריצה שאלגוריתם
+מתאר, פונקציה שפותרת את המערכת 
+המשוואות
+ופונקציה שעוטפת את שני הפונקציה וזהו המימוש שצריך לקרואו המשתמש.
+הפתרון מוצג כוקטור שורה כפי שתיארנו ב
 \ref{solver-based-on-adjacency-matrix}.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} row operation on mat to generate the solution for [n, n**2\PYZhy{}1]}
 \PY{k}{def} \PY{n+nf}{gaussian\PYZus{}elimination\PYZus{}spanish\PYZus{}alg}\PY{p}{(}\PY{n}{mat} \PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{,} \PY{n}{sol\PYZus{}vec} \PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{)}\PY{p}{:}
     \PY{n}{n} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{n}{mat}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
     \PY{c+c1}{\PYZsh{}all rows but the last one}
@@ -159,10 +162,10 @@ check solution by multiply matrix with soultion vector:
 (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     \end{Verbatim}
 \end{english}
-\newpage
+
     \hypertarget{benchmark}{%
-\subsection{השווה בין שתי שיטות}\label{benchmark}}
-השווה זמני ריצה בין שתי אלגוריתמים.
+\subsection{השווה בין שתי האלגוריתמים}\label{benchmark}}
+קוד זה דוגם זמני ריצה של שני האלגוריתמים ומחזיר כפלט טבלה זמני ריצה.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{4}{\boxspacing}
@@ -216,9 +219,12 @@ board size, adj method, row by row method
     \end{Verbatim}     
 \end{english}
 
+\newpage
     \hypertarget{optimal-solution}{%
 \subsection{מציאת פתרון אופטימלי}\label{optimal-solution}}
-הצגנו בפרויקט שיטה למציאת פתרונות מינמלי מבוססת פתרון מערכת משוואות על שלמים.
+קוד זה מוצא 
+פתרון אופטימלי.
+מציאת הפתרון מבוססת על גישה של מציאת פתרון במערכת משוואות על שלמים.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{5}{\boxspacing}
@@ -244,21 +250,21 @@ Optimal solution:
 
 \newpage
     \hypertarget{solution-amount}{%
-\subsection{מספר פתרונות על לוח}\label{solution-amount}}
-חישוב מספר הפתרונות שיש על לוחות 
+\subsection{מספר הפתרונות על לוח}\label{solution-amount}}
+קוד זה מחשב מספר הפתרונות שיש על לוחות 
 $m\times n$ 
 כאשר 
 $m,n \le 9$.
-שורות ועמודות בטבלה מתארות את מימדי הלוח שמעונינים לדעת מספר פתרונותיו.
+הפלט שמתקבל הוא טבלה, שהשורות והעמודות מתארות את מימדי
+הלוח.
 לדוגמה אפשר לראות מטבלת התוצאות שללוח 
 $3 \times 5$
 כמות הפתרונות הוא 
 $8$
 כפי שמתואר בשורה 
 $3$
-עמוד 
-$5$
-בטבלת התוצאות.
+ובעמודה
+$5$.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{6}{\boxspacing}
@@ -313,14 +319,14 @@ Number solution based on m x n board size:
 
 \hypertarget{all-solution}{%
 \subsection{כל הפתרונות עבור לוח נתון}\label{all-solution}}
-חישוב כל הפתרונות עבור לוח בגודל
+קוד זה מחשב את כל הפתרונות עבור לוח בגודל
 $m\times n$.
 הפתרון שמתקבל הוא רשימה של פתרונות כאשר כל פתרון 
-הוא וקטור עמודות כפי שתאירנו 
+הוא וקטור שורה כפי שתאירנו 
 ב
 \ref{solver-based-on-adjacency-matrix}.
 מציאת כל הפתרונות מסתמכת על הגישה של חיבור פתרון פרטי עם 
-כל וקטורים במרחב האפס.
+כל הוקטורים במרחב האפס.
 \begin{english}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{81}{\boxspacing}

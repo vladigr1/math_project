@@ -34,22 +34,22 @@
 \contentsline {subsection}{\numberline {6.1}יצירת מטריצת שכנויות}{31}{subsection.6.1}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {6.2}מציאת פתרון}{33}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.2}אלגוריתם שמבוסס על מטריצת השכנויות}{33}{subsection.6.2}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {6.3}אלגוריתם מבוסס על מילוי עקבי}{33}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.3}אלגוריתם מבוסס על מילוי עקבי של שורות}{34}{subsection.6.3}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {6.4}השווה בין שתי שיטות}{36}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.4}השווה בין שתי האלגוריתמים}{36}{subsection.6.4}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {6.5}מציאת פתרון אופטימלי}{37}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.5}מציאת פתרון אופטימלי}{38}{subsection.6.5}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {6.6}מספר פתרונות על לוח}{38}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.6}מספר הפתרונות על לוח}{39}{subsection.6.6}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
-\contentsline {subsection}{\numberline {6.7}כל הפתרונות עבור לוח נתון}{39}{subsection.6.7}%
+\contentsline {subsection}{\numberline {6.7}כל הפתרונות עבור לוח נתון}{40}{subsection.6.7}%
 \selectlanguage *{english}
 \selectlanguage *{hebrew}
 \bgroup 
