@@ -1,7 +1,7 @@
 \selectlanguage *{hebrew}
 \contentsline {section}{\numberline {1}הקדמה}{2}{section.1}%
-\contentsline {section}{\numberline {2}תאור של המשחק}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}תאור גרפי של המשחק}{3}{subsection.2.1}%
+\contentsline {section}{\numberline {2}תיאור של המשחק}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}תיאור גרפי של המשחק}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}סוגיות בהן נעסוק בפרויקט}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}תיאור משחק על גרף}{4}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}השוואה בין משחק על לוח למשחק על גרף}{5}{subsection.2.4}%
