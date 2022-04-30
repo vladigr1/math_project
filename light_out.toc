@@ -20,7 +20,7 @@
 \selectlanguage *{hebrew}
 \contentsline {subsection}{\numberline {3.3}השוואה בין שתי השיטות למציאת פתרון}{17}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}דיון לגבי משחק על גרף}{18}{subsection.3.4}%
-\contentsline {section}{\numberline {4}קיום פתרון ומספר הפתרונות עבור משחק על גרף}{19}{section.4}%
+\contentsline {section}{\numberline {4}קיום פתרון ומספר הפתרונות עבור משחק על גרף}{18}{section.4}%
 \contentsline {subsection}{\numberline {4.1}הוכחת קיום פתרון על גרף}{19}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}מספר הפתרונות עבור כל גרף}{23}{subsection.4.2}%
 \bgroup 
