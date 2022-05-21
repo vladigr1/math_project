@@ -151,8 +151,6 @@
   { }% space after theorem head; " " = normal inter word space
   {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}} % Manually specify head
 \theoremstyle{theoremdd}
-% \usepackage{graphicx}
-% \usepackage{pgfplots}
 %\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
 % \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 % \definecolor{mylilas}{RGB}{170,55,241}
@@ -166,7 +164,7 @@
 %\usepackage{pdfpages}
 \linespread{1.4}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in]{geometry}
-\usepackage{xcolor}
+\usepackage{xcolor,colortbl}
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \usepackage{array}
@@ -940,6 +938,7 @@ $n \in \{9, 16 \}$.
 
 \newpage
 \subsection{אלגוריתם שמבוסס על מטריצת שכנויות}
+\label{subsec:neighborhood-matrix-alg}
 כדי למדל את הבעיה על ידי מערכת משוואות לינאריות
 נשתמש במשחק כפי שהוא מתואר על גרף.
  לחיצה על צומת משנה את מצב הצומת ומצב שכנותיה.
@@ -1579,281 +1578,209 @@ $[ m \cdot n \times m \cdot n ]$.
 יותר מצומצמת?
 
 \subsection{אלגוריתם שמבוסס על מילוי עקבי של שורות}
-עד כה
-הצגנו
-בעבודה
-שיטת פתרון
-הנעזרת במטריצת שכנויות.
-נרצה להראות שיטה נוספת למציאת פתרון.
-נציג שיטה משופרת שמצמצמת את כמות המשתנים והמשוואות 
-למציאת פתרון למשחק על לוח 
-$ m \times n$
-ב
-$\min(m,n)$
-משוואות ומשתנים.
-צמצום גודל מערכת משואות יכולה להוביל
-לחישוב מהיר יותר וניצול טוב יותר של המידע.
-
+בפרק 
+\ref{subsec:neighborhood-matrix-alg}
+תיארנו איך מתקבלת מערכת משוואות לינאריות מעל שדה
+$\mathbb{Z}_2$.
+מטריצה של מערכת הזאת היא מטריצת שכנויות.
+עכשיו נראה איך אפשר להגיע לאותה מערכת משוואות
+על בסיס של שיקולים שונים .נראה גם שבמקום לפתור
+את המערכת הזאת ניתן לפתור מערכת הרבה יותר קטנה. 
+השיטה שנציג מבוססת על
 המאמר 
-\cite{B1}
-מציג שיטה למציאת פתרון
-של משחק על לוח.
-בפרק זה נציג את הגישה שמתוארת 
-ב
-\cite{B1}
-ונראה את הקשר בין השיטות.
+\cite{B1}.
 לגישה החדשה ניקרא
 "אלגוריתם שמבוסס על מילוי עקבי של שרות"
 או בקצרה מילוי עקבי.
 
-אלגוריתם מילוי עקבי
-מתבסס על רעיון,
-שפתרון של המשחק הוא סדרה של לחיצות על משבצות מסוימות. נשייך
-לכל משבצת משתנה שיכול לקבל שני ערכים: 
-$0$
-אם המשבצת אינה מופיעה בסדרת הלחיצות של הפתרון
-ו-
-$1$
-אם המשבצת כן מופיעה בסדרת הלחיצות של הפתרון.
-מראש לא ידוע לנו
-האם משבצות של השורה הראשונה
-יופיעו בסדרת הפתרון.
-
-נתאר 
-את
-אלגוריתם מילוי עקבי
-על לוח 
-$3 \times 3$.
-ניקח לוח
-$3 \times 3$
-כאשר ידוע האם משבצת מסוימת 
-נלחצה או לא
-לפי ערך המשתנה של משבצת הזאת.
-אם ערך המשתנה הוא 
-$1$
-נלחץ על המשבצת ואם הוא
-$0$
-לא נלחץ.
-תיאור המשתנים על לוח ניתן לראות באיור 
-\ref{fig: 3 x 3 board indexed}.
-
+ללא מגבלת הכלליות נסביר את הגישה החדשה עבור לוח משבצות 
+$3\times 3$.
+נשייך לכל משבצת שלו משתנה באופן הבא.
+\[ \begin{array}{|c|c|c|}
+\hline
+x_1 & x_2  & x_3  \\
+\hline 
+x_4 & x_5 & x_6 \\
+\hline 
+x_7 & x_8 & x_9 \\
+\hline
+\end{array}  \]
+כל משתנה מסמן האם משבצת שלו
+ נלחצה מספר זוגי או מספר אי-זוגי של פעמים כאשר עברנו ממצב
+ הלוח בו כל המשבצות כבויות למצב בו כל המשבצות דלוקות. אז 
+$x_i=1$
+כאשר משבצת הזאת נלחצה מספר אי-זוגי של פעמים ו-
+$x_i=0$
+כאשר משבצת הזאת נלחצה מספר זוגי של פעמים. נציין שמשבצת מסוימת תהיה דלוקה אחרי סדרת לחיצות אם סכום לחיצות עליה ושכנות שלה הוא מספר אי-זוגי. כאשר ננסח את התנאי הזה עבור כל משבצת נקבל מערכת משוואות מעל שדה 
+$\mathbb{Z}_2$.
+ממה שכתבנו קודם נובע שמטריצת מקדמים שלה היא מטריצת שכנויות.
 \begin{figure}[ht]
-    \caption{לוח 
-    $3 \times 3$
-    עם משתנים}
-    \label{fig: 3 x 3 board indexed}
-    % \unsethebrew
-    \centering
-    \[\begin{bmatrix}
-        x_1 & x_2 & x_3 \\
-        x_4 & x_5 & x_6 \\
-        x_7 & x_8 & x_9 \\
-    \end{bmatrix}    
+    \caption{מטריצת השכנויות עבור לוח 
+    $3 \times 3 $}
+    \label{fig:neighborhood-matrix-for-3x3}
+    \[
+    \begin{bmatrix}
+    1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+    1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 \\
+    0 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 0 \\
+    0 & 0 & 1 & 0 & 1 & 1 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 
+    \end{bmatrix}
     \]
 \end{figure}
 
-\begin{proposition}
-    סכום המשתנים של משבצת ומשבצות שכנות אלה חייב להיות 
-    $1$.
-\end{proposition}
-עבור משבצת עם משתנה 
-$x_1$
-מתקבלת המשוואה:
-\[x_1+x_2+x_4=1\]
-עבור משבצת עם משתנה 
+נדגים עבור משבצת עם משתנה 
+$x_1$. 
+על מנת שהיא תהיה דלוקה אחרי סדרת לחיצות סכום לחיצות עליה ועל שכנותיה חייב להיות אי-זוגי, כלומר, בשדה 
+$\mathbb{Z}_2$
+מתקיים השוויון
+\[ x_1+x_2+x_4=1 \]
+עבור משבצת 
 $x_2$
-מתקבלת המשוואה:
-\[x_1+x_2+x_3+x_5=1\]
-עבור משבצת עם משתנה 
-$x_3$
-מתקבלת המשוואה:
-\[x_2+x_3+x_6=1\]
-\begin{definition}
-    \label{ def: depndeciy equation}
-    משוואה 
-    המתארת 
-    משבצת  
-    $i$,
-    תקראה
-    משוואת אילוצים על משבצת 
-    $i$.
-\end{definition}
-נמשיך לכתוב את המשוואות האילוצים לשאר המשבצות ונקבל מערכת משוואות לינאריות
-עבור לוח.
-אם נציג את מערכת משוואות האילוצים כמטריצה, אז המטריצה שנקבל תהיה מטריצת שכנויות.
-חזרנו לשיטה הקודמת,
-אלגוריתם שמבוסס על מטריצת שכנויות.
-\\
-בעזרת 
-מערכת משוואות האילוצים
-נראה שיטה אחרת למציאת פתרון.
-נחלץ את 
+מתקבל השוויון
+\[ x_1+x_2+x_3+x_5=1 \]
+עכשיו נראה איך ניתן במקום מערכת עם מטריצת שכנויות שעבור לוח 
+$3\times 3$
+לבנות מערכת הרבה יותר קטנה.
+מערכת המשוואות שנקבל תהיה מבוססת על שלושת המשתנים של משבצות בשורה הראשונה
+$x_1, x_2, x_3$.
+
+לשם כך נחלץ את 
 $x_4$
-ונקבל:
+ממשוואה ראשונה:
 \[x_4=1+x_1+x_2\]
-נחלץ את
+נחלץ 
 $x_5$
-ונקבל:
+ממשוואה שנייה:
 \[x_5=1+x_1+x_2+x_3\]
 נחלץ את 
 $x_6$
+ממשוואה שלישית
 ונקבל:
 \[x_6=1+x_2+x_3\]
-.
-אז יצרנו הלוח 
-הבא:
-\[
-\begin{bmatrix}
-    x_1 & x_2 & x_3 \\
-    1 + x_1 + x_2 & 1 + x_1 + x_2 + x_3 & 1 + x_2 + x_3 \\
-    x_7 & x_8 & x_9 \\
-\end{bmatrix}
-\]
-משוואת האילוצים עבור 
-משבצת 
-$4$:
+נחלץ את 
+$x_7$
+ממשוואה רביעית,
+כאשר
+נעזר בערכי המשתנים שכבר חולצו:
 \[x_1 + x_4 + x_5 + x_7 = 1 \Rightarrow 
 x_1  + ( 1+x_1+x_3 ) + ( 1+x_1+x_2+x_3 ) +  x_7=1
 \] 
 לכן 
+מתקבל:
 \[x_7=1+x_3\]
-כאשר ננסח 
-את משוואת האילוצים
-עבור משבצת 
-$5$ 
-ונחלץ מהשוויון המתקבל את 
+נחלץ את 
 $x_8$
-נקבל:
+ממשוואה חמישית:
 \[x_8=0\]
-כאשר ננסח 
-את משוואת האילוצים
-עבור משבצת 
-$6$ 
-ונחלץ מהשוויון המתקבל את 
+נחלץ את 
 $x_9$
+ממשוואה שישית:
 נקבל:
 \[x_9=1 + x_1 + x_3\]
-אז נוצר לוח חדש:
-\[
-    \begin{bmatrix}
-        x_1 & x_2 & x_3 \\
-        1 + x_1 + x_2 & 1 + x_1 + x_2 + x_3 & 1 + x_2 + x_3 \\
-        1 + x_1 + x_3 & 0 & 1 + x_1 + x_3 \\
-    \end{bmatrix}
-\]
-כאשר ננסח 
-את משוואת האילוצים
-עבור משבצת 
-$7$ 
-ונפשט אותה
-נקבל את המשוואה:
-\[x_1+x_2+x_3 = 1\]
-כאשר ננסח 
-את משוואת האילוצים
-עבור משבצת 
-$8$ 
-ונפשט אותה
-נקבל את המשוואה:
-\[x_2+x_3 = 0\]
-כאשר ננסח 
-את משוואת האילוצים
-עבור משבצת 
-$9$ 
-ונפשט אותה
-נקבל את המשוואה:
-\[x_1+x_2=1\]
-קיבלנו
+
+היות וחילצנו את כל המשתנים פרט למשתנים 
+$x_1, x_2, x_3$
+נפשט את המשוואות הנותרות ונקבל
 מערכת של 
 $3$
 משוואות עם שלושה משתנים.
-יש לה פתרון יחיד והוא 
+\\
+פישוט משוואה 
+שביעית:
+\[x_1+x_2+x_3 = 1\]
+פישוט משוואה 
+שמינית:
+\[x_2+x_3 = 0\]
+פישוט משוואה 
+תשיעית:
+\[x_1+x_2=1\]
+למערכת המשוואות 
+יש פתרון יחיד והוא 
 $x_1=1, x_2=0, x_3=1$
-. 
+.
+\\
 מפה נובע ש
 $x_4 =0, x_5 =1, x_6 =0, x_7 =1, x_8 =0, x_9 =1$.
 
-ציינו בתיאור אלגוריתם 
-מילוי עקבי שמטריצה מייצגת של  כל משוואות האילוצים הינה מטריצת שכנויות,
-נרצה להדגים זאת.
-\begin{example}
-    נבנה את מערכת המשוואות
-    של משוואות האילוצים 
-    על לוח 
-    $2 \times 2$
-    ומטריצת השכנויות,
-    לפי סדר המספור שקבענו.
+נבחין 
+שכל הפעולות שנעשו בגישה מילוי עקבי הם פעולות אלמנטריות.
+לכן מימוש השיטה בקוד נעשה ע"י שימוש בפעולות אלמנטריות של גאוס
+אבל סדר של פעולות האלה שונה מסדר של פעולות אלמנטריות בשיטת הדירוג גאוס.
+סדר פעולות היה לפי סדר חילוץ המשתנים שהצגנו בגישה מילוי עקבי.
+נציג את סדר פעולות הדירוג על אותה דוגמה, על לוח 
+$3 \times 3$.
+נציין שפעולות הדירוג כמובן מתבצעות על מטריצת המורחבת כלומר מטריצת השכנויות 
+עם וקטור הלוח הפתור
+$\vec 1$.
 
-    \begin{figure}[ht]
-        \caption{לוח 
-        $2 \times 2$
-        }
-        \label{fig: 2 x 2 board}
-        % \unsethebrew
-        \centering
-        \[
-            \begin{bmatrix}
-                x_1 & x_2 \\
-                x_3 & x_4 \\
-            \end{bmatrix}
-        \]
-    \end{figure}
+כאשר תיארנו את האלגוריתם מילוי עיקבי
+עבור שלושת המשוואות הראשונות רק חילצנו את המשתנים
+ולכן
+עבור שלושת השורות הראשונות במטריצה לא נבצע אף פעולה אלמנטרית.
 
-    וקטורי השינויים:
-    \[
-       t_1 = 
-        \begin{bmatrix}
-            1 \\
-            1 \\
-            1 \\
-            0 \\
-        \end{bmatrix},
-        t_2 = 
-        \begin{bmatrix}
-            1 \\
-            1 \\
-            0 \\
-            1 \\
-        \end{bmatrix},
-        t_3 = 
-        \begin{bmatrix}
-            1 \\
-            0 \\
-            1 \\
-            1 \\
-        \end{bmatrix},
-        t_4 = 
-        \begin{bmatrix}
-            0 \\
-            1 \\
-            1 \\
-            1 \\
-        \end{bmatrix}
-    \]
-    לכן
-    מטריצת שכנויות נראית כך:
-    \[
-        \begin{bmatrix}
-            1 & 1 & 1 &0 \\
-            1 & 1 & 0 & 1 \\
-            1 & 0 & 1 & 1 \\
-            0 & 1 & 1 & 1 \\
-        \end{bmatrix}
-    \]
-    אם נסדר את המשוואות במערכת המשוואות, לפי סדר 
-    האינדקסים של המשבצות, נקבל מערכת מהצורה:
-    \begin{align*}
-        x_1 + x_2 + x_3 &= 1\\
-        x_1 + x_2 + x_4 &= 1\\
-        x_1 + x_3 + x_4 &= 1\\
-        x_2 + x_3 + x_4 &= 1
-    \end{align*}
-    אפשר לראות שהמטריצה המייצגת של המערכת, זהה למטריצת שכנויות.
-\end{example}
-\begin{comm}
-    כל הפעולות שתיארנו, כמו חילוץ משתנים ופישוטם, אפשר לתאר
-    כפעולות שורות במטריצת השכנויות.
-    באופן זה מומש אלגוריתם מילוי עקבי שניתן לראות בנספחים.
-\end{comm}
+עבור משוואה רביעית הצבנו 
+את המשתנים המחולצים של 
+$x_4, x_5$,
+לכן עבור משוואה רביעית ננסה להיפטר ממשתנים עלו בעזרת פעולות שורות:
+\begin{align*} 
+r_4 \leftarrow r_4 + r_1\\
+r_4 \leftarrow r_4 + r_2
+\end{align*} 
+עבור משוואה חמישית הצבנו 
+את המשתנים המחולצים של 
+$x_4, x_5, x_6$,
+לכן עבור משוואה חמישית ננסה להיפטר ממשתנים עלו בעזרת פעולות שורות:
+\begin{align*} 
+    r_5 \leftarrow r_5 + r_1 \\
+    r_5 \leftarrow r_5 + r_2 \\
+    r_5 \leftarrow r_5 + r_3
+\end{align*} 
+עבור משוואה שישית הצבנו 
+את המשתנים המחולצים של 
+$x_5, x_6$,
+לכן עבור משוואה שישית ננסה להיפטר ממשתנים עלו בעזרת פעולות שורות:
+\begin{align*} 
+    r_6 \leftarrow r_6 + r_2 \\
+    r_6 \leftarrow r_6 + r_3
+\end{align*}
+עבור משוואה שביעית הצבנו 
+את המשתנים המחולצים של 
+$x_7, x_8$,
+לכן עבור משוואה שביעית ננסה להיפטר ממשתנים עלו בעזרת פעולות שורות:
+\begin{align*} 
+    r_7 \leftarrow r_7 + r_4 \\
+    r_7 \leftarrow r_7 + r_5 \\
+\end{align*} 
+עבור משוואה שמינית הצבנו 
+את המשתנים המחולצים של 
+$x_7, x_8, x_9$,
+לכן עבור משוואה שמינית ננסה להיפטר ממשתנים עלו בעזרת פעולות שורות:
+\begin{align*} 
+    r_8 \leftarrow r_8 + r_4 \\
+    r_8 \leftarrow r_8 + r_5 \\
+    r_8 \leftarrow r_8 + r_6
+\end{align*} 
+עבור משוואה תשיעית הצבנו 
+את המשתנים המחולצים של 
+$x_7, x_8$,
+לכן עבור משוואה תשיעית ננסה להיפטר ממשתנים עלו בעזרת פעולות שורות:
+\begin{align*} 
+    r_9 \leftarrow r_9 + r_5 \\
+    r_9 \leftarrow r_9 + r_6
+\end{align*}
+לאחר פעולות דירוג 
+מערכת המשוואות המתקבלת בשורות 
+שבע שמונה ותשעה היא:
+\begin{align*} 
+    x_1 + x_2 + x_3 &= 1\\
+    x_2 + x_3 &= 0 \\
+    x_1 + x_2 &= 1
+\end{align*}
 
 \subsection{השוואה בין שתי השיטות למציאת פתרון}
 חישוב סיבוכיות
@@ -1865,14 +1792,14 @@ $n^2 \times n^2$
 $O(n^2 \cdot n^4) = O(n^6)$.
 
 דירוג שורה בשיטת מילוי עקבי 
-מבצעים פעולות שורות כמספר השכנים במשואה האילוצים,
-עבור המשבצת שמעליו.
+מבצעים פעולות שורות כמספר השכנים עבור אותה משוואה.
 לכן יש לכל יותר
 $4$
 פעולות שורות שצריך לבצע
 כדי לקבל מערכת משוואות מצומצמת.
 מחישוב הסיבוכיות 
 פעולה  זה תיקח
+\\
 $O(n^2 \cdot n^2) = O(n^4)$
 .
 דירוג
@@ -2065,14 +1992,6 @@ $y$
     \[
         \vec x \perp \mathrm{Row}A=\mathrm{Col} A^T
     \]
-    נציין 
-    שעבור 
-    מטריצות 
-    $A \in {Z_2}^{m \times n}$
-    מאותם שיקולים אותה הוכחה נכונה,
-    רק עבור מכפלה הסקלרית שהגדרנו 
-    בהגדרה 
-    \ref{def:inner_mul}.
 \end{proof}
 \begin{comm}
     \label{comm:not-all-A-ColA-intersection-NulA-empty}
@@ -2159,7 +2078,7 @@ $y$
     את המשוואה 
     \ref{eq: quadratic form}
     אפשר לפשט כך:
-    \[ \vec{x}^T A \vec{x} = a_{1,1}x_1^2 + a_{2,2} x_2^2 +  a_{n,n} x_n^2\]
+    \[ \vec{x}^T A \vec{x} = a_{1,1}x_1^2 + a_{2,2} x_2^2 + \ldots +  a_{n,n} x_n^2\]
     היות ומתקיים
     $x_i^2 = x_i$
     כי
@@ -2167,11 +2086,11 @@ $y$
     $i \in 1, \cdots ,n$
     לכן, ניתן לפשט את משוואה 
     \ref{eq: quadratic form}:
-    \[ \vec{x}^T A \vec{x} = a_{1,1}x_1 + a_{2,2} x_2 +  a_{n,n} x_n\]
+    \[ \vec{x}^T A \vec{x} = a_{1,1}x_1 + a_{2,2} x_2 + \ldots + a_{n,n} x_n\]
     היות ו
     $ \vec{x}^T A \vec{x} = 0$
     לכן מתקיים:
-    \[a_{1,1}x_1 + a_{2,2} x_2 +  a_{n,n} x_n = 0\]
+    \[a_{1,1}x_1 + a_{2,2} x_2 + \ldots + a_{n,n} x_n = 0\]
     כלומר 
     $\vec{1} \perp  \vec{x}$
     כאשר 
@@ -2673,28 +2592,75 @@ $4$
 הדימיון בין המשחקים נובע מכיוון שהמטרה במשחקים אלו היא למלאה אזור ריק במספר צורות שונות.
 משחק האורות בו הפתרונות המתקבלים הם רק פתרונות אופטימליים,
 נהיה למשחק 
-שמנסים למלא את הלוח באמצעות לבנים בצורה של פלוס
-$+$.
+שמנסים למלא את הלוח באמצעות לבנים בצורה שונות.
 משחק שכזה זה הוא מקרה פרטי של אוסף משחקי ריצוף של אבני פוליאומינו.
 פוליאומינו הוא אובייקט קומבינטורי המורכב מריבועים המחוברים זה 
 לזה, על ידי הצמדת צלעות הריבועים.
 במשחק האורות בו הפתרונות המתקבלים הם רק פתרונות אופטימליים,
 אז
 הפוליאומינו 
-של המשחק
-הוא בצורה של 
-$+$
-המורכב מ
-$5$
-ריבועים,
-ריבוע אחד במרכז ומסיבובו 
-שאר 
-$4$
-הריבועים.
+של המשחק הם בצורות:
+\begin{figure}[ht]
+    \begin{subfigure}{0.3\textwidth}
+        \caption*{צורת פינה}
+        \[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+            \hline
+            \cellcolor{teal}*&\cellcolor{teal} &\cellcolor{yellow}\\
+            \hline
+            \cellcolor{teal}&\cellcolor{yellow} &\cellcolor{yellow} \\
+            \hline
+            \cellcolor{yellow}&\cellcolor{yellow} &\cellcolor{yellow} \\
+            \hline
+        \end{array}\]
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \caption*{צורת שפה לא בפינה}
+        \[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+            \hline
+            \cellcolor{teal}&\cellcolor{teal}* &\cellcolor{teal}\\
+            \hline
+            \cellcolor{yellow}&\cellcolor{teal} &\cellcolor{yellow} \\
+            \hline
+            \cellcolor{yellow}&\cellcolor{yellow} &\cellcolor{yellow} \\
+            \hline
+        \end{array}\]
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \caption*{צורת פנימית}
+        \[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+            \hline
+            \cellcolor{yellow}&\cellcolor{teal} &\cellcolor{yellow}\\
+            \hline
+            \cellcolor{teal}&\cellcolor{teal}* &\cellcolor{teal} \\
+            \hline
+            \cellcolor{yellow}&\cellcolor{teal} &\cellcolor{yellow} \\
+            \hline
+        \end{array}\]
+    \end{subfigure}
+\end{figure}
+
+כאשר המשבצות שנלחצו מסומנות בסימן 
+$*$.
+
 חיפוש פתרון אופטימלי על לוח נהיה שקול לשאלה: האם אפשר 
 לרצף את הלוח עם 
 פוליאומינו
 של המשחק?
+\begin{figure}
+    \caption*{דוגמה לריצוף משחק
+    $4 \times 4$}
+    \[ \begin{array}{|c|c|c|c|}
+        \hline
+        \cellcolor{green}&\cellcolor{green}* &\cellcolor{green} &\cellcolor{blue} \\
+        \hline
+        \cellcolor{red}&\cellcolor{green} &\cellcolor{blue} &\cellcolor{blue} *\\
+        \hline
+        \cellcolor{red}*&\cellcolor{red} &\cellcolor{yellow} &\cellcolor{blue} \\
+        \hline
+        \cellcolor{red}&\cellcolor{yellow}&\cellcolor{yellow}*&\cellcolor{yellow} \\
+        \hline
+        \end{array} \]
+\end{figure}
 
 בפרק זה נפתור את השאלה: לאיזה לוחות קיים פתרון מינמלי
 כאשר מצב התחלתי הוא שכל הנורות במצב
@@ -2760,26 +2726,27 @@ $0$
     \label{fig: 2x9 have min sol}
     % \unsethebrew
     \centering
-    \includegraphics[width=.5\textwidth,keepaspectratio]{images/2xm_sol.PNG}
+    \[\begin{array}{|
+        p{0.2cm}|p{0.2cm}|p{0.2cm}|
+        p{0.2cm}|p{0.2cm}|p{0.2cm}|
+        p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+        \hline
+        \cellcolor{red}*&\cellcolor{red} &\cellcolor{green} &
+        \cellcolor{blue}&\cellcolor{blue}* &\cellcolor{blue} &
+        \cellcolor{yellow}&\cellcolor{red}&\cellcolor{red}* \\
+        \hline
+        \cellcolor{red}&\cellcolor{green} &\cellcolor{green}* &
+        \cellcolor{green}&\cellcolor{blue} &\cellcolor{yellow} &
+        \cellcolor{yellow}&\cellcolor{yellow}* &\cellcolor{red}\\
+        \hline
+    \end{array}\]
 \end{figure}
 
-כדי להוכיח טענת הכותרת של תת הפרק הזה, נעזר בלוח אינסופי.
-\begin{definition}
-    לוח אינסופי של משחק מקיים את התכונות הבאות:
-    \begin{itemize}
-        \item 
-        נגדיר משבצת 
-        $a_{1,1}$
-        כראשית הצירים.
-        \item 
-        בלוח זה הצירים ממשיכים אינסוף ימינה ולמטה.
-        \item 
-        את הלוח אפשר לתאר בעזרת מטריצה אינסופית.
-    \end{itemize}
-\end{definition}
+כדי להוכיח טענת הכותרת של תת הפרק הזה, נעזר בלוח שרירותי כלשהו.
 \begin{theorem}
     \label{thm:cant-press-a11}
-    עבור לוח אינסופי,
+    עבור לוח בעל מימד כלשהו גדול מ
+    $3$,
     אין פתרון 
     אופטימלי בו המשבצת בראשית הצירים נלחצה.
 \end{theorem}
@@ -2787,13 +2754,15 @@ $0$
     לאחר לחיצה על 
     $a_{1,1}$
     מתקבל הלוח הבאה:
-    \[
-        \begin{bmatrix}
-            1 & 1 & 0 & 0 \\
-            1 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 0 \\
-        \end{bmatrix}
-    \]
+    \[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+        \hline
+        \cellcolor{red} *&\cellcolor{red} & & \\
+        \hline
+        \cellcolor{red}&  & &  \\
+        \hline
+         & & &  \\
+        \hline
+    \end{array}\]
     כדי להדליק 
     את הנורה
     $a_{2,2}$
@@ -2807,13 +2776,15 @@ $0$
     אם נילחץ על
    $a_{2,3}$
    נקבל את הלוח הבאה:
-   \[
-        \begin{bmatrix}
-            1 & 1 & 1 & 0 \\
-            1 & 1 & 1 & 1 \\
-            0 & 0 & 1 & 0 \\
-        \end{bmatrix}
-    \]
+   \[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+    \hline
+    \cellcolor{red} *&\cellcolor{red} &\cellcolor{green}& \\
+    \hline
+    \cellcolor{red}& \cellcolor{green}  & \cellcolor{green}*& \cellcolor{green}  \\
+    \hline
+     & &\cellcolor{green} &  \\
+    \hline
+    \end{array}\]
     נשים לב שהגענו למבוי סתום 
     משום שניתן להדליק את 
     $a_{3,2}$
@@ -2844,149 +2815,75 @@ $a_{1,2}$
 לחיצה על 
 $a_{2,1}$
 לא תוביל למציאת פתרון אופטימלי.
-\begin{theorem}
-    \label{thm:cant-press-a12}
-    אין אף פתרון 
-    אופטימלי בו נלחצה 
-    משבצת
-    $a_{1,2}$
-\end{theorem}
-\begin{proof}
-    כדומה להוכחה 
-    טענה 
-    \ref{thm:cant-press-a11}
-    נגיע למבוי סתום.
-    אם נסתכל על מצב הלוח לאחר לחיצה על משבצת 
-   $a_{1,2}$ 
-   ניראה כי יש סידרת לחיצות מאולצות, כדי להדליק נורות מסוימות.
-   אם נתחיל את המשחק על ידי לחיצה על 
-   $a_{1,2}$
-   נקבל את הלוח הבאה:
-   \[
-        \begin{bmatrix}
-            1 & 1 & 1 & 0 & 0 \\
-            0 & 1 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 0 & 0 \\
-            0 & 0 & 0 & 0 & 0
-        \end{bmatrix}
-    \]
-    כדי להדליק את הנורות 
-    $a_{2,1}$
-    נהיה חייבים ללחוץ על 
-    $a_{3,1}$.
-    כדי להדליק את הנורות 
-    $a_{2,3}$
-    נהיה חייבים ללחוץ על 
-    $a_{2,4}$.
-    כדי להדליק את הנורות 
-    $a_{3,3}$
-    נהיה חייבים ללחוץ על 
-    $a_{4,3}$.
-    כדי להדליק את הנורות 
-    $a_{5,2}$
-    נהיה חייבים ללחוץ על 
-    $a_{6,2}$.
-    נציג את רצף הלחיצות על הלוח,
-    נראה את המשבצות שנלחצו
-    ב
-    $*$:
-    \begin{equation}
-        \label{eq:with-sol-4x4}
-        \begin{bmatrix}
-            1 & * & 1 & 1 & 0 \\
-            1 & 1 & 1 & * & 1 \\
-            * & 1 & 1 & 1 & 0 \\
-            1 & 1 & * & 1 & 0 \\
-            0 & 1 & 1 & 0 & 0 \\
-            1 & * & 1 & 0 & 0
-        \end{bmatrix}
-    \end{equation}
-    נשים לב 
-    שאת נורה 
-    $a_{5,1}$
-    לא ניתן להדליק ללא כיבוי משבצות השכנות,
-    לכן הגענו למבוי סתום.
-\end{proof}
-אפשר להחליף בין הצירים ולקבל בעזרת אותה הוכחה 
-למה לא קיים פתרון 
-בו נלחצת בהתחלה משבצת 
-$a_{2,1}$.
-\begin{theorem}
-    לא קיים פתרון אופטימלי ללוח אינסופי.
-\end{theorem}
-\begin{proof}
-    היות ועברנו על כל האפשרויות שאפשר 
-    כדי לנסות להדליק את 
-    $a_{1,1}$,
-    והראינו שבכל מצב מגיעים למבוי סתום.
-    ניתן לומר שלא קיים פתרון אופטימלי ללוח אינסופי.
-\end{proof}
-\begin{corollary}
-    למשחק על לוח 
-    $4 \times 4$
-    קיים פתרון אופטימלי.
-    נתבונן על לוח 
-    \ref{eq:with-sol-4x4}.
-    ניתן לראות שקיים פתרון עבור 
-    לוח 
-    $4 \times 4$.
-    \[
-    \begin{bmatrix}
-        1 & 1 & * & 1\\
-        * & 1 & 1 & 1\\
-        1 & 1 & 1 & *\\
-        1 & * & 1 & 1\\
-    \end{bmatrix}
-    \]
-\end{corollary}
-\begin{corollary}
-    למשחק 
-    $ n \times 4$
-    לא קיים פתרון אופטימלי
-    כאשר 
-    $n > 4$
-\end{corollary}
-עבור לוח 
-$ n \times 4$,
-טענה
-\ref{thm:cant-press-a11}
-מתקיימת היות וההוכחה נכונה עבור לוח 
-$ n \times 4$. 
 
-נרצה להראות שגם טענה 
-\ref{thm:cant-press-a12}
-נכונה עבור לוח 
-$ n \times 4$.
-אם 
-נתחיל את המשחק 
-בלחיצה על 
+אם לחצנו על משבצת 
+$a_{1,2}$ 
+אז על מנת להדליק את 
 $a_{2,1}$
-בדומה למה שעשינו כדי לקבל את לוח 
-\ref{eq:with-sol-4x4},
-נקבל את סידרת לחיצות המאולצת
-$\{a_{2,1}, a_{1,3}, a_{3,4}, a_{4,2}, a_{6,3}\}$
-שמתוארת בלוח הבאה:
-\[
-    \begin{bmatrix}
-        1 & 1 & * & 1\\
-        * & 1 & 1 & 1\\
-        1 & 1 & 1 & *\\
-        1 & * & 1 & 1\\
-        0 & 1 & 1 & 0\\
-        0 & 1 & * & 1
-    \end{bmatrix}
-\]
-הגענו שוב למבוי סתום.
-\begin{corollary}
-    \label{thrm: bigger then 7x7 board no minimal solution}
-    במשחק על לוח 
-    $m \times n$
-    שמקיים
-    $\min(m,n) > 4$
-    אין פתרון אופטימלי.
-\end{corollary}
+בלי ללחוץ עליו חייבים ללחוץ על 
+$a_{3,1}$
+.
+אז על מנת להדליק 
+את 
+$a_{2,3}$
+בלי ללחוץ עליו נלחץ על 
+$a_{2,4}$.
+\\
+מתקבל הלוח הבאה:
+\[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+    \hline
+    \cellcolor{red} &\cellcolor{red}* &\cellcolor{red}& \cellcolor{green}\\
+    \hline
+    \cellcolor{blue}& \cellcolor{red}  & \cellcolor{green}* & \cellcolor{green}  \\
+    \hline
+        \cellcolor{blue}*& \cellcolor{blue}  &  & \cellcolor{green}  \\
+    \hline
+\end{array}\]
+זה כבר מוכיח שלכל 
+לוח 
+$3 \times n$
+כאשר 
+$n > 2$
+אין פתרון.
+
+אחרי שלחצנו על 
+$a_{2,4}$
+על מנת להדליק 
+$a_{3,3}$
+בלי ללחוץ עליה חייבים ללחוץ על 
+$a_{4,3}$
+.
+אם מדובר על 
+לוח 
+$4 \times 4$
+זה נותן פתרון אופטימלי עבורו.
+אם לא,
+אז על מנת להדליק 
+$a_5,2$
+בלי ללחוץ עליה חייבים ללחוץ על 
+$a_{6,2}$
+וזה מביא למובי סתום,
+כפי שניתן לראות בלוח הבאה:
+\[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+    \hline
+    \cellcolor{red} &\cellcolor{red}* &\cellcolor{red}& \cellcolor{green} &\\
+    \hline
+    \cellcolor{blue}& \cellcolor{red}  & \cellcolor{green}* & \cellcolor{green} & \cellcolor{green}  \\
+    \hline
+    \cellcolor{blue}*& \cellcolor{blue}  & \cellcolor{yellow}  & \cellcolor{green} & \\
+    \hline
+    \cellcolor{blue}& \cellcolor{yellow}  & \cellcolor{yellow} * & \cellcolor{yellow} &\\
+    \hline
+        & \cellcolor{red}  &\cellcolor{yellow}  & & \\
+        \hline
+        \cellcolor{red} &\cellcolor{red}*  &  & & \\
+    \hline
+\end{array}\]
+קח הוכחנו שלכל לוח 
+$m \times n$
+כאשר 
+$\min\{m,n\} > 4$
+אין פתרון אופטימלי.
 
 \subsection{אלגוריתם למציאת פתרון אופטימלי}
 נציעה דרך לחפש פתרון 
@@ -3000,15 +2897,11 @@ $\mathbb{Z}$.
 $\mathbb{Z}$
 מאלץ את הפתרונות המתקבלים
 להדליק את כל נורות רק פעם אחת.
-זאת מכיוון שמשוואות האילוצים שהגדרנו ב
-\ref{ def: depndeciy equation}
-מאלצות את הסכום להיות שווה לאחד.
 התיאוריה שפיתחנו באלגברה לינארית הייתה תקפה לשדות 
 אבל כלי התכנות שהשתמשנו
 בעבודה זו יודע לפתור גם על חוג השלמים.
 
 אלגוריתם זה ממוש ומופיע בפרק נספחים בדקנו שאכן אלגוריתם מוצא פתרונות אופטימלי.
-
 
 \begin{figure}[ht]
     \caption{פתרון ללוח 
@@ -3016,7 +2909,17 @@ $\mathbb{Z}$
     \label{fig:4x4_have_min_sol}
     % \unsethebrew
     \centering
-    \includegraphics[width=.3\textwidth,keepaspectratio]{images/4x4_sol.PNG}
+    \[\begin{array}{|p{0.2cm}|p{0.2cm}|p{0.2cm}|p{0.2cm}|}
+        \hline
+        \cellcolor{red} &\cellcolor{red}* &\cellcolor{red}& \cellcolor{green} \\
+        \hline
+        \cellcolor{blue}& \cellcolor{red}  & \cellcolor{green}* & \cellcolor{green} \\
+        \hline
+        \cellcolor{blue}*& \cellcolor{blue}  & \cellcolor{yellow}  & \cellcolor{green} \\
+        \hline
+        \cellcolor{blue}& \cellcolor{yellow}  & \cellcolor{yellow} * & \cellcolor{yellow} \\
+        \hline
+    \end{array}\]
 \end{figure}
 
 \newpage
@@ -3034,31 +2937,28 @@ numpy.
 %   רשימת מקורות
 %----------------------------------------------------------------------------------------
 \newpage
-\begin{thebibliography}{99}
-% \unsethebrew
-\begin{english}
-\bibitem{B1}
-Rafael Losada
-Translated from Spanish by Ángeles Vallejo,
-\emph{
-    ALL LIGHTS AND LIGHTS OUT,
+{
+    \begin{thebibliography}{99}
+        % \unsethebrew
+        \begin{english}
+        \bibitem{B1}
+        Rafael Losada
+        Translated from Spanish by Ángeles Vallejo,
+            ALL LIGHTS AND LIGHTS OUT,
+        SUMA magazine’s 
+        \bibitem{B2}
+        Jamie Mulholland
+            Permutation Puzzles
+        Lecture 24: Light out Puzzle , SFU faculty of science department of mathematic
+        \bibitem{Sutner}
+        K. Sutner, Linear Cellular Automata and the Garden-of-Eden, The Mathematical Intelligencer, Vol. 11, No. 29, 1989, Springer-Verlag, New York.		
+        \end{english}
+        \bibitem{B3}
+        אברהם ברמן, בן-ציון קון, 
+        אלגברה ליניארית, תיאוריה ותרגילים
+        , הוצאת בק, חיפה, 1999.
+        \end{thebibliography}
 }
-SUMA magazine’s 
-\bibitem{B2}
-Jamie Mulholland
-\emph{
-    Permutation Puzzles
-}
-Lecture 24: Light out Puzzle , SFU faculty of science department of mathematic
-\bibitem{Sutner}
-K. Sutner, \emph{Linear Cellular Automata and the Garden-of-Eden,} The Mathematical Intelligencer, Vol. 11, No. 29, 1989, Springer-Verlag, New York.		
-\end{english}
-\bibitem{B3}
-אברהם ברמן, בן-ציון קון, 
-\emph{
-אלגברה ליניארית, תיאוריה ותרגילים
-}
-, הוצאת בק, חיפה, 1999.
-\end{thebibliography}
+
 
 \end{document} 
